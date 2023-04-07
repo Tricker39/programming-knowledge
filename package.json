@@ -1,0 +1,22 @@
+{
+  "name": "programming-knowledge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run docs:dev",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs",
+    "build:emoji": "node compiler-emoji"
+  },
+  "devDependencies": {
+    "flexsearch": "^0.7.31",
+    "markdown-it": "^13.0.1",
+    "sass": "^1.56.1",
+    "vitepress": "^1.0.0-alpha.61",
+    "vitepress-plugin-pagefind": "^0.1.1",
+    "vitepress-plugin-search": "^1.0.4-alpha.19",
+    "vue": "^3.2.41"
+  }
+}
