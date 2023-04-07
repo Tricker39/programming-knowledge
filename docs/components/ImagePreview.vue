@@ -1,6 +1,11 @@
 <template>
   <div class="img-box" v-if="visibleRef">
-    <div class="media-modal" id="image-preview-container">
+    <div
+      class="media-modal"
+      id="image-preview-container"
+      ref="containerEl"
+      @mouseup="_bindMouseEvent"
+    >
       <div class="modal-mask" @click="_bindToggleVisible"></div>
       <div class="tools">
         <div class="tools-wrap">
@@ -11,6 +16,7 @@
             viewBox="0 0 48 48"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            @click="_changeMultipleValue(-0.1)"
           >
             <path
               d="M21 38C30.3888 38 38 30.3888 38 21C38 11.6112 30.3888 4 21 4C11.6112 4 4 11.6112 4 21C4 30.3888 11.6112 38 21 38Z"
@@ -41,6 +47,7 @@
             viewBox="0 0 48 48"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            @click="_changeMultipleValue(0.1)"
           >
             <path
               d="M21 38C30.3888 38 38 30.3888 38 21C38 11.6112 30.3888 4 21 4C11.6112 4 4 11.6112 4 21C4 30.3888 11.6112 38 21 38Z"
@@ -78,7 +85,7 @@
             viewBox="0 0 48 48"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            @click="_bindResetMultiple"
+            @click="_bindResetImage"
           >
             <path
               d="M42 7H6C4.89543 7 4 7.89543 4 9V39C4 40.1046 4.89543 41 6 41H42C43.1046 41 44 40.1046 44 39V9C44 7.89543 43.1046 7 42 7Z"
@@ -104,12 +111,13 @@
             <path d="M24 27V28" stroke="#fff" stroke-width="4" stroke-linecap="round" />
           </svg>
           <svg
-            class="item"
+            class="item animate-rotate-reverse"
             width="1em"
             height="1em"
             viewBox="0 0 48 48"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            @click="_changeAngle(-90)"
           >
             <path
               d="M34 6.67564C39.978 10.1337 44 16.5972 44 24M34 6.67564V14M34 6.67564H41.3244M41.3244 34C37.8663 39.978 31.4028 44 24 44M41.3244 34H34M41.3244 34V41.3244M14 41.3244C8.02199 37.8663 4 31.4028 4 24M14 41.3244V34M14 41.3244H6.67564M6.67564 14C10.1337 8.02199 16.5972 4 24 4M6.67564 14H14M6.67564 14V6.67564"
@@ -148,12 +156,13 @@
             />
           </svg>
           <svg
-            class="item"
+            class="item animate-rotate"
             width="1em"
             height="1em"
             viewBox="0 0 48 48"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            @click="_changeAngle(90)"
           >
             <path
               d="M14 6.67578C8.02198 10.1339 4 16.5973 4 24.0001M14 6.67578V14.0001M14 6.67578H6.67564"
@@ -185,7 +194,7 @@
             />
           </svg>
           <svg
-            class="item"
+            class="item animate-rotate"
             width="1em"
             height="1em"
             viewBox="0 0 48 48"
@@ -215,7 +224,12 @@
           class="media"
           :src="previewImageInfo.image?.src"
           :alt="previewImageInfo.image?.alt"
-          :style="{ transform: `scale(${multiple})` }"
+          :style="{
+            transform: `scale(${multipleRef}) rotate(${angleRef}deg)`,
+            marginTop: `${moveYRef}px`,
+            marginLeft: `${moveXRef}px`,
+          }"
+          @mousedown="_bindMouseEvent"
         />
       </div>
       <div class="indicator">
@@ -232,10 +246,19 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { ref, reactive, watch, onMounted, onUnmounted, nextTick } from 'vue';
+  import { ref, reactive, unref, watch, onMounted, onUnmounted, nextTick } from 'vue';
 
   const visibleRef = ref<boolean>(false);
-  const multiple = ref<number>(1);
+  const multipleRef = ref<number>(1);
+  const angleRef = ref<number>(0);
+  const moveXRef = ref<number>(0);
+  const moveYRef = ref<number>(0);
+  const clientXRef = ref<number>(0);
+  const clientYRef = ref<number>(0);
+  const containerEl = ref<HTMLDivElement>(null);
+  let originX = 0,
+    originY = 0;
+
   const previewImageInfo = reactive<{
     image: HTMLImageElement | null;
     list: HTMLImageElement[];
@@ -247,23 +270,48 @@
   });
 
   // #region 事件处理
+  /**
+   * 修改图片缩放比例
+   * @param value 缩放比例
+   */
+  const _changeMultipleValue = (value) => {
+    if ((value > 0 && multipleRef.value >= 5) || (value < 0 && multipleRef.value <= 0.5)) {
+      return;
+    }
+    multipleRef.value += value;
+  };
+  /**
+   * 旋转图片
+   * @param angle 旋转角度
+   */
+  const _changeAngle = (angle) => {
+    angleRef.value += angle;
+  };
+
   const _bindToggleVisible = () => {
     visibleRef.value = !visibleRef.value;
   };
   const _bindChangeImage = (index) => {
-    multiple.value = 1;
+    multipleRef.value = 1;
     previewImageInfo.image = previewImageInfo.list[index];
     previewImageInfo.current = index;
   };
-  const _bindResetMultiple = () => {
-    multiple.value = 1;
+  const _bindResetImage = () => {
+    multipleRef.value = 1;
+    moveXRef.value = 0;
+    moveYRef.value = 0;
+    angleRef.value = 0;
   };
+  /**
+   * 鼠标滚轮处理
+   * @param event
+   */
   const _bindWheelScroll = (event) => {
     event.preventDefault();
-    if (event.wheelDelta > 0 && multiple.value < 5) {
-      multiple.value += 0.1;
-    } else if (event.wheelDelta < 0 && multiple.value > 0.5) {
-      multiple.value -= 0.1;
+    if (event.wheelDelta > 0) {
+      _changeMultipleValue(0.1);
+    } else if (event.wheelDelta < 0) {
+      _changeMultipleValue(-0.1);
     }
   };
   const previewImage = (e: Event) => {
@@ -281,17 +329,40 @@
       previewImageInfo.current = index;
     }
   };
+
+  const _bindMouseEvent = (e: MouseEvent) => {
+    switch (e.type) {
+      case 'mousedown':
+        clientXRef.value = e.clientX;
+        clientYRef.value = e.clientY;
+        containerEl.value.addEventListener('mousemove', _bindMouseEvent);
+        break;
+      case 'mousemove':
+        let distanceX = e.clientX - clientXRef.value;
+        let distanceY = e.clientY - clientYRef.value;
+        moveXRef.value = originX + distanceX;
+        moveYRef.value = originY + distanceY;
+        break;
+      case 'mouseup':
+        containerEl.value.removeEventListener('mousemove', _bindMouseEvent);
+        originX = unref(moveXRef);
+        originY = unref(moveYRef);
+        break;
+    }
+  };
   // #endregion
 
   watch(visibleRef, async (val) => {
     await nextTick();
+    // 将缩放比例重置
+    multipleRef.value = 1;
     let _dom = document.getElementById('image-preview-container');
     if (val) {
       console.log('显示');
       _dom?.addEventListener('mousewheel', _bindWheelScroll);
       // 火狐浏览器没有onmousewheel事件，用DOMMouseScroll代替(滚轮事件)
       document.body.addEventListener('DOMMouseScroll', _bindWheelScroll);
-      // 禁止火狐浏览器下拖拽图片的默认事件
+      //  禁止火狐浏览器下拖拽图片的默认事件
       document.ondragstart = function () {
         return false;
       };
@@ -325,6 +396,7 @@
   }
   .img-box {
     width: 100%;
+    user-select: none;
   }
   .media-modal {
     position: fixed;
@@ -348,6 +420,10 @@
       transform: translate(-50%, -50%);
       .media {
         max-width: 100%;
+        cursor: grab;
+        &:active {
+          cursor: grabbing;
+        }
       }
     }
     .tools {
@@ -366,6 +442,13 @@
         .item {
           margin: 0 16px;
           cursor: pointer;
+          transition: transform 0.5s;
+          &.animate-rotate:hover {
+            transform: rotate(180deg);
+          }
+          &.animate-rotate-reverse:hover {
+            transform: rotate(-180deg);
+          }
         }
       }
     }
