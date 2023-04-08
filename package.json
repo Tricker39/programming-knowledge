@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run docs:dev",
+    "build": "npm run docs:build",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",

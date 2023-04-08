@@ -255,7 +255,7 @@
   const moveYRef = ref<number>(0);
   const clientXRef = ref<number>(0);
   const clientYRef = ref<number>(0);
-  const containerEl = ref<HTMLDivElement>(null);
+  const containerEl = ref<HTMLDivElement | null>(null);
   let originX = 0,
     originY = 0;
 
@@ -335,7 +335,7 @@
       case 'mousedown':
         clientXRef.value = e.clientX;
         clientYRef.value = e.clientY;
-        containerEl.value.addEventListener('mousemove', _bindMouseEvent);
+        containerEl.value?.addEventListener('mousemove', _bindMouseEvent);
         break;
       case 'mousemove':
         let distanceX = e.clientX - clientXRef.value;
@@ -344,7 +344,7 @@
         moveYRef.value = originY + distanceY;
         break;
       case 'mouseup':
-        containerEl.value.removeEventListener('mousemove', _bindMouseEvent);
+        containerEl.value?.removeEventListener('mousemove', _bindMouseEvent);
         originX = unref(moveXRef);
         originY = unref(moveYRef);
         break;
@@ -352,10 +352,19 @@
   };
   // #endregion
 
+  // #region 生命周期
+  onMounted(() => {
+    const docDomContainer = document.querySelector('#VPContent');
+    docDomContainer?.addEventListener('click', previewImage);
+  });
+  onUnmounted(() => {
+    const docDomContainer = document.querySelector('#VPContent');
+    docDomContainer?.removeEventListener('click', previewImage);
+  });
   watch(visibleRef, async (val) => {
+    // 将图片重置
+    _bindResetImage();
     await nextTick();
-    // 将缩放比例重置
-    multipleRef.value = 1;
     let _dom = document.getElementById('image-preview-container');
     if (val) {
       console.log('显示');
@@ -374,16 +383,6 @@
       //恢复火狐及Safari浏览器下的图片拖拽
       document.ondragstart = null;
     }
-  });
-
-  // #region 生命周期
-  onMounted(() => {
-    const docDomContainer = document.querySelector('#VPContent');
-    docDomContainer?.addEventListener('click', previewImage);
-  });
-  onUnmounted(() => {
-    const docDomContainer = document.querySelector('#VPContent');
-    docDomContainer?.removeEventListener('click', previewImage);
   });
   // #endregion
 </script>
@@ -413,6 +412,9 @@
       background: var(--mask-bg);
     }
     .modal-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: absolute;
       width: 50%;
       top: 50%;
