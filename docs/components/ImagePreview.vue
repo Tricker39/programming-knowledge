@@ -225,9 +225,7 @@
           :src="previewImageInfo.image?.src"
           :alt="previewImageInfo.image?.alt"
           :style="{
-            transform: `scale(${multipleRef}) rotate(${angleRef}deg)`,
-            marginTop: `${moveYRef}px`,
-            marginLeft: `${moveXRef}px`,
+            transform: `scale(${multipleRef}) rotate(${angleRef}deg) translate(${moveXRef}px,${moveYRef}px)`,
           }"
           @mousedown="_bindMouseEvent"
         />
@@ -301,6 +299,7 @@
     moveXRef.value = 0;
     moveYRef.value = 0;
     angleRef.value = 0;
+    originX = originY = 0;
   };
   /**
    * 鼠标滚轮处理
@@ -416,12 +415,16 @@
       justify-content: center;
       align-items: center;
       position: absolute;
-      width: 50%;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      cursor: grab;
+      &:active {
+        cursor: grabbing;
+      }
       .media {
         max-width: 100%;
+        max-height: 100%;
         cursor: grab;
         &:active {
           cursor: grabbing;
