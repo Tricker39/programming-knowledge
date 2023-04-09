@@ -59,49 +59,22 @@ let list: Array<number> = [1, 2, 3];
 
 ## Tuple（元组类型）
 
-元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。比如，你可以定义一对值分别为 string 和 number 类型的元组。
+> [元组](/typescript/tuple)类型是一种另类的数组类型，它确切地知道它包含多少个元素，以及它在特定位置元素的类型。
+
+比如，你可以定义一对值分别为 string 和 number 类型的元组。
+
+::: code-group
 
 ```Typescript
-// Declare a tuple type
-let x: [string, number];
-// Initialize it
-x = ['hello', 10]; // OK
-// Initialize it incorrectly
-x = [10, 'hello']; // Error
+let x: [string, number] =  [ 'hello', 0 ];
 ```
 
-当访问一个已知索引的元素，会得到正确的类型：
-
-```Typescript
-console.log(x[0].substr(1)); // OK
-console.log(x[1].substr(1)); // Error, 'number' does not have 'substr'
+```Javascript
+"use strict";
+let x = ['hello', 0]; // 由此可以看出元组本质上（或者说编译后）是一个特殊数组。
 ```
-
-当访问一个越界的元素会报错。
-
-```Typescript
-x[3] = "world"; // Error, Property '3' does not exist on type '[string, number]'.
-console.log(x[5].toString()); // Error, Property '5' does not exist on type '[string, number]'.
-```
-
-::: warning 元组与数组的区别
-
-1. 在 TypeScript 中，定义数组时，无需指定数组的长度，但是，每个数组只能指定一种子元素类型，然后所有的子元素都必须是指定的类型；元组是一个长度固定的、子元素类型不需相同的数组。
-2. 元组另一个区别于数组的地方，就是元组的每一个元素，都可以设定别名。
 
 :::
-
-```Typescript
-// tuple[0] 的别名是 age，tuple[1]的别名是 hasPartner
-const tuple: [age: number, hasPartner: boolean] = [18, false];
-
-// 无法通过别名访问到具体的值
-console.log('tuple.age:', tuple['age']); // tuple.age: undefined
-```
-
-唯一的用处，就是在编辑器中会弹出提示，提示这个元素代表着什么意思:
-
-![元组别名](/imgs/typescript/1.png)
 
 ## Enum（枚举类型）
 
@@ -199,7 +172,9 @@ let n: null = null;
 
 ## Void（空值型）
 
-某种程度上来说，void 类型像是与 any 类型相反，它表示没有任何类型。当一个函数没有返回值时（返回的值是 undefined），你通常会见到其返回值类型是 void：
+> 一个未定义的子类型，旨在作为返回类型使用。
+
+当一个函数没有返回值时（返回的值是 undefined），你通常会见到其返回值类型是 void：
 
 ```Typescript
 function warnUser(): void {

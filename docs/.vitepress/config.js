@@ -120,6 +120,7 @@ function sidebarTypescript() {
       items: [
         { text: 'Typescript 介绍', link: '/typescript/intro' },
         { text: '基础类型', link: '/typescript/basic-types' },
+        { text: '元组类型', link: '/typescript/tuple' },
         { text: '枚举类型', link: '/typescript/enum' },
       ],
     },
