@@ -29,7 +29,7 @@ let name: string = "bob";
 name = "smith";
 ```
 
-你还可以使用**模版字符串**，它可以定义多行文本和内嵌表达式。这种字符串是被反引号包围（` `），并且以${ expr }这种形式嵌入表达式
+你还可以使用**模版字符串**，它可以定义多行文本和内嵌表达式。这种字符串是被反引号包围 （\`\`），并且以 ${ expr } 这种形式嵌入表达式
 
 ```Typescript
 let name: string = `Gene`;
@@ -105,38 +105,10 @@ console.log('tuple.age:', tuple['age']); // tuple.age: undefined
 
 ## Enum（枚举类型）
 
-enum 类型是对 JavaScript 标准数据类型的一个补充。使用枚举类型可以为一组数值赋予友好的名字。
+> [Enum](/typescript/enum) 类型是对 JavaScript 标准数据类型的一个补充。使用枚举类型可以为一组数值赋予友好的名字。可以简单的理解为一组具有名字的常量集合。
 
 ```Typescript
-enum Color {Red, Green, Blue}
-
-let c: Color = Color.Green;
-```
-
-默认情况下，从 0 开始为元素编号。你也可以手动的指定成员的数值。例如，我们将上面的例子改成从 1 开始编号：
-
-```Typescript
-enum Color {Red = 1, Green, Blue}
-
-let c: Color = Color.Green;
-```
-
-或者，全部都采用手动赋值：
-
-```Typescript
-enum Color {Red = 1, Green = 2, Blue = 4}
-
-let c: Color = Color.Green;
-```
-
-枚举类型提供的一个便利是你可以由枚举的值得到它的名字。例如，我们知道数值为 2，但是不确定它映射到 Color 里的哪个名字，我们可以查找相应的名字：
-
-```Typescript
-enum Color {Red = 1, Green, Blue}
-
-let colorName: string = Color[2];
-
-console.log(colorName); // 显示'Green'因为上面代码里它的值是 2
+enum Color{ Green, Red, Blue }
 ```
 
 ## Unknown（未知类型）

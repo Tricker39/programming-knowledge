@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'OperatorMonoLig';
+  src: url('/fonts/OperatorMonoLig-Book.otf');
+}
+// 中文 Unicode 编码范围 https://www.qqxiuzi.cn/zh/hanzi-unicode-bianma.php
+// css 为 web 的数字、英文、中文设置不同的字体 https://keqingrong.cn/blog/2019-11-30-different-fonts-in-different-locales/
+@font-face {
+  font-family: 'LXGWWenKai';
+  src: url('/fonts/LXGWWenKai-Regular.ttf');
+  unicode-range: U+4E00-9FA5;
+}
+pre,
+code,
+kbd,
+samp {
+  font-family: 'OperatorMonoLig', 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono', Menlo,
+    Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
 .VPNavBarSearch {
   display: flex;
   align-items: center;
@@ -9,7 +27,6 @@
     padding-left: 24px;
   }
 }
-
 @media (min-width: 960px) {
   .VPNavBarSearch {
     padding-left: 32px;
@@ -224,9 +241,16 @@
 }
 
 .vp-doc [class*='language-'] {
+  font-size: 18px;
   > span.lang {
     color: var(--vp-c-text-light-3);
   }
+}
+.vp-code-group .tabs label {
+  color: var(--vp-c-text-light-3);
+}
+.vp-code-group input:checked + label {
+  color: var(--vp-c-text-light-2);
 }
 
 .dark {
@@ -242,8 +266,70 @@
       color: var(--vp-c-text-dark-3);
     }
   }
+  .vp-code-group .tabs label {
+    color: var(--vp-c-text-dark-3);
+  }
+  .vp-code-group input:checked + label {
+    color: var(--vp-c-text-dark-2);
+  }
 
   ::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.VPHero {
+  .clip {
+    background-image: -webkit-linear-gradient(
+      315deg,
+      #149fca 10%,
+      #07b79c 30%,
+      #2075c4 50%,
+      #7a0bda 70%,
+      #5b3deb 90%,
+      #149fca 100%
+    ) !important;
+    background-size: 2000px;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: scroll-text 10s infinite linear;
+  }
+  .name {
+    font-size: 32px !important;
+  }
+  .text {
+    font-size: 16px !important;
+  }
+
+  @media (min-width: 640px) {
+    .name {
+      line-height: 64px !important;
+      font-size: 56px !important;
+    }
+    .text {
+      line-height: 56px !important;
+      font-size: 40px !important;
+    }
+  }
+  @media (min-width: 960px) {
+    .name {
+      line-height: 80px !important;
+      font-size: 72px !important;
+      font-weight: 900 !important;
+    }
+    .text {
+      line-height: 64px !important;
+      font-size: 56px !important;
+    }
+  }
+}
+@keyframes scroll-text {
+  from {
+    background-position: 0px;
+  }
+
+  to {
+    background-position: 6000px;
   }
 }

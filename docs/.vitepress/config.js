@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress';
-// import { SearchPlugin } from 'vitepress-plugin-search';
+import { SearchPlugin } from 'vitepress-plugin-search';
 import { pagefindPlugin } from 'vitepress-plugin-pagefind';
 
 export default defineConfig({
@@ -10,14 +10,14 @@ export default defineConfig({
   cleanUrls: 'without-subfolders',
   vite: {
     plugins: [
-      /* SearchPlugin({
-        // 更好的实现方式参考 https://github.com/emersonbottero/vitepress-plugin-search/issues/11
-        encode: false,
-        tokenize: 'full',
-        previewLength: 62,
-        buttonLabel: '搜索',
-        placeholder: '请输入要搜索的内容',
-      }), */
+      // SearchPlugin({
+      //   // 更好的实现方式参考 https://github.com/emersonbottero/vitepress-plugin-search/issues/11
+      //   encode: false,
+      //   tokenize: 'full',
+      //   previewLength: 62,
+      //   buttonLabel: '搜索',
+      //   placeholder: '请输入要搜索的内容',
+      // }),
       pagefindPlugin({
         // 可参考 https://theme.sugarat.top/
         btnPlaceholder: '搜索文档',
@@ -120,6 +120,7 @@ function sidebarTypescript() {
       items: [
         { text: 'Typescript 介绍', link: '/typescript/intro' },
         { text: '基础类型', link: '/typescript/basic-types' },
+        { text: '枚举类型', link: '/typescript/enum' },
       ],
     },
   ];

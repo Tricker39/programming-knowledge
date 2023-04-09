@@ -225,12 +225,14 @@
           :src="previewImageInfo.image?.src"
           :alt="previewImageInfo.image?.alt"
           :style="{
-            transform: `scale(${multipleRef}) rotate(${angleRef}deg) translate(${moveXRef}px,${moveYRef}px)`,
+            transform: `scale(${multipleRef}) rotate(${angleRef}deg)`,
+            top: `${moveYRef}px`,
+            left: `${moveXRef}px`,
           }"
           @mousedown="_bindMouseEvent"
         />
       </div>
-      <div class="indicator">
+      <div class="indicator" v-if="previewImageInfo.list.length > 1">
         <div class="indicator-wrap">
           <div
             :class="['item', { active: index == previewImageInfo.current }]"
@@ -423,6 +425,7 @@
         cursor: grabbing;
       }
       .media {
+        position: relative;
         max-width: 100%;
         max-height: 100%;
         cursor: grab;
