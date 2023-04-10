@@ -1,8 +1,9 @@
 import { defineConfig } from 'vitepress';
-import { SearchPlugin } from 'vitepress-plugin-search';
-import { pagefindPlugin } from 'vitepress-plugin-pagefind';
+// import { SearchPlugin } from 'vitepress-plugin-search';
+import { pagefindPlugin, chineseSearchOptimize } from 'vitepress-plugin-pagefind';
 
 export default defineConfig({
+  lang: 'zh-cn',
   lastUpdated: true,
   title: '前端编程基础知识',
   description: '人之为学，不可自小，又不可自大',
@@ -20,10 +21,13 @@ export default defineConfig({
       // }),
       pagefindPlugin({
         // 可参考 https://theme.sugarat.top/
+        excludeSelector: ['img', 'a.header-anchor', 'div.aside', 'link', 'script', 'style'],
         btnPlaceholder: '搜索文档',
         placeholder: '输入要搜索的内容',
         emptyText: '我醉欲眠卿且去，明朝有意抱琴来。',
         heading: '共: {{searchResult}} 条结果',
+        forceLanguage: 'zh-cn',
+        customSearchQuery: chineseSearchOptimize,
       }),
     ],
   },
@@ -42,6 +46,7 @@ export default defineConfig({
   },
 
   themeConfig: {
+    logo: '/logo.svg',
     outline: [2, 3],
     outlineTitle: '本页目录',
     lastUpdatedText: '上次修改时间',
@@ -53,7 +58,6 @@ export default defineConfig({
       prev: '上一页',
       next: '下一页',
     },
-    logo: '/logo.svg',
     socialLinks: [
       {
         icon: {
@@ -66,6 +70,10 @@ export default defineConfig({
         link: 'https://github.com/Tricker39/programming-knowledge',
       },
     ],
+    editLink: {
+      pattern: 'https://github.com/Tricker39/programming-knowledge/tree/master/docs/:path',
+      text: '去 GitHub 上修改',
+    },
     nav: [{ text: '主页', link: '/home/introduction' }],
     sidebar: {
       '/home/': sidebarHome(),
@@ -142,7 +150,13 @@ function sidebarCode() {
       text: '前端代码展示',
       collapsed: true,
       items: [
-        { text: '按钮', items: [{ text: '彩虹按钮', link: '/codes/front/button/rainbow-button' }] },
+        {
+          text: '按钮',
+          items: [
+            { text: '彩虹按钮', link: '/codes/front/button/rainbow-button' },
+            { text: '新拟态风格按钮', link: '/codes/front/button/neumorphism-button' },
+          ],
+        },
       ],
     },
   ];

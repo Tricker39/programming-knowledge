@@ -18,6 +18,7 @@
     "vitepress": "^1.0.0-alpha.61",
     "vitepress-plugin-pagefind": "^0.1.1",
     "vitepress-plugin-search": "^1.0.4-alpha.19",
-    "vue": "^3.2.41"
+    "vue": "^3.2.41",
+    "pagefind": "^0.12.0"
   }
 }

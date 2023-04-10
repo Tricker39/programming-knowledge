@@ -2,7 +2,7 @@
 import MTag from '../components/MTag.vue';
 </script>
 
-# 枚举类型
+# 枚举
 
 ## 声明方式
 

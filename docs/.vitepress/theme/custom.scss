@@ -9,13 +9,13 @@
   src: url('/fonts/LXGWWenKai-Regular.ttf');
   unicode-range: U+4E00-9FA5;
 }
-pre,
-code,
-kbd,
-samp {
-  font-family: 'OperatorMonoLig', 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono', Menlo,
-    Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-}
+// pre,
+// code,
+// kbd,
+// samp {
+//   font-family: 'OperatorMonoLig', 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono', Menlo,
+//     Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+// }
 .VPNavBarSearch {
   display: flex;
   align-items: center;
@@ -238,6 +238,9 @@ samp {
   --vp-code-copy-code-bg: #e6e6e6;
   --vp-code-copy-code-hover-bg: #e6e6e6;
   --vp-code-copy-code-active-text: var(--vp-c-text-light-2);
+
+  --vp-font-family-mono: 'OperatorMonoLig', 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono',
+    Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 .vp-doc [class*='language-'] {
