@@ -72,6 +72,7 @@ export default defineConfig({
       '/interview/': sidebarInterview(),
       '/network/': sidebarNetwork(),
       '/typescript/': sidebarTypescript(),
+      '/codes': sidebarCode(),
     },
   },
 });
@@ -80,7 +81,7 @@ function sidebarHome() {
   return [
     {
       text: '主页',
-      collapsible: true,
+      collapsed: true,
       items: [
         { text: '简介', link: '/home/introduction' },
         { text: 'Emoji 表情', link: '/home/emoji' },
@@ -93,7 +94,7 @@ function sidebarInterview() {
   return [
     {
       text: '前端面试题',
-      collapsible: true,
+      collapsed: true,
       items: [{ text: 'Vue', link: '/interview/vue' }],
     },
   ];
@@ -103,7 +104,7 @@ function sidebarNetwork() {
   return [
     {
       text: '计算机网络',
-      collapsible: true,
+      collapsed: true,
       items: [
         { text: 'HTTP', link: '/network/http' },
         { text: 'HTTP 请求响应过程', link: '/network/require' },
@@ -116,12 +117,32 @@ function sidebarTypescript() {
   return [
     {
       text: 'Typescript',
-      collapsible: true,
+      collapsed: true,
       items: [
         { text: 'Typescript 介绍', link: '/typescript/intro' },
         { text: '基础类型', link: '/typescript/basic-types' },
         { text: '元组类型', link: '/typescript/tuple' },
         { text: '枚举类型', link: '/typescript/enum' },
+      ],
+    },
+  ];
+}
+
+function sidebarCode() {
+  return [
+    {
+      text: '简介',
+      collapsed: true,
+      items: [
+        { text: '为什么要做这个？', link: '/codes/intro' },
+        { text: '如何使用？', link: '/codes/how-to-use' },
+      ],
+    },
+    {
+      text: '前端代码展示',
+      collapsed: true,
+      items: [
+        { text: '按钮', items: [{ text: '彩虹按钮', link: '/codes/front/button/rainbow-button' }] },
       ],
     },
   ];

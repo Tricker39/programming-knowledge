@@ -281,18 +281,18 @@ samp {
 .VPHero {
   .clip {
     background-image: -webkit-linear-gradient(
-      180deg,
-      #149fca 12.5%,
-      #07b79c 37.5%,
-      #7a0bda 62.5%,
-      #5b3eea 87.5%,
-      #149fca 100%
+      0deg,
+      #149fca,
+      #07b79c,
+      #7a0bda,
+      #5b3eea,
+      #149fca
     ) !important;
-    background-size: 2000px;
+    background-size: 500%;
     background-clip: text !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
-    animation: scroll-text 20s infinite linear;
+    animation: scroll-text 15s infinite linear;
   }
   .name {
     font-size: 32px !important;
@@ -329,6 +329,6 @@ samp {
   }
 
   to {
-    background-position: -6000px;
+    background-position: -500%;
   }
 }

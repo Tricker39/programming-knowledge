@@ -4,6 +4,7 @@ lastUpdated: false
 ---
 
 # 简介
+[:link: 代码展示](/codes/intro)
 
 [:link: Typescript 学习笔记](/typescript/intro)
 
