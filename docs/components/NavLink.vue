@@ -7,7 +7,7 @@
       :target="item.target"
       :href="withBase(item.url)"
     >
-      <img :src="item.media" :alt="item.title" class="media" />
+      <img :src="item.media" :alt="item.title" class="media" @click.stop="_bindEmpty" />
       <div class="title">{{ item.title }} </div>
     </a>
   </div>
@@ -24,12 +24,8 @@
     links: Array<NavLink>,
   });
 
-  const _bindGoPage = (record: NavLink) => {
-    if (record.target == '_blank') {
-      window.open(record.url);
-    } else {
-      window.location.href = record.url;
-    }
+  const _bindEmpty = (e) => {
+    return;
   };
 </script>
 <style lang="scss" scoped>
@@ -54,6 +50,7 @@
         margin-right: 16px;
         width: 48px;
         height: 48px;
+        border: 2px solid var(--vp-c-brand-dark);
         border-radius: 100%;
         box-shadow: var(--vp-shadow-2);
       }

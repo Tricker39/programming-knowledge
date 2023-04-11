@@ -34,7 +34,6 @@
 }
 
 // #region 搜索样式修改
-
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand);
   --docsearch-highlight-color: var(--docsearch-primary-color);
@@ -187,24 +186,58 @@
 .dark .DocSearch-Footer {
   border-top: 1px solid var(--vp-c-divider);
 }
-
+.VPPluginSearch-modal {
+  padding: 10px;
+  background: #f6f6f7;
+  font-family: 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+}
+.dark .VPPluginSearch-modal {
+  background: #252529;
+}
 .DocSearch-Form {
-  background-color: var(--vp-c-white);
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  margin: 0 auto;
+  width: 540px;
+  border: 1px solid var(--vp-c-brand);
+  background: #fff;
 }
 
 .dark .DocSearch-Form {
-  background-color: var(--vp-c-bg-mute);
+  background: #313136;
+}
+.DocSearch-MagnifierLabel {
+  margin: 12px;
 }
 .VPPluginSearch-search-group {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin: 0 -10px;
+  padding: 10px;
   color: var(--vp-c-brand);
+  background: #f6f6f7;
+}
+.dark .VPPluginSearch-search-group {
+  background: #252529;
+}
+.dark .VPPluginSearch-search-item {
+  background-color: #313136;
+  &::after {
+    background: #313136;
+  }
 }
 .VPPluginSearch-search-item {
   position: relative;
   display: -webkit-box;
+  margin: 8px 0;
   padding: 1rem;
   border: none;
-  background-color: var(--vp-c-bg-alt);
-  box-shadow: var(--vp-shadow-2);
+  background-color: #ffffff;
+  box-shadow: var(--vp-shadow-1);
   color: var(--vp-c-text-1);
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
@@ -223,9 +256,10 @@
     left: 0;
     width: 100%;
     height: 16px;
-    background: var(--vp-c-bg-alt);
+    background: #ffffff;
   }
 }
+
 .VPPluginSearch-search-item-icon {
   display: none;
 }
@@ -239,18 +273,20 @@
   padding: 0 20px 0 10px;
 }
 .VPPluginSearch-search-list {
-  padding: 0 1rem;
+  box-sizing: border-box !important;
+  margin: 0 -10px;
+  padding: 0 10px;
   overflow: hidden auto;
-  > div {
-    margin: 16px 0;
-  }
+  overflow-y: overlay;
 }
 .VPPluginSearch-modal-back {
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(4px);
 }
 .DocSearch-Input {
-  background-color: var(--vp-c-bg-alt);
+  margin: 0;
+  padding: 8px 0;
+  background: none;
 }
 // 浏览器 input 自带的叉号样式 https://blog.csdn.net/wang415229224ye/article/details/118727742
 // https://blog.csdn.net/qq_34006340/article/details/103288545
