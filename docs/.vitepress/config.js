@@ -76,7 +76,16 @@ export default defineConfig({
       pattern: 'https://github.com/Tricker39/programming-knowledge/tree/master/docs/:path',
       text: '去 GitHub 上修改',
     },
-    nav: [{ text: '主页', link: '/home/introduction' }],
+    nav: [
+      { text: '主页', link: '/home/introduction' },
+      {
+        text: '实用工具',
+        items: [
+          { text: '路过图床', link: 'https://imgse.com/' },
+          { text: '聚合图床', link: 'https://www.superbed.cn' },
+        ],
+      },
+    ],
     sidebar: {
       '/home/': sidebarHome(),
       '/interview/': sidebarInterview(),
