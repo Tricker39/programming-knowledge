@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress';
-// import { SearchPlugin } from 'vitepress-plugin-search';
+import { SearchPlugin } from 'vitepress-plugin-search';
 import { pagefindPlugin, chineseSearchOptimize } from 'vitepress-plugin-pagefind';
 
 export default defineConfig({
@@ -11,24 +11,26 @@ export default defineConfig({
   cleanUrls: 'without-subfolders',
   vite: {
     plugins: [
-      // SearchPlugin({
-      //   // 更好的实现方式参考 https://github.com/emersonbottero/vitepress-plugin-search/issues/11
-      //   encode: false,
-      //   tokenize: 'full',
-      //   previewLength: 62,
-      //   buttonLabel: '搜索',
-      //   placeholder: '请输入要搜索的内容',
-      // }),
-      pagefindPlugin({
-        // 可参考 https://theme.sugarat.top/
-        excludeSelector: ['img', 'a.header-anchor', 'div.aside', 'link', 'script', 'style'],
-        btnPlaceholder: '搜索文档',
-        placeholder: '输入要搜索的内容',
-        emptyText: '我醉欲眠卿且去，明朝有意抱琴来。',
-        heading: '共: {{searchResult}} 条结果',
-        forceLanguage: 'zh-cn',
-        customSearchQuery: chineseSearchOptimize,
+      SearchPlugin({
+        // 更好的实现方式参考 https://github.com/emersonbottero/vitepress-plugin-search/issues/11
+        lang: 'zh',
+        optimize: true,
+        encode: false,
+        tokenize: 'full',
+        previewLength: 100,
+        buttonLabel: '搜索',
+        placeholder: '请输入要搜索的内容',
       }),
+      // pagefindPlugin({
+      //   // 可参考 https://theme.sugarat.top/
+      //   excludeSelector: ['img', 'a.header-anchor', 'div.aside', 'link', 'script', 'style'],
+      //   btnPlaceholder: '搜索文档',
+      //   placeholder: '输入要搜索的内容',
+      //   emptyText: '我醉欲眠卿且去，明朝有意抱琴来。',
+      //   heading: '共: {{searchResult}} 条结果',
+      //   forceLanguage: 'zh-cn',
+      //   customSearchQuery: chineseSearchOptimize,
+      // }),
     ],
   },
 
@@ -147,7 +149,7 @@ function sidebarCode() {
       ],
     },
     {
-      text: '前端代码展示',
+      text: 'html 代码片段',
       collapsed: true,
       items: [
         {

@@ -33,6 +33,8 @@
   }
 }
 
+// #region 搜索样式修改
+
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand);
   --docsearch-highlight-color: var(--docsearch-primary-color);
@@ -187,22 +189,75 @@
 }
 
 .DocSearch-Form {
-  border: 1px solid var(--vp-c-brand);
   background-color: var(--vp-c-white);
 }
 
 .dark .DocSearch-Form {
   background-color: var(--vp-c-bg-mute);
 }
-
-/*flex-search logo 样式 */
-/* .flex-logo {
+.VPPluginSearch-search-group {
+  color: var(--vp-c-brand);
+}
+.VPPluginSearch-search-item {
+  position: relative;
+  display: -webkit-box;
+  padding: 1rem;
+  border: none;
+  background-color: var(--vp-c-bg-alt);
+  box-shadow: var(--vp-shadow-2);
+  color: var(--vp-c-text-1);
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  &:hover {
+    background: var(--vp-c-brand);
+    &::after {
+      background: var(--vp-c-brand);
+    }
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: var(--vp-c-bg-alt);
+  }
+}
+.VPPluginSearch-search-item-icon {
   display: none;
-} */
+}
+
+/*隐藏 flex-search logo 样式 */
+.VPPluginSearch-flex-logo {
+  display: none;
+}
 
 .blog-search .nav-search-btn-wait .search-tip {
   padding: 0 20px 0 10px;
 }
+.VPPluginSearch-search-list {
+  padding: 0 1rem;
+  overflow: hidden auto;
+  > div {
+    margin: 16px 0;
+  }
+}
+.VPPluginSearch-modal-back {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+}
+.DocSearch-Input {
+  background-color: var(--vp-c-bg-alt);
+}
+// 浏览器 input 自带的叉号样式 https://blog.csdn.net/wang415229224ye/article/details/118727742
+// https://blog.csdn.net/qq_34006340/article/details/103288545
+input::-webkit-search-cancel-button {
+  display: none;
+}
+// #endregion
 
 /* 滚动条整体 */
 ::-webkit-scrollbar {
