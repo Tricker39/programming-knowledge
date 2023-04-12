@@ -295,13 +295,13 @@
     image.src = url;
     image.onload = function () {
       if (image.width > window.innerWidth) {
-        imgWidth.value = Math.round(window.innerWidth * 0.9);
-        imgHeight.value = Math.round((image.height * window.innerWidth * 0.9) / image.width);
+        imgWidth.value = Math.round(window.innerWidth * 0.8);
+        imgHeight.value = Math.round((image.height * window.innerWidth * 0.8) / image.width);
         return;
       }
       if (image.height > window.innerHeight) {
-        imgWidth.value = Math.round((image.width * window.innerHeight * 0.9) / window.innerWidth);
-        imgHeight.value = Math.round(window.innerHeight * 0.9);
+        imgWidth.value = Math.round((image.width * window.innerHeight * 0.8) / window.innerWidth);
+        imgHeight.value = Math.round(window.innerHeight * 0.8);
         return;
       }
       imgWidth.value = image.width;
