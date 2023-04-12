@@ -219,18 +219,18 @@
           </svg>
         </div>
       </div>
-      <div class="modal-box">
-        <img
-          class="media"
-          :src="previewImageInfo.image?.src"
-          :alt="previewImageInfo.image?.alt"
-          :style="{
-            transform: `scale(${multipleRef}) rotate(${angleRef}deg)`,
-            top: `${moveYRef}px`,
-            left: `${moveXRef}px`,
-          }"
-          @mousedown="_bindMouseEvent"
-        />
+      <div
+        class="modal-box"
+        :style="{
+          width: `${imgWidth}px`,
+          height: `${imgHeight}px`,
+          transform: `translate(-50%,-50%) scale(${multipleRef}) rotate(${angleRef}deg)`,
+          marginTop: `${moveYRef}px`,
+          marginLeft: `${moveXRef}px`,
+        }"
+        @mousedown="_bindMouseEvent"
+      >
+        <img class="media" :src="previewImageInfo.image?.src" :alt="previewImageInfo.image?.alt" />
       </div>
       <div class="indicator" v-if="previewImageInfo.list.length > 1">
         <div class="indicator-wrap">
@@ -256,6 +256,8 @@
   const clientXRef = ref<number>(0);
   const clientYRef = ref<number>(0);
   const containerEl = ref<HTMLDivElement | null>(null);
+  const imgWidth = ref<number>(0);
+  const imgHeight = ref<number>(0);
   let originX = 0,
     originY = 0;
 
@@ -288,11 +290,34 @@
     angleRef.value += angle;
   };
 
+  const _getImageSize = (url: string): void => {
+    let image = new Image();
+    image.src = url;
+    image.onload = function () {
+      if (image.width > window.innerWidth) {
+        imgWidth.value = Math.round(window.innerWidth * 0.9);
+        imgHeight.value = Math.round((image.height * window.innerWidth * 0.9) / image.width);
+        return;
+      }
+      if (image.height > window.innerHeight) {
+        imgWidth.value = Math.round((image.width * window.innerHeight * 0.9) / window.innerWidth);
+        imgHeight.value = Math.round(window.innerHeight * 0.9);
+        return;
+      }
+      imgWidth.value = image.width;
+      imgHeight.value = image.height;
+      return;
+    };
+    image.onerror = function (error) {
+      console.log(error);
+    };
+  };
   const _bindToggleVisible = () => {
     visibleRef.value = !visibleRef.value;
   };
-  const _bindChangeImage = (index) => {
+  const _bindChangeImage = async (index) => {
     multipleRef.value = 1;
+    await _getImageSize(previewImageInfo.list[index].src);
     previewImageInfo.image = previewImageInfo.list[index];
     previewImageInfo.current = index;
   };
@@ -315,7 +340,7 @@
       _changeMultipleValue(-0.1);
     }
   };
-  const previewImage = (e: Event) => {
+  const previewImage = async (e: Event) => {
     if (visibleRef.value) {
       return;
     }
@@ -328,6 +353,7 @@
       previewImageInfo.image = target as HTMLImageElement;
       previewImageInfo.list = Array.from(imgs);
       previewImageInfo.current = index;
+      await _getImageSize((target as HTMLImageElement).src);
     }
   };
 

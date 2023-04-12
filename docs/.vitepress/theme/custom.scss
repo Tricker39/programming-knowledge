@@ -20,9 +20,18 @@
 //   font-family: 'OperatorMonoLig', 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono', Menlo,
 //     Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 // }
+
 .VPNavBarSearch {
   display: flex;
   align-items: center;
+}
+.VPSocialLinks {
+  padding-right: 10px;
+}
+// 毛玻璃效果
+.VPNavBar .content-body {
+  backdrop-filter: blur(8px);
+  background: var(--vp-nav-bg) !important;
 }
 
 @media (min-width: 768px) {
@@ -37,7 +46,7 @@
   }
 }
 
-// #region 搜索样式修改
+// #region 搜索样式
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand);
   --docsearch-highlight-color: var(--docsearch-primary-color);
@@ -199,7 +208,7 @@
   z-index: 9;
   margin: 0 auto;
   width: 540px;
-  border: 1px solid var(--vp-c-brand);
+  border: 2px solid var(--vp-c-brand);
   background: #fff;
 }
 
@@ -208,6 +217,7 @@
 }
 .DocSearch-MagnifierLabel {
   margin: 12px;
+  color: var(--vp-c-brand);
 }
 .VPPluginSearch-search-group {
   display: block;
@@ -241,10 +251,11 @@
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
+  transition: all 0.3s ease-in-out;
   &:hover {
-    background: var(--vp-c-brand);
+    background: var(--vp-c-brand-dark);
     &::after {
-      background: var(--vp-c-brand);
+      background: var(--vp-c-brand-dark);
     }
   }
   &::after {
@@ -254,6 +265,7 @@
     left: 0;
     width: 100%;
     height: 16px;
+    transition: background 0.3s ease-in-out;
     background: #ffffff;
   }
 }
@@ -293,6 +305,7 @@ input::-webkit-search-cancel-button {
 }
 // #endregion
 
+// #region 滚动条样式
 /* 滚动条整体 */
 ::-webkit-scrollbar {
   height: 8px;
@@ -319,6 +332,7 @@ input::-webkit-search-cancel-button {
 ::-webkit-scrollbar-button {
   display: none;
 }
+// #endregion
 
 :root {
   --vp-code-block-bg: #f6f6f7;
@@ -327,6 +341,7 @@ input::-webkit-search-cancel-button {
   --vp-code-copy-code-bg: #e6e6e6;
   --vp-code-copy-code-hover-bg: #e6e6e6;
   --vp-code-copy-code-active-text: var(--vp-c-text-light-2);
+  --vp-nav-bg: rgba(255, 255, 255, 0.6);
 
   --vp-font-family-mono: 'OperatorMonoLig', 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono',
     Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -352,6 +367,7 @@ input::-webkit-search-cancel-button {
   --vp-code-copy-code-bg: var(--vp-code-block-bg-light);
   --vp-code-copy-code-hover-bg: var(--vp-code-block-bg-light);
   --vp-code-copy-code-active-text: var(--vp-c-text-dark-2);
+  --vp-nav-bg: rgba(30, 30, 32, 0.6);
 
   .vp-doc [class*='language-'] {
     > span.lang {
