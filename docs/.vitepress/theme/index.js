@@ -2,6 +2,7 @@ import { h } from 'vue';
 import DefaultTheme from 'vitepress/theme';
 import Donate from './Donate.vue';
 import ImagePreviewLayout from './ImagePreviewLayout.vue';
+import Music from '../../components/Music.vue';
 import './custom.scss';
 
 export default {
@@ -9,7 +10,8 @@ export default {
   Layout() {
     return h(DefaultTheme.Layout, null, {
       'aside-outline-after': () => h(Donate),
-      'doc-before': () => h(ImagePreviewLayout),
+      'doc-after': () => h(ImagePreviewLayout),
+      'doc-before': () => h(Music),
     });
   },
 };

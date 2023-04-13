@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { SearchPlugin } from 'vitepress-plugin-search';
-import { pagefindPlugin, chineseSearchOptimize } from 'vitepress-plugin-pagefind';
+// import { pagefindPlugin, chineseSearchOptimize } from 'vitepress-plugin-pagefind';
 
 export default defineConfig({
   lang: 'zh-cn',
@@ -37,6 +37,7 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { name: 'theme-color', content: '#3c8772' }],
+    ['script', { src: '/snow.js' }],
   ],
 
   markdown: {
@@ -81,8 +82,9 @@ export default defineConfig({
       {
         text: '实用工具',
         items: [
-          { text: '路过图床', link: 'https://imgse.com/' },
+          { text: '路过图床', link: 'https://imgse.com' },
           { text: '聚合图床', link: 'https://www.superbed.cn' },
+          { text: 'gitmind 思维导图', link: 'https://gitmind.cn' },
         ],
       },
     ],
