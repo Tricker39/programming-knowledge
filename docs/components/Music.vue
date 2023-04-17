@@ -1,28 +1,45 @@
 <template>
   <div class="music-box">
     <div class="media">
-      <img :src="music?.picUrl" :alt="music?.name" />
+      <img :src="music?.picUrl" :alt="music?.name" :class="{ play: !pauseRef }" />
+      <div :class="['media-btn', { play: !pauseRef }]" @click="_bindTogglePuase"></div>
     </div>
     <div class="info">
       <div class="name">{{ music?.name }}</div>
       <div class="auther">{{ music?.auther }}</div>
-    </div>
-    <div>
-      <div class="tools">
-        <div class="controls">
-          <div class="control-btn"
-            ><img src="https://s1.ax1x.com/2023/04/14/ppxXaPP.png" alt=""
-          /></div>
-          <div class="switch"><img src="https://s1.ax1x.com/2023/04/14/ppxLsSS.png" alt="" /></div>
-          <div class="control-btn"
-            ><img src="https://s1.ax1x.com/2023/04/14/ppxX6Vs.png" alt=""
-          /></div>
+      <div class="volume-wrap">
+        <div class="volume" id="volume-box">
+          <div class="bar" :style="{ width: `${volumeRef * 100}%` }"></div>
+          <div
+            class="dot"
+            :style="{ left: `${volumeRef * 100}%` }"
+            @mousedown="_bindChangeVolume"
+          ></div>
         </div>
-        <div class="time">00:00/04:05</div>
+        <div class="volume-text">{{ Math.floor(volumeRef * 100) }}</div>
+      </div>
+    </div>
+    <div class="music-btn-group">
+      <div class="tools">
+        <div class="music-btn">
+          <!-- <span :class="['button like', { active: likeRef }]" @click="_bindToggleLike"></span> -->
+          <span
+            :class="['button mode', { single: singleRef }]"
+            @click="_bindToggleChangeSingleMode"
+          ></span>
+        </div>
+        <div class="controls">
+          <div class="control-btn prev" @click="_bindPrevSong"><span class="button"></span></div>
+          <div class="switch" @click="_bindTogglePuase"
+            ><span :class="['button', { pause: pauseRef }]"></span
+          ></div>
+          <div class="control-btn next" @click="_bindNextSong"><span class="button"></span></div>
+        </div>
+        <div class="time">{{ currentTimestampRef }}/{{ totalTimestamp }}</div>
       </div>
       <div class="progress">
-        <div class="bar" :style="{ width: `${200}px` }"></div>
-        <div class="dot" :style="{ transform: `translateX(${200}px)` }"></div>
+        <div class="bar" :style="{ width: `${currentTimeRef}%` }"></div>
+        <!-- <div class="dot" :style="{ left: `${currentTimeRef}%` }"></div> -->
       </div>
     </div>
 
@@ -30,17 +47,200 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { ref, watch, computed, watchEffect, onMounted, unref } from 'vue';
+  const playList = ref<any[]>([]);
   const music = ref();
-  fetch('https://api.vvhan.com/api/rand.music?type=json&sort=热歌榜')
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      if (data.success) {
-        music.value = data.info;
+  const currentIndex = ref(-1);
+  const likeRef = ref(false);
+  const pauseRef = ref(true);
+  const singleRef = ref(true);
+  const durationRef = ref(0);
+  const currentTimeRef = ref(0);
+  const currentTimestampRef = ref('00:00');
+  const volumeRef = ref(0.3);
+  let audio = ref<HTMLAudioElement>(new Audio());
+  let timer = 0,
+    volX = 0,
+    currentVol = 0;
+
+  // #region  音频相关
+  // 更多开发细节请参考 https://blog.csdn.net/qq_47703624/article/details/107556369
+  // 初始化音量
+  audio.value.volume = volumeRef.value;
+  audio.value.addEventListener('canplaythrough', (event) => {
+    /* the audio is now playable; play it if permissions allow */
+    durationRef.value = audio.value?.duration ?? 0;
+    // 自动播放
+    pauseRef.value = false;
+  });
+  audio.value.addEventListener('ended', (event) => {
+    pauseRef.value = true;
+    if (!singleRef.value) {
+      _bindNextSong();
+    }
+  });
+  audio.value.addEventListener('play', (event) => {
+    _getCurrentTime();
+  });
+  audio.value.addEventListener('pause', (event) => {
+    console.log('pause');
+    if (timer) {
+      clearInterval(timer);
+    }
+  });
+  audio.value.addEventListener('error', (event) => {
+    pauseRef.value = true;
+  });
+  // #endregion
+
+  // #region 私有方法
+
+  const _getCurrentTime = () => {
+    timer = setInterval(() => {
+      const persent = audio.value.currentTime / durationRef.value;
+      currentTimeRef.value = Math.floor(persent * 100);
+      currentTimestampRef.value = _formatTimestamp(audio.value.currentTime);
+      if (persent >= 1) {
+        clearInterval(timer);
       }
-    })
-    .catch(console.error);
+    }, 1000);
+  };
+  const _formatTimestamp = (seconds: number): string => {
+    if (seconds > 0) {
+      let minus = Math.floor(seconds / 60);
+      let second = Math.floor(seconds % 60);
+      return `${minus >= 10 ? '' : 0}${minus}:${second >= 10 ? '' : 0}${second}`;
+    } else {
+      return '00:00';
+    }
+  };
+  const _resetPlayer = () => {
+    clearInterval(timer);
+    currentTimestampRef.value = '00:00';
+    currentTimeRef.value = 0;
+    pauseRef.value = true;
+  };
+  const _setMusic = (index: number) => {
+    currentIndex.value = index;
+    music.value = playList.value[index];
+    audio.value.src = music.value.mp3url;
+    audio.value.load();
+  };
+  // #endregion
+
+  // #region Vue API
+  onMounted(() => {
+    _getMusic();
+  });
+  const totalTimestamp = computed(() => {
+    return _formatTimestamp(durationRef.value);
+  });
+  // 控制音量
+  watch(volumeRef, (val) => {
+    audio.value.volume = val;
+  });
+  // 控制播放状态
+  watchEffect(
+    () => {
+      if (pauseRef.value) {
+        audio.value?.pause();
+      } else {
+        audio.value?.play().catch((err) => {
+          pauseRef.value = true;
+          throw err;
+        });
+      }
+    },
+    { flush: 'post' }
+  );
+  // #endregion
+
+  // #region 接口
+  /**
+   * 获取网易云音乐热歌榜
+   * @param flag 上一曲/下一曲标志 -1:上一曲 1:下一曲
+   */
+  const _getMusic = (flag = 1) => {
+    fetch('https://api.vvhan.com/api/rand.music?type=json&sort=热歌榜')
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        if (data.success) {
+          music.value = data.info;
+          if (data.info.mp3url.endsWith('\.mp3')) {
+            audio.value.src = data.info.mp3url;
+            if (flag > -0) {
+              playList.value.push(data.info);
+              currentIndex.value += 1;
+            } else {
+              playList.value.unshift(data.info);
+            }
+          } else {
+            _getMusic(1);
+          }
+        }
+      })
+      .catch(console.error);
+  };
+  // #endregion
+
+  // #region 交互
+  const _bindToggleLike = () => {
+    // TODO: 暂时取消收藏功能
+    likeRef.value = !likeRef.value;
+  };
+  const _bindTogglePuase = () => {
+    pauseRef.value = !pauseRef.value;
+  };
+  const _bindToggleChangeSingleMode = () => {
+    singleRef.value = !singleRef.value;
+    audio.value.loop = singleRef.value;
+  };
+  const _bindChangeVolume = (event: MouseEvent) => {
+    switch (event.type) {
+      case 'mousedown':
+        volX = event.clientX;
+        currentVol = unref(volumeRef);
+        document.body.addEventListener('mousemove', _bindChangeVolume);
+        document.body.addEventListener('mouseup', _bindChangeVolume);
+        break;
+      case 'mousemove':
+        let distanceX = event.clientX - volX;
+        const boxWidth = document.getElementById('volume-box')?.offsetWidth || 1;
+        console.log(distanceX);
+        let persent = distanceX / boxWidth;
+        console.log(currentVol, persent);
+        if (currentVol + persent > 1) {
+          persent = 1 - currentVol;
+        } else if (currentVol + persent <= 0) {
+          persent = -currentVol;
+        }
+        volumeRef.value = currentVol + persent;
+        break;
+      case 'mouseup':
+        document.body.removeEventListener('mousemove', _bindChangeVolume);
+        break;
+    }
+  };
+  const _bindPrevSong = () => {
+    // 重置播放器状态
+    _resetPlayer();
+    if (currentIndex.value == 0) {
+      _getMusic(-1);
+    } else {
+      _setMusic(currentIndex.value - 1);
+    }
+  };
+  const _bindNextSong = () => {
+    //  重置播放器状态
+    _resetPlayer();
+    if (currentIndex.value == playList.value.length - 1) {
+      _getMusic(1);
+    } else {
+      _setMusic(currentIndex.value + 1);
+    }
+  };
+  // #endregion
 </script>
 <style lang="scss" scoped>
   @mixin neuomorphism($key) {
@@ -56,7 +256,13 @@
   }
   .music-box {
     @include neuomorphism(--music-shadow);
-    --music-bg: #29292e;
+    --music-bg: linear-gradient(145deg, #f3feff, #ccd5de);
+    --music-bg2: linear-gradient(170deg, rgb(255, 255, 255), #ccd5de 60%);
+    --music-shadow: -6px -6px 20px 0px #fff, 4px 4px 20px 0px #6f8cb0;
+    --music-shadow-small: -3px -3px 10px 0px #fff, 2px 2px 10px 0px #6f8cb0;
+    --music-like-position: -67px -69px;
+    --music-volume-bg: #a5aebd;
+    --music-progress-shadow-inset: -6px -6px 20px 0px #fff inset, 4px 4px 20px 0px #6f8cb0 inset;
 
     display: flex;
     align-items: center;
@@ -66,13 +272,14 @@
     margin-bottom: 16px;
     padding: 16px;
     border-radius: 16px;
-    background-image: var(--music-bg),
-      linear-gradient(170deg, rgba(255, 255, 255, 0.3), transparent 60%);
+    background-image: var(--music-bg), var(--music-bg2);
     .media {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-shrink: 0;
+      margin: 0 auto;
       width: 80px;
       height: 80px;
       background: url('https://s1.ax1x.com/2023/04/13/ppxDD2D.png');
@@ -81,31 +288,108 @@
         width: 50px;
         height: 50px;
         border-radius: 100%;
+        &.play {
+          animation: spin 20s linear infinite;
+        }
+      }
+      .media-btn {
+        position: absolute;
+        display: none;
+        width: 34px;
+        height: 34px;
+        background: url('https://s1.ax1x.com/2023/04/17/p9CjHaD.png');
+        background-position: 0 0;
+        cursor: pointer;
+        &.play {
+          background-position: -68px 0;
+        }
       }
     }
     .info {
       margin-left: 16px;
-      flex: 1;
+      width: 160px;
       font-family: 'LXGWWenKai';
       .name {
-        color: #fff;
         font-size: 18px;
       }
       .auther {
         color: #666;
         font-size: 12px;
       }
+      .volume-wrap {
+        margin-top: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .volume-text {
+          margin-left: 8px;
+        }
+      }
+      .volume {
+        position: relative;
+        width: 100px;
+        height: 8px;
+        border-radius: 8px;
+        background-color: var(--music-volume-bg);
+        .bar {
+          height: 100%;
+          border-radius: 8px;
+          background-color: var(--vp-c-brand);
+        }
+        .dot {
+          position: absolute;
+          top: -6px;
+          left: 0;
+          width: 19px;
+          height: 19px;
+          transform: translateX(-50%);
+          cursor: pointer;
+          user-select: none;
+          border-radius: 20px;
+          border: 1px solid var(--vp-c-brand);
+          background: #fff;
+        }
+      }
+    }
+    .music-btn-group {
+      margin-left: 36px;
+      flex: 1;
     }
     .tools {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      .button {
+        display: block;
+        width: 34px;
+        height: 34px;
+        cursor: pointer;
+        background: url('/music-button-group.png');
+        background-size: 238px 170px;
+      }
+      .music-btn {
+        display: flex;
+        .button {
+          margin-right: 16px;
+          &.like {
+            background-position: var(--music-like-position);
+            &.active {
+              background-position: -133px -69px;
+            }
+          }
+          &.mode {
+            background-position: 0px -136px;
+            &.single {
+              background-position: -67px -136px;
+            }
+          }
+        }
+      }
     }
     .controls {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-left: 24px;
       .control-btn {
         @include neuomorphism(--music-shadow-small);
         @include box-center;
@@ -121,6 +405,7 @@
           height: 24px;
         }
       }
+
       .switch {
         @include neuomorphism(--music-shadow-small);
         @include box-center;
@@ -130,6 +415,27 @@
         height: 48px;
         cursor: pointer;
         border-radius: 100%;
+        .button {
+          width: 34px;
+          height: 34px;
+          background-size: 238px 170px;
+          background-position: -66px 0;
+          &.pause {
+            background-position: 1px 0;
+          }
+        }
+      }
+      .prev {
+        .button {
+          background-position: -89px 5px;
+          background-size: 168px 120px;
+        }
+      }
+      .next {
+        .button {
+          background-position: -135px 5px;
+          background-size: 168px 120px;
+        }
       }
     }
     .progress {
@@ -137,9 +443,8 @@
       align-items: center;
       position: relative;
       margin-top: 8px;
-      margin-left: 16px;
       padding: 0 4px;
-      width: 500px;
+      width: 100%;
       height: 24px;
       border: 1px solid transparent;
       background-clip: padding-box, border-box;
@@ -147,8 +452,7 @@
       border-radius: 24px;
       background-image: var(--music-bg),
         linear-gradient(179deg, rgba(255, 255, 255, 0.3), transparent 60%);
-      box-shadow: var(--music-shadow-small), -6px -6px 20px 0px #3c3c43 inset,
-        4px 4px 20px 0px #0f0f11 inset;
+      box-shadow: var(--music-shadow-small), var(--music-progress-shadow-inset);
       .bar {
         height: 12px;
         border-radius: 8px;
@@ -157,9 +461,12 @@
       .dot {
         @include box-center;
         position: absolute;
-        left: -18px;
+        left: 0;
         width: 36px;
         height: 36px;
+        transform: translateX(-18px);
+        transition: left 0.5s linear;
+        user-select: none;
         border-radius: 36px;
         border: 1px solid transparent;
         background-clip: padding-box, border-box;
@@ -167,8 +474,7 @@
         border-radius: 36px;
         background-image: var(--music-bg),
           linear-gradient(179deg, rgba(255, 255, 255, 0.3), transparent 60%);
-        box-shadow: var(--music-shadow-small), -6px -6px 20px 0px #3c3c43 inset,
-          4px 4px 20px 0px #0f0f11 inset;
+        box-shadow: var(--music-shadow-small), var(--music-progress-shadow-inset);
         &::after {
           content: '';
           display: block;
@@ -190,5 +496,60 @@
     --music-shadow: -6px -6px 20px 0px #3c3c43, 4px 4px 20px 0px #0f0f11;
     --music-shadow-small: -3px -3px 10px 0px #3c3c43, 2px 2px 10px 0px #0f0f11;
     --music-bg: linear-gradient(170deg, #2c2c31, #252529);
+    --music-bg2: linear-gradient(170deg, rgba(255, 255, 255, 0.3), transparent 60%);
+    --music-like-position: 0px -69px;
+    --music-volume-bg: #1f1f23;
+    --music-progress-shadow-inset: -6px -6px 20px 0px #3c3c43 inset, 4px 4px 20px 0px #0f0f11 inset;
+  }
+  @media (width <= 1080px) {
+    // .music-box {
+    //   display: block;
+    //   .media {
+    //     margin-bottom: 16px;
+    //     width: 160px;
+    //     height: 160px;
+    //     img {
+    //       width: 100px;
+    //       height: 100px;
+    //     }
+    //   }
+    //   .info {
+    //     margin: 0;
+    //     width: 100%;
+    //     text-align: center;
+    //     .volume-wrap {
+    //       justify-content: center;
+    //     }
+    //   }
+    //   .music-btn-group {
+    //     margin: 0;
+    //     margin-top: 16px;
+    //   }
+    // }
+    .music-box {
+      position: fixed;
+      right: 12px;
+      top: 120px;
+      padding: 8px;
+      height: 76px;
+      z-index: 9;
+      .media {
+        width: 60px;
+        height: 60px;
+        img {
+          width: 40px;
+          height: 40px;
+        }
+        .media-btn {
+          display: block;
+        }
+      }
+      .info {
+        display: none;
+      }
+      .music-btn-group {
+        display: none;
+      }
+    }
   }
 </style>
