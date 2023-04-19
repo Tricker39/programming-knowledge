@@ -8,7 +8,7 @@ import MTag from '../components/MTag.vue';
 
 枚举类型的声明方式是使用 `enum` 关键字 ，然后声明枚举类型的名称（一般以大写字母开头）
 
-```Typescript
+```TypeScript
 enum Color {Red, Green, Blue}
 ```
 
@@ -16,7 +16,7 @@ enum Color {Red, Green, Blue}
 
 默认情况下，从 0 开始为元素编号，之后的每个值依次递增。
 
-```Typescript
+```TypeScript
 enum Color {Red, Green, Blue}
 let c1: Color = Color.Red;
 let c2: Color = Color.Green;
@@ -28,7 +28,7 @@ console.log(c3); // 2
 
 你也可以手动的指定成员的数值。例如，我们将上面的例子改成从 1 开始编号：
 
-```Typescript
+```TypeScript
 enum Color {Red = 1, Green, Blue}
 let c1: Color = Color.Red;
 let c2: Color = Color.Green;
@@ -40,7 +40,7 @@ console.log(c3); // 3
 
 或者，全部都采用手动赋值：
 
-```Typescript
+```TypeScript
 enum Color {Red = 1, Green = 2, Blue = 4}
 let c1: Color = Color.Red;
 let c2: Color = Color.Green;
@@ -52,7 +52,7 @@ console.log(c3); // 4
 
 一种特殊情况，枚举类型的值是相同的，容易造成混淆，所以在定义时要多加注意
 
-```Typescript
+```TypeScript
 // ❌ 不推荐
 enum Color {Red = 1, Green = 2, Black, Orange, Blue = 4, Pink = 10, White }
 console.log(Color.Black); // 3
@@ -69,7 +69,7 @@ console.log(Color.White); // 11
 
 枚举类型提供的一个便利是你可以由枚举的值得到它的名字。例如，我们知道数值为 2，但是不确定它映射到 Color 里的哪个名字，我们可以查找相应的名字：
 
-```Typescript
+```TypeScript
 enum Color {Red = 1, Green, Blue}
 
 let colorName: string = Color[2];
@@ -79,7 +79,7 @@ console.log(colorName); // 显示'Green'因为上面代码里它的值是 2
 
 枚举在运行环境下被编译成一个对象
 
-```Typescript
+```TypeScript
 enum Color {Red, Green, Blue}
 console.log(Color); //{ '0': 'Red', '1': 'Green', '2': 'Blue', Red: 0, Green: 1, Blue: 2 }
 ```
@@ -90,7 +90,7 @@ console.log(Color); //{ '0': 'Red', '1': 'Green', '2': 'Blue', Red: 0, Green: 1,
 
 ::: code-group
 
-```Typescript [Typescript]
+```TypeScript [TypeScript]
 enum Color {Red, Green, Blue}
 ```
 
@@ -111,7 +111,7 @@ var Color;
 
 ::: code-group
 
-```Typescript [Typescript]
+```TypeScript [TypeScript]
 enum Message{
   Success = '恭喜你，成功了',
   Fail = '很遗憾，失败了',
@@ -131,13 +131,13 @@ var Message;
 
 :::
 
-![反向映射](/imgs/typescript/2.png)
+![反向映射](/imgs/TypeScript/2.png)
 
 由此我们可以看出，字符串枚举是不可以进行反向映射的。
 
 当然我们可以把字符串枚举和数字枚举混用构成异构枚举。但在日常开发中容易造成混淆，不建议使用
 
-```Typescript
+```TypeScript
 // ❌ 不推荐
 enum Message{
   Success ='恭喜你，成功了',
@@ -161,7 +161,7 @@ enum Message{
 
 ::: code-group
 
-```Typescript
+```TypeScript
 enum Char{
   // const
   a,
@@ -196,7 +196,7 @@ var Char;
 
 ::: code-group
 
-```Typescript
+```TypeScript
 const enum Month{ Jan, Feb, Mar }
 ```
 
@@ -210,7 +210,7 @@ const enum Month{ Jan, Feb, Mar }
 
 ::: code-group
 
-```Typescript
+```TypeScript
 const enum Month{ Jan, Feb, Mar }
 let month = [Month.Jan, Month.Feb, Month.Mar];
 ```
@@ -228,7 +228,7 @@ let month = [0 /* Month.Jan */, 1 /* Month.Feb */, 2 /* Month.Mar */];
 
 ::: code-group
 
-```Typescript
+```TypeScript
 enum E{ a, b}
 enum F{ a = 0, b = 1}
 enum G{ a = 'apple', b = 'banana' }

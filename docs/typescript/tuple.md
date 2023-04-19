@@ -4,7 +4,7 @@
 
 元组可以像数组一样被解构，解构的变量得到相应元组元素的类型：
 
-```Typescript
+```TypeScript
 let tuple: [number, string, boolean] = [7, "hello", true];
 let [a, b, c] = tuple;
 console.log(a); // 7
@@ -14,7 +14,7 @@ console.log(c); // true
 
 当访问一个越界的元素会报错。
 
-```Typescript
+```TypeScript
 let tuple: [number, string, boolean] = [7, "hello", true];
 tuple[4] = "world"; // Error, Property '4' does not exist on type '[number, string, boolean]'.
 console.log(tuple[5].toString()); // Error, Property '5' does not exist on type '[number, string, boolean]'.
@@ -22,7 +22,7 @@ console.log(tuple[5].toString()); // Error, Property '5' does not exist on type 
 
 元组的声明和使用需要注意一下一点
 
-```Typescript
+```TypeScript
 // 当前元组的长度是 3
 let tuple: [number, string, boolean] = [7, "hello", true];
 // 可以往元组里面 push
@@ -40,7 +40,7 @@ tuple.forEach((item)=>{
 
 和数组一样，你可以用`...`对元组的其余部分进行解构，以得到一个子元组：
 
-```Typescript
+```TypeScript
 let tuple: [number, string, boolean] = [7, "hello", true];
 let [a, ...b] = tuple; // b: ["hello", true]
 let [a, b, c, ...d] = tuple; // d: []
@@ -48,7 +48,7 @@ let [a, b, c, ...d] = tuple; // d: []
 
 当然我们也可以忽略尾部元素，或者忽略其他元素：
 
-```Typescript
+```TypeScript
 let tuple: [number, string, boolean] = [7, "hello", true];
 let [a] = tuple; // a: 7
 let [, b] = tuple; // b: "hello"
@@ -58,7 +58,7 @@ let [, b] = tuple; // b: "hello"
 
 > 元组类型在严格类型检查的 API 中非常有用，其中每个元素的含义都是 "显而易见 "的。这给了我们灵活性，当我们对变量进行解构时，我们可以对其进行任何命名。在上面的例子中，我们能够将元素 0 和 1 命名为我们想要的任何东西。
 
-```Typescript
+```TypeScript
 // tuple[0] 的别名是 age，tuple[1]的别名是 hasPartner
 const tuple: [age: number, hasPartner: boolean] = [18, false];
 // 无法通过别名访问到具体的值

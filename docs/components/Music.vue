@@ -1,7 +1,12 @@
 <template>
   <div class="music-box">
     <div class="media">
-      <img :src="music?.picUrl" :alt="music?.name" :class="{ play: !pauseRef }" />
+      <img
+        :src="music?.picUrl"
+        :alt="music?.name"
+        :class="{ play: !pauseRef }"
+        v-if="music?.picUrl"
+      />
       <div :class="['media-btn', { play: !pauseRef }]" @click="_bindTogglePuase"></div>
     </div>
     <div class="info">
@@ -58,7 +63,7 @@
   const currentTimeRef = ref(0);
   const currentTimestampRef = ref('00:00');
   const volumeRef = ref(0.3);
-  let audio = ref<HTMLAudioElement>(new Audio());
+  let audio = new Audio();
   let timer = 0,
     volX = 0,
     currentVol = 0;
@@ -66,29 +71,31 @@
   // #region  音频相关
   // 更多开发细节请参考 https://blog.csdn.net/qq_47703624/article/details/107556369
   // 初始化音量
-  audio.value.volume = volumeRef.value;
-  audio.value.addEventListener('canplaythrough', (event) => {
+  audio.volume = volumeRef.value;
+  // 初始化循环播放状态
+  audio.loop = true;
+  audio.addEventListener('canplaythrough', (event) => {
     /* the audio is now playable; play it if permissions allow */
-    durationRef.value = audio.value?.duration ?? 0;
+    durationRef.value = audio?.duration ?? 0;
     // 自动播放
     pauseRef.value = false;
   });
-  audio.value.addEventListener('ended', (event) => {
-    pauseRef.value = true;
+  audio.addEventListener('ended', (event) => {
     if (!singleRef.value) {
+      pauseRef.value = true;
       _bindNextSong();
     }
   });
-  audio.value.addEventListener('play', (event) => {
+  audio.addEventListener('play', (event) => {
     _getCurrentTime();
   });
-  audio.value.addEventListener('pause', (event) => {
+  audio.addEventListener('pause', (event) => {
     console.log('pause');
     if (timer) {
       clearInterval(timer);
     }
   });
-  audio.value.addEventListener('error', (event) => {
+  audio.addEventListener('error', (event) => {
     pauseRef.value = true;
   });
   // #endregion
@@ -97,23 +104,24 @@
 
   const _getCurrentTime = () => {
     timer = setInterval(() => {
-      const persent = audio.value.currentTime / durationRef.value;
+      const persent = audio.currentTime / durationRef.value;
       currentTimeRef.value = Math.floor(persent * 100);
-      currentTimestampRef.value = _formatTimestamp(audio.value.currentTime);
+      currentTimestampRef.value = _formatTimestamp(audio.currentTime);
       if (persent >= 1) {
         clearInterval(timer);
       }
     }, 1000);
   };
   const _formatTimestamp = (seconds: number): string => {
-    if (seconds > 0) {
-      let minus = Math.floor(seconds / 60);
-      let second = Math.floor(seconds % 60);
-      return `${minus >= 10 ? '' : 0}${minus}:${second >= 10 ? '' : 0}${second}`;
-    } else {
-      return '00:00';
-    }
+    return seconds > 0
+      ? `${Math.floor(seconds / 60)
+          .toString()
+          .padStart(2, '0')}:${Math.ceil(seconds % 60)
+          .toString()
+          .padStart(2, '0')}`
+      : '00:00';
   };
+
   const _resetPlayer = () => {
     clearInterval(timer);
     currentTimestampRef.value = '00:00';
@@ -123,8 +131,8 @@
   const _setMusic = (index: number) => {
     currentIndex.value = index;
     music.value = playList.value[index];
-    audio.value.src = music.value.mp3url;
-    audio.value.load();
+    audio.src = music.value.mp3url;
+    audio.load();
   };
   // #endregion
 
@@ -137,15 +145,15 @@
   });
   // 控制音量
   watch(volumeRef, (val) => {
-    audio.value.volume = val;
+    audio.volume = val;
   });
   // 控制播放状态
   watchEffect(
     () => {
       if (pauseRef.value) {
-        audio.value?.pause();
+        audio?.pause();
       } else {
-        audio.value?.play().catch((err) => {
+        audio?.play().catch((err) => {
           pauseRef.value = true;
           throw err;
         });
@@ -168,7 +176,7 @@
         if (data.success) {
           music.value = data.info;
           if (data.info.mp3url.endsWith('\.mp3')) {
-            audio.value.src = data.info.mp3url;
+            audio.src = data.info.mp3url;
             if (flag > -0) {
               playList.value.push(data.info);
               currentIndex.value += 1;
@@ -194,8 +202,9 @@
   };
   const _bindToggleChangeSingleMode = () => {
     singleRef.value = !singleRef.value;
-    audio.value.loop = singleRef.value;
+    audio.loop = singleRef.value;
   };
+
   const _bindChangeVolume = (event: MouseEvent) => {
     switch (event.type) {
       case 'mousedown':
@@ -205,20 +214,24 @@
         document.body.addEventListener('mouseup', _bindChangeVolume);
         break;
       case 'mousemove':
+        // 计算鼠标移动距离
         let distanceX = event.clientX - volX;
+        // 获取音量条宽度
         const boxWidth = document.getElementById('volume-box')?.offsetWidth || 1;
         console.log(distanceX);
-        let persent = distanceX / boxWidth;
-        console.log(currentVol, persent);
-        if (currentVol + persent > 1) {
-          persent = 1 - currentVol;
-        } else if (currentVol + persent <= 0) {
-          persent = -currentVol;
+        // 计算音量百分比
+        let percent = distanceX / boxWidth;
+        // 判断音量是否超出范围
+        if (currentVol + percent > 1) {
+          percent = 1 - currentVol;
+        } else if (currentVol + percent <= 0) {
+          percent = -currentVol;
         }
-        volumeRef.value = currentVol + persent;
+        // 更新音量
+        volumeRef.value = currentVol + percent;
         break;
       case 'mouseup':
-        document.body.removeEventListener('mousemove', _bindChangeVolume);
+        document.body.removeEventListener('mousemove', _bindChangeVolume); // 移除鼠标移动事件监听器
         break;
     }
   };
@@ -268,7 +281,7 @@
     align-items: center;
     position: sticky;
     top: 63px;
-    z-index: 5;
+    z-index: 15;
     margin-bottom: 16px;
     padding: 16px;
     border-radius: 16px;
@@ -532,7 +545,7 @@
       top: 120px;
       padding: 8px;
       height: 76px;
-      z-index: 9;
+      z-index: 5;
       .media {
         width: 60px;
         height: 60px;

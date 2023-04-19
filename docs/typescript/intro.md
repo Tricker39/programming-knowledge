@@ -1,4 +1,4 @@
-# Typescript 介绍
+# TypeScript 介绍
 
 ## 简介
 
@@ -10,11 +10,11 @@
 
 ::: info 在线工具
 
-:link: [Typscript 在线演练](https://www.typescriptlang.org/zh/play)
+:link: [Typscript 在线演练](https://www.TypeScriptlang.org/zh/play)
 
-:link: [Typscript 在线编程](http://typescript.jsrun.net/)
+:link: [Typscript 在线编程](http://TypeScript.jsrun.net/)
 
-:link: [Typscript 在线转换](https://transform.tools/typescript-to-javascript)
+:link: [Typscript 在线转换](https://transform.tools/TypeScript-to-javascript)
 
 :::
 
@@ -38,6 +38,12 @@ TypeScript 是一种给 JavaScript 添加特性的语言扩展。增加的功能
 
 ::: tip 参考资料
 
-[TypeScript 使用指南手册](http://www.patrickzhong.com/TypeScript/PREFACE.html)
+[TypeScript 官方手册](https://www.TypeScriptlang.org/docs/handbook/intro.html)
+
+[TypeScript 入门教程](https://ts.xcatliu.com/)
+
+[TypeScript 使用指南手册](http://www.patrickzhong.com/TypeScript/)
+
+[TypeScript 史上最强学习入门文章](https://juejin.cn/post/7018805943710253086)
 
 :::

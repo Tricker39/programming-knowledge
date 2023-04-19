@@ -92,7 +92,7 @@ export default defineConfig({
       '/home/': sidebarHome(),
       '/interview/': sidebarInterview(),
       '/network/': sidebarNetwork(),
-      '/typescript/': sidebarTypescript(),
+      '/typescript/': sidebarTypeScript(),
       '/codes': sidebarCode(),
     },
   },
@@ -134,16 +134,17 @@ function sidebarNetwork() {
   ];
 }
 
-function sidebarTypescript() {
+function sidebarTypeScript() {
   return [
     {
-      text: 'Typescript',
+      text: 'TypeScript',
       collapsed: true,
       items: [
-        { text: 'Typescript 介绍', link: '/typescript/intro' },
+        { text: 'TypeScript 介绍', link: '/typescript/intro' },
         { text: '基础类型', link: '/typescript/basic-types' },
         { text: '元组类型', link: '/typescript/tuple' },
         { text: '枚举类型', link: '/typescript/enum' },
+        { text: '接口', link: '/typescript/interface' },
       ],
     },
   ];

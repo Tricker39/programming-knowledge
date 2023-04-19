@@ -17,6 +17,7 @@ if (true) {
       flakeCount = 20,
       mX = -100,
       mY = -100;
+    canvas.id = 'snow';
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     canvas.style.position = 'fixed';
@@ -78,20 +79,24 @@ if (true) {
       flake.x = Math.floor(Math.random() * canvas.width);
       flake.y = 0;
       flake.size = Math.random() * 20 + 10;
-      flake.speed = Math.random() * 1 + 0.8;
+      flake.speed = Math.random() * 1 + 1.2;
       flake.velY = flake.speed;
       flake.velX = 0;
-      flake.opacity = Math.random() * 0.4 + 0.3;
+      flake.opacity = Math.random() + 0.1;
     }
 
     function init() {
+      // 修复重复创建的问题
+      if (document.getElementById('snow')) {
+        return;
+      }
       document.body.appendChild(canvas);
       for (var i = 0; i < flakeCount; i++) {
         var x = Math.floor(Math.random() * canvas.width),
           y = Math.floor(Math.random() * canvas.height),
           size = Math.random() * 20 + 10,
-          speed = Math.random() * 1 + 0.8,
-          opacity = Math.random() * 0.4 + 0.3;
+          speed = Math.random() * 1 + 1.2,
+          opacity = Math.random() + 0.1;
         let snowText = '❄❉❅❆✻✼❇❈❊✥✺';
         const text = snowText.charAt(Math.floor(Math.random() * snowText.length));
 

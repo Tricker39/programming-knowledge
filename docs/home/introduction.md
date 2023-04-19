@@ -12,7 +12,7 @@ const links=[{
     target: '_self'
 },{
     media: 'https://s1.ax1x.com/2023/04/11/ppOY1Nn.png',
-    title: 'Typescript 学习笔记',
+    title: 'TypeScript 学习笔记',
     url: '/typescript/intro', 
     target: '_self'
 },{
