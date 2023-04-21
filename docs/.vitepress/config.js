@@ -37,7 +37,7 @@ export default defineConfig({
   },
 
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', href: `${baseUrl}/favicon.ico` }],
     ['meta', { name: 'theme-color', content: '#3c8772' }],
     ['script', { src: `${baseUrl}/snow.js` }],
   ],
