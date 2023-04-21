@@ -49,6 +49,7 @@ export default defineConfig({
       level: [0, 0],
     },
   },
+  // 国际化配置
   locales: {
     root: {
       label: 'Chinese',
@@ -59,9 +60,9 @@ export default defineConfig({
   themeConfig: {
     logo: '/logo.svg',
     outline: [2, 3],
-    outlineTitle: '本页目录',
+    outlineTitle: '当前目录',
     lastUpdatedText: '上次修改时间',
-    darkModeSwitchLabel: '主题',
+    darkModeSwitchLabel: '配色方案',
     sidebarMenuLabel: '菜单',
     returnToTopLabel: '返回顶部',
     langMenuLabel: '语言切换',
@@ -69,7 +70,7 @@ export default defineConfig({
       provider: 'local',
       options: {
         locales: {
-          zh: {
+          root: {
             translations: {
               button: {
                 buttonText: '搜索文档',
@@ -77,10 +78,12 @@ export default defineConfig({
               },
               modal: {
                 noResultsText: '无法找到相关结果',
+                displayDetails: '显示详情',
                 resetButtonTitle: '清除查询条件',
                 footer: {
                   selectText: '选择',
                   navigateText: '切换',
+                  closeText: '关闭',
                 },
               },
             },
@@ -136,8 +139,9 @@ function sidebarHome() {
       collapsed: true,
       items: [
         { text: '目录', link: '/home/introduction' },
-        { text: 'Emoji 表情', link: '/home/emoji' },
+        { text: '本地文档搜索', link: '/home/local-search' },
         { text: '部署到 github pages', link: '/home/github-pages' },
+        { text: 'Emoji 表情', link: '/home/emoji' },
       ],
     },
   ];

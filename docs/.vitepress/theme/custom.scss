@@ -21,10 +21,6 @@
 //     Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 // }
 
-.VPNavBarSearch {
-  display: flex;
-  align-items: center;
-}
 .VPSocialLinks {
   padding-right: 10px;
 }
@@ -45,6 +41,24 @@
     padding-left: 32px;
   }
 }
+// #region 本地搜索样式
+.VPNavBarSearch {
+  display: flex;
+  align-items: center;
+  font-family: 'LXGWWenKai';
+  .DocSearch-Button-Keys {
+    .DocSearch-Button-Key {
+      font-family: 'Koulen';
+    }
+  }
+}
+.VPLocalSearchBox {
+  font-family: 'LXGWWenKai';
+  .search-input {
+    font-family: 'LXGWWenKai';
+  }
+}
+// #endregion
 
 // #region 搜索样式
 // .DocSearch {
