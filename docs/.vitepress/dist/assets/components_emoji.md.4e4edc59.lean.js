@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as e,V as t}from"./chunks/framework.b09b2e74.js";const r=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"components/emoji.md","lastUpdated":1680885252000}'),n={name:"components/emoji.md"},i=t("",1),m=[i];function p(o,c,l,j,x,d){return a(),e("div",null,m)}const g=s(n,[["render",p]]);export{r as __pageData,g as default};

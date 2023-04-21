@@ -1,6 +1,6 @@
 .DS_Store
 node_modules/
-dist/
+# dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -34,7 +34,7 @@ selenium-debug.log
 .temp
 .vite_opt_cache
 .vscode
-dist
+# dist
 cache
 temp
 examples-temp

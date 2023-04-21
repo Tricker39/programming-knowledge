@@ -1,0 +1,1 @@
+import{d as t,o,c,r as n,n as _,_ as p}from"./framework.b09b2e74.js";const r=t({__name:"MTag",props:{type:{default:"default"}},setup(e){const s=e;return(a,l)=>(o(),c("span",{class:_(["tag",s.type])},[n(a.$slots,"default",{},void 0,!0)],2))}});const f=p(r,[["__scopeId","data-v-cf59cef7"]]);export{f as M};
