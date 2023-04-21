@@ -52,7 +52,7 @@ export default defineConfig({
   locales: {
     root: {
       label: 'Chinese',
-      lang: 'zh-cmn',
+      lang: 'zh',
     },
   },
 
