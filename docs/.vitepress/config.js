@@ -137,6 +137,7 @@ function sidebarHome() {
       items: [
         { text: '简介', link: '/home/introduction' },
         { text: 'Emoji 表情', link: '/home/emoji' },
+        { text: '部署到 github pages', link: '/home/github-pages' },
       ],
     },
   ];
