@@ -1,5 +1,0 @@
-import{_ as a,o,c as r,C as e,a as t}from"./chunks/framework.b09b2e74.js";const k=JSON.parse('{"title":"彩虹按钮","description":"","frontmatter":{},"headers":[],"relativePath":"codes/front/button/rainbow-button.md","lastUpdated":1681207222000}'),n={name:"codes/front/button/rainbow-button.md"},s=e("h1",{id:"彩虹按钮",tabindex:"-1"},[t("彩虹按钮 "),e("a",{class:"header-anchor",href:"#彩虹按钮","aria-label":'Permalink to "彩虹按钮"'},"​")],-1),i=e("h2",{id:"样式一",tabindex:"-1"},[t("样式一 "),e("a",{class:"header-anchor",href:"#样式一","aria-label":'Permalink to "样式一"'},"​")],-1),c=e("iframe",{height:"600",style:{width:"100%"},scrolling:"no",title:"A rainbow button",src:"https://codepen.io/Tricker39/embed/JjmdYyO?default-tab=result&editable=true&theme-id=dark",frameborder:"no",loading:"lazy",allowtransparency:"true",allowfullscreen:"true"},`
-  See the Pen <a href="https://codepen.io/Tricker39/pen/JjmdYyO">
-  A rainbow button</a> by Tricker39 (<a href="https://codepen.io/Tricker39">@Tricker39</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-`,-1),d=[s,i,c];function l(h,p,b,_,f,u){return o(),r("div",null,d)}const w=a(n,[["render",l]]);export{k as __pageData,w as default};
