@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress';
 // import { pagefindPlugin, chineseSearchOptimize } from 'vitepress-plugin-pagefind';
 
 export default defineConfig({
-  base: '/',
+  base: '/base/',
   lang: 'zh',
   lastUpdated: true,
   title: '前端编程基础知识',
