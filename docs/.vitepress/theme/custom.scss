@@ -47,262 +47,262 @@
 }
 
 // #region 搜索样式
-.DocSearch {
-  --docsearch-primary-color: var(--vp-c-brand);
-  --docsearch-highlight-color: var(--docsearch-primary-color);
-  --docsearch-text-color: var(--vp-c-text-1);
-  --docsearch-muted-color: var(--vp-c-text-2);
-  --docsearch-searchbox-shadow: none;
-  --docsearch-searchbox-focus-background: transparent;
-  --docsearch-key-gradient: transparent;
-  --docsearch-key-shadow: none;
-  --docsearch-modal-background: var(--vp-c-bg-soft);
-  --docsearch-footer-background: var(--vp-c-bg);
-}
+// .DocSearch {
+//   --docsearch-primary-color: var(--vp-c-brand);
+//   --docsearch-highlight-color: var(--docsearch-primary-color);
+//   --docsearch-text-color: var(--vp-c-text-1);
+//   --docsearch-muted-color: var(--vp-c-text-2);
+//   --docsearch-searchbox-shadow: none;
+//   --docsearch-searchbox-focus-background: transparent;
+//   --docsearch-key-gradient: transparent;
+//   --docsearch-key-shadow: none;
+//   --docsearch-modal-background: var(--vp-c-bg-soft);
+//   --docsearch-footer-background: var(--vp-c-bg);
+// }
 
-.dark .DocSearch {
-  --docsearch-modal-shadow: none;
-  --docsearch-footer-shadow: none;
-  --docsearch-logo-color: var(--vp-c-text-2);
-  --docsearch-hit-background: var(--vp-c-bg-mute);
-  --docsearch-hit-color: var(--vp-c-text-2);
-  --docsearch-hit-shadow: none;
-}
+// .dark .DocSearch {
+//   --docsearch-modal-shadow: none;
+//   --docsearch-footer-shadow: none;
+//   --docsearch-logo-color: var(--vp-c-text-2);
+//   --docsearch-hit-background: var(--vp-c-bg-mute);
+//   --docsearch-hit-color: var(--vp-c-text-2);
+//   --docsearch-hit-shadow: none;
+// }
 
-.DocSearch-Button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  width: 32px;
-  height: 55px;
-  background: transparent;
-  transition: border-color 0.25s;
-}
+// .DocSearch-Button {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 0;
+//   padding: 0;
+//   width: 32px;
+//   height: 55px;
+//   background: transparent;
+//   transition: border-color 0.25s;
+// }
 
-.DocSearch-Button:hover {
-  background: transparent;
-}
+// .DocSearch-Button:hover {
+//   background: transparent;
+// }
 
-.DocSearch-Button:focus {
-  outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-}
+// .DocSearch-Button:focus {
+//   outline: 1px dotted;
+//   outline: 5px auto -webkit-focus-ring-color;
+// }
 
-.DocSearch-Button:focus:not(:focus-visible) {
-  outline: none !important;
-}
+// .DocSearch-Button:focus:not(:focus-visible) {
+//   outline: none !important;
+// }
 
-@media (min-width: 768px) {
-  .DocSearch-Button {
-    justify-content: flex-start;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    padding: 0 10px 0 12px;
-    width: 100%;
-    height: 40px;
-    background-color: var(--vp-c-bg-alt);
-  }
+// @media (min-width: 768px) {
+//   .DocSearch-Button {
+//     justify-content: flex-start;
+//     border: 1px solid transparent;
+//     border-radius: 8px;
+//     padding: 0 10px 0 12px;
+//     width: 100%;
+//     height: 40px;
+//     background-color: var(--vp-c-bg-alt);
+//   }
 
-  .DocSearch-Button:hover {
-    border-color: var(--vp-c-brand);
-    background: var(--vp-c-bg-alt);
-  }
-}
+//   .DocSearch-Button:hover {
+//     border-color: var(--vp-c-brand);
+//     background: var(--vp-c-bg-alt);
+//   }
+// }
 
-.DocSearch-Button .DocSearch-Button-Container {
-  display: flex;
-  align-items: center;
-}
+// .DocSearch-Button .DocSearch-Button-Container {
+//   display: flex;
+//   align-items: center;
+// }
 
-.DocSearch-Button .DocSearch-Search-Icon {
-  position: relative;
-  width: 16px;
-  height: 16px;
-  color: var(--vp-c-text-1);
-  fill: currentColor;
-  transition: color 0.5s;
-}
+// .DocSearch-Button .DocSearch-Search-Icon {
+//   position: relative;
+//   width: 16px;
+//   height: 16px;
+//   color: var(--vp-c-text-1);
+//   fill: currentColor;
+//   transition: color 0.5s;
+// }
 
-.DocSearch-Button:hover .DocSearch-Search-Icon {
-  color: var(--vp-c-text-1);
-}
+// .DocSearch-Button:hover .DocSearch-Search-Icon {
+//   color: var(--vp-c-text-1);
+// }
 
-@media (min-width: 768px) {
-  .DocSearch-Button .DocSearch-Search-Icon {
-    top: 1px;
-    margin-right: 8px;
-    width: 14px;
-    height: 14px;
-    color: var(--vp-c-text-2);
-  }
-}
+// @media (min-width: 768px) {
+//   .DocSearch-Button .DocSearch-Search-Icon {
+//     top: 1px;
+//     margin-right: 8px;
+//     width: 14px;
+//     height: 14px;
+//     color: var(--vp-c-text-2);
+//   }
+// }
 
-.DocSearch-Button .DocSearch-Button-Placeholder {
-  display: none;
-  margin-top: 2px;
-  padding: 0 36px 0 0;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--vp-c-text-2);
-  transition: color 0.5s;
-  font-family: 'LXGWWenKai';
-}
+// .DocSearch-Button .DocSearch-Button-Placeholder {
+//   display: none;
+//   margin-top: 2px;
+//   padding: 0 36px 0 0;
+//   font-size: 16px;
+//   font-weight: 500;
+//   color: var(--vp-c-text-2);
+//   transition: color 0.5s;
+//   font-family: 'LXGWWenKai';
+// }
 
-.DocSearch-Button:hover .DocSearch-Button-Placeholder {
-  color: var(--vp-c-text-1);
-}
+// .DocSearch-Button:hover .DocSearch-Button-Placeholder {
+//   color: var(--vp-c-text-1);
+// }
 
-@media (min-width: 768px) {
-  .DocSearch-Button .DocSearch-Button-Placeholder {
-    display: inline-block;
-  }
-}
+// @media (min-width: 768px) {
+//   .DocSearch-Button .DocSearch-Button-Placeholder {
+//     display: inline-block;
+//   }
+// }
 
-.DocSearch-Button .DocSearch-Button-Keys {
-  display: none;
-  min-width: auto;
-  // padding: 0 4px;
-  text-transform: uppercase;
-  border-radius: 4px;
-  border: 1px solid var(--vp-c-divider);
-  &:hover {
-    border: 1px solid var(--vp-c-brand);
-  }
-}
+// .DocSearch-Button .DocSearch-Button-Keys {
+//   display: none;
+//   min-width: auto;
+//   // padding: 0 4px;
+//   text-transform: uppercase;
+//   border-radius: 4px;
+//   border: 1px solid var(--vp-c-divider);
+//   &:hover {
+//     border: 1px solid var(--vp-c-brand);
+//   }
+// }
 
-@media (min-width: 768px) {
-  .DocSearch-Button .DocSearch-Button-Keys {
-    display: flex;
-    align-items: center;
-  }
-}
+// @media (min-width: 768px) {
+//   .DocSearch-Button .DocSearch-Button-Keys {
+//     display: flex;
+//     align-items: center;
+//   }
+// }
 
-.DocSearch-Button .DocSearch-Button-Key {
-  display: block;
-  margin: 0 2px;
-  border-right: none;
-  line-height: 24px;
-  font-family: 'Koulen';
-  font-size: 12px;
-  font-weight: 900;
-  transition: color 0.5s, border-color 0.5s;
-}
+// .DocSearch-Button .DocSearch-Button-Key {
+//   display: block;
+//   margin: 0 2px;
+//   border-right: none;
+//   line-height: 24px;
+//   font-family: 'Koulen';
+//   font-size: 12px;
+//   font-weight: 900;
+//   transition: color 0.5s, border-color 0.5s;
+// }
 
-.dark .DocSearch-Footer {
-  border-top: 1px solid var(--vp-c-divider);
-}
-.VPPluginSearch-modal {
-  padding: 10px;
-  background: #f6f6f7;
-  font-family: 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
-}
-.dark .VPPluginSearch-modal {
-  background: #252529;
-}
-.DocSearch-Form {
-  position: sticky;
-  top: 0;
-  z-index: 9;
-  margin: 0 auto;
-  width: 540px;
-  border: 2px solid var(--vp-c-brand);
-  background: #fff;
-}
+// .dark .DocSearch-Footer {
+//   border-top: 1px solid var(--vp-c-divider);
+// }
+// .VPPluginSearch-modal {
+//   padding: 10px;
+//   background: #f6f6f7;
+//   font-family: 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas,
+//     'Liberation Mono', 'Courier New', monospace;
+// }
+// .dark .VPPluginSearch-modal {
+//   background: #252529;
+// }
+// .DocSearch-Form {
+//   position: sticky;
+//   top: 0;
+//   z-index: 9;
+//   margin: 0 auto;
+//   width: 540px;
+//   border: 2px solid var(--vp-c-brand);
+//   background: #fff;
+// }
 
-.dark .DocSearch-Form {
-  background: #313136;
-}
-.DocSearch-MagnifierLabel {
-  margin: 12px;
-  color: var(--vp-c-brand);
-}
-.VPPluginSearch-search-group {
-  display: block;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  margin: 0 -10px;
-  padding: 10px;
-  color: var(--vp-c-brand);
-  background: #f6f6f7;
-}
-.dark .VPPluginSearch-search-group {
-  background: #252529;
-}
-.dark .VPPluginSearch-search-item {
-  background-color: #313136;
-  &::after {
-    background: #313136;
-  }
-}
-.VPPluginSearch-search-item {
-  position: relative;
-  display: -webkit-box;
-  margin: 8px 0;
-  padding: 1rem;
-  border: none;
-  background-color: #ffffff;
-  box-shadow: var(--vp-shadow-1);
-  color: var(--vp-c-text-1);
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    background: var(--vp-c-brand-dark);
-    &::after {
-      background: var(--vp-c-brand-dark);
-    }
-  }
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 16px;
-    transition: background 0.3s ease-in-out;
-    background: #ffffff;
-  }
-}
+// .dark .DocSearch-Form {
+//   background: #313136;
+// }
+// .DocSearch-MagnifierLabel {
+//   margin: 12px;
+//   color: var(--vp-c-brand);
+// }
+// .VPPluginSearch-search-group {
+//   display: block;
+//   position: sticky;
+//   top: 0;
+//   z-index: 10;
+//   margin: 0 -10px;
+//   padding: 10px;
+//   color: var(--vp-c-brand);
+//   background: #f6f6f7;
+// }
+// .dark .VPPluginSearch-search-group {
+//   background: #252529;
+// }
+// .dark .VPPluginSearch-search-item {
+//   background-color: #313136;
+//   &::after {
+//     background: #313136;
+//   }
+// }
+// .VPPluginSearch-search-item {
+//   position: relative;
+//   display: -webkit-box;
+//   margin: 8px 0;
+//   padding: 1rem;
+//   border: none;
+//   background-color: #ffffff;
+//   box-shadow: var(--vp-shadow-1);
+//   color: var(--vp-c-text-1);
+//   -webkit-line-clamp: 5;
+//   -webkit-box-orient: vertical;
+//   text-overflow: ellipsis;
+//   overflow: hidden;
+//   transition: all 0.3s ease-in-out;
+//   &:hover {
+//     background: var(--vp-c-brand-dark);
+//     &::after {
+//       background: var(--vp-c-brand-dark);
+//     }
+//   }
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     bottom: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 16px;
+//     transition: background 0.3s ease-in-out;
+//     background: #ffffff;
+//   }
+// }
 
-.VPPluginSearch-search-item-icon {
-  display: none;
-}
+// .VPPluginSearch-search-item-icon {
+//   display: none;
+// }
 
-/*隐藏 flex-search logo 样式 */
-.VPPluginSearch-flex-logo {
-  display: none;
-}
+// /*隐藏 flex-search logo 样式 */
+// .VPPluginSearch-flex-logo {
+//   display: none;
+// }
 
-.blog-search .nav-search-btn-wait .search-tip {
-  padding: 0 20px 0 10px;
-}
-.VPPluginSearch-search-list {
-  box-sizing: border-box !important;
-  margin: 0 -10px;
-  padding: 0 10px;
-  overflow: hidden auto;
-  overflow-y: overlay;
-}
-.VPPluginSearch-modal-back {
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(4px);
-}
-.DocSearch-Input {
-  margin: 0;
-  padding: 8px 0;
-  background: none;
-}
-// 浏览器 input 自带的叉号样式 https://blog.csdn.net/wang415229224ye/article/details/118727742
-// https://blog.csdn.net/qq_34006340/article/details/103288545
-input::-webkit-search-cancel-button {
-  display: none;
-}
+// .blog-search .nav-search-btn-wait .search-tip {
+//   padding: 0 20px 0 10px;
+// }
+// .VPPluginSearch-search-list {
+//   box-sizing: border-box !important;
+//   margin: 0 -10px;
+//   padding: 0 10px;
+//   overflow: hidden auto;
+//   overflow-y: overlay;
+// }
+// .VPPluginSearch-modal-back {
+//   background: rgba(0, 0, 0, 0.2);
+//   backdrop-filter: blur(4px);
+// }
+// .DocSearch-Input {
+//   margin: 0;
+//   padding: 8px 0;
+//   background: none;
+// }
+// // 浏览器 input 自带的叉号样式 https://blog.csdn.net/wang415229224ye/article/details/118727742
+// // https://blog.csdn.net/qq_34006340/article/details/103288545
+// input::-webkit-search-cancel-button {
+//   display: none;
+// }
 // #endregion
 
 // #region 滚动条样式

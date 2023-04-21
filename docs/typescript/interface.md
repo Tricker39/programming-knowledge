@@ -64,3 +64,31 @@ let myPet = bugAPet({ nickname: "小白" });
 
 <iframe height="480" style="width: 100%;" scrolling="no" src="https://www.typescriptlang.org/zh/play?#code/JYOwLgpgTgZghgYwgAgAoTMg3gKGf5AZwHdgBbAfgC5kAjAe3oBsI4QBuPAmJgT2rqMWbTgWRQAriAENmrDl3whgCANYg4ZCAMJgooAOacAvjhwJ6IXXQkGAgukwBeZAAoADhhqOAlN4zITgB82IrILJgAJvQG-s7YyMpqGlo0AOSA5JqA1sppADTiUjR6EhD5tHBQqkWSKMaiBFAYElAgyNFGOMZAA" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
 </iframe>
+
+## 只读属性
+
+一些对象属性只能在对象刚刚创建的时候修改其值。 你可以在属性名前用 readonly 来指定只读属性:
+
+```TypeScript
+interface IPosition {
+    readonly longitude: number;
+    readonly latitude: number;
+}
+```
+
+你可以通过赋值一个对象字面量来构造一个 Position。 赋值后，longitude 和 latitude 再也不能被改变了。
+
+```TypeScript
+interface IPosition {
+    readonly longitude: number;
+    readonly latitude: number;
+}
+const beijing: IPosition = { longitude: 116.397128, latitude:39.916527 }
+beijing.longitude = 115.397128; // Cannot assign to 'longitude' because it is a read-only property.
+```
+
+使用 readonly 修饰符并不一定意味着一个值是完全不可改变的--或者换句话说，它的内部内容不能被改变。它只是意味着该属性本身不能被重新写入。
+
+```TypeScript
+
+```

@@ -67,7 +67,8 @@ console.log('tuple.age:', tuple['age']); // tuple.age: undefined
 
 唯一的用处，就是在编辑器中会弹出提示，提示这个元素代表着什么意思:
 
-![元组别名](/imgs/typescript/1.png)
+<iframe height="480" style="width: 100%;" scrolling="no" src="https://www.typescriptlang.org/zh/play?#code/PTAEBcFcAcBsFMDaAGAuqQIW6GolQsCqHozUAQwHN5AYf6jiQEZVt9QALQgZwAVCAncAO3k4BQAYwD2PFuAgwEALlCIS8OT0gBbAEb8ANE1YdufTnPUiRCQj3QBeedQAcOgGaFYLeKgDcwsSzPwAdLAixAAUAOSUCP6KMmE6kUhoAJQeQA" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+</iframe>
 
 由于不是每个用户都对元组持有肯定的态度，所以是否使用元组需重新考虑一下，使用具有描述性属性名称的对象是否对你的 API 更好。
 

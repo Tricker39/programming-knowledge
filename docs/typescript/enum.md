@@ -131,7 +131,8 @@ var Message;
 
 :::
 
-![反向映射](/imgs/TypeScript/2.png)
+<iframe height="480" style="width: 100%;" scrolling="no" src="https://www.typescriptlang.org/zh/play?#code/KYOwrgtgBAssDO8CGBzYBvAUFKBlMAxgQvFALxQDkgtgaA5qoAbygMP+AIRoPlKgYXKUA02UAYkgCWAG3JVAEfqB1BMB9ho0CMmoFJYzjxwB5ECgD2gjWUo6UlTAF9MBTSHibhwAHTDNKABRxEqYAG19GygF0AlEA" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+</iframe>
 
 由此我们可以看出，字符串枚举是不可以进行反向映射的。
 

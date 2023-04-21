@@ -40,7 +40,7 @@ TypeScript 是一种给 JavaScript 添加特性的语言扩展。增加的功能
 
 [TypeScript 官方手册](https://www.TypeScriptlang.org/docs/handbook/intro.html)
 
-[TypeScript 入门教程](https://ts.xcatliu.com/)
+[TypeScript 中文文档](https://nodejs.cn/typescript/)
 
 [TypeScript 使用指南手册](http://www.patrickzhong.com/TypeScript/)
 

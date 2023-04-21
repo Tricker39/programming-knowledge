@@ -1,9 +1,9 @@
 import { defineConfig } from 'vitepress';
-import { SearchPlugin } from 'vitepress-plugin-search';
+// import { SearchPlugin } from 'vitepress-plugin-search';
 // import { pagefindPlugin, chineseSearchOptimize } from 'vitepress-plugin-pagefind';
 
 export default defineConfig({
-  lang: 'zh-cn',
+  lang: 'zh',
   lastUpdated: true,
   title: '前端编程基础知识',
   description: '人之为学，不可自小，又不可自大',
@@ -11,16 +11,17 @@ export default defineConfig({
   cleanUrls: 'without-subfolders',
   vite: {
     plugins: [
-      SearchPlugin({
-        // 更好的实现方式参考 https://github.com/emersonbottero/vitepress-plugin-search/issues/11
-        lang: 'zh',
-        optimize: true,
-        encode: false,
-        tokenize: 'full',
-        previewLength: 100,
-        buttonLabel: '搜索',
-        placeholder: '请输入要搜索的内容',
-      }),
+      // 使用 vitepress 自带的 search
+      // SearchPlugin({
+      //   // 更好的实现方式参考 https://github.com/emersonbottero/vitepress-plugin-search/issues/11
+      //   lang: 'zh',
+      //   optimize: true,
+      //   encode: false,
+      //   tokenize: 'full',
+      //   previewLength: 100,
+      //   buttonLabel: '搜索',
+      //   placeholder: '请输入要搜索的内容',
+      // }),
       // pagefindPlugin({
       //   // 可参考 https://theme.sugarat.top/
       //   excludeSelector: ['img', 'a.header-anchor', 'div.aside', 'link', 'script', 'style'],
@@ -47,6 +48,12 @@ export default defineConfig({
       level: [0, 0],
     },
   },
+  locales: {
+    root: {
+      label: 'Chinese',
+      lang: 'zh-cmn',
+    },
+  },
 
   themeConfig: {
     logo: '/logo.svg',
@@ -57,6 +64,29 @@ export default defineConfig({
     sidebarMenuLabel: '菜单',
     returnToTopLabel: '返回顶部',
     langMenuLabel: '语言切换',
+    search: {
+      provider: 'local',
+      options: {
+        locales: {
+          zh: {
+            translations: {
+              button: {
+                buttonText: '搜索文档',
+                buttonAriaLabel: '搜索文档',
+              },
+              modal: {
+                noResultsText: '无法找到相关结果',
+                resetButtonTitle: '清除查询条件',
+                footer: {
+                  selectText: '选择',
+                  navigateText: '切换',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
     docFooter: {
       prev: '上一页',
       next: '下一页',
