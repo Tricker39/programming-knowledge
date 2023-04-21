@@ -123,6 +123,8 @@ if (true) {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     });
-    init();
+    setTimeout(() => {
+      init();
+    }, 300);
   })();
 }
