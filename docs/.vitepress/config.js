@@ -1,9 +1,9 @@
 import { defineConfig } from 'vitepress';
 // import { SearchPlugin } from 'vitepress-plugin-search';
 // import { pagefindPlugin, chineseSearchOptimize } from 'vitepress-plugin-pagefind';
-
+const baseUrl = process.env.NODE_ENV == 'production' ? '/programming-knowledge' : '';
 export default defineConfig({
-  base: '/programming-knowledge/',
+  base: `${baseUrl}/`,
   lang: 'zh',
   lastUpdated: true,
   title: '前端编程基础知识',
@@ -39,7 +39,7 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { name: 'theme-color', content: '#3c8772' }],
-    ['script', { src: '/snow.js' }],
+    ['script', { src: `${baseUrl}/snow.js` }],
   ],
 
   markdown: {
