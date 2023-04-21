@@ -1,5 +1,7 @@
 # 使用 vitepress 部署到 github pages
 
+主要用到的是 GitHubActions 自动化部署功能。有不懂的可以看看这个[GitHubActions 详解](https://blog.csdn.net/unreliable_narrator/article/details/124468384)
+
 ## github 创建一个仓库
 
 ![创建仓库](https://s1.ax1x.com/2023/04/21/p9E5IeO.png)
