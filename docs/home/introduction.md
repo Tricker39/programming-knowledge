@@ -33,6 +33,6 @@ const links=[{
 }]
 </script>
 
-# 简介
+# 目录
 
 <nav-link :links="links"/>

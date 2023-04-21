@@ -384,6 +384,9 @@
         display: flex;
         .button {
           margin-right: 16px;
+          width: 24px;
+          height: 24px;
+          background-size: 168px 120px;
           &.like {
             background-position: var(--music-like-position);
             &.active {
@@ -391,9 +394,9 @@
             }
           }
           &.mode {
-            background-position: 0px -136px;
+            background-position: 0px 24px;
             &.single {
-              background-position: -67px -136px;
+              background-position: -48px 24px;
             }
           }
         }
