@@ -52,7 +52,7 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { ref, watch, computed, watchEffect, onMounted, unref } from 'vue';
+  import { ref, watch, computed, watchEffect, onMounted, unref, onBeforeUnmount } from 'vue';
   const playList = ref<any[]>([]);
   const music = ref();
   const currentIndex = ref(-1);
@@ -140,6 +140,10 @@
   onMounted(() => {
     _getMusic();
   });
+  onBeforeUnmount(() => {
+    _resetPlayer();
+    audio?.pause();
+  });
   const totalTimestamp = computed(() => {
     return _formatTimestamp(durationRef.value);
   });
@@ -193,10 +197,6 @@
   // #endregion
 
   // #region 交互
-  const _bindToggleLike = () => {
-    // TODO: 暂时取消收藏功能
-    likeRef.value = !likeRef.value;
-  };
   const _bindTogglePuase = () => {
     pauseRef.value = !pauseRef.value;
   };
