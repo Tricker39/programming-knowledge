@@ -119,6 +119,8 @@ export default defineConfig({
           { text: '路过图床', link: 'https://imgse.com' },
           { text: '聚合图床', link: 'https://www.superbed.cn' },
           { text: 'gitmind 思维导图', link: 'https://gitmind.cn' },
+          { text: 'Alien GPT', link: 'https://chat.waixingyun.cn/#/home' },
+          { text: '文心一言', link: 'https://chat.waixingyun.cn/#/home' },
         ],
       },
     ],
