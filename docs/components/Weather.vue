@@ -68,7 +68,7 @@
     line-height: 12px;
     font-size: 12px;
     border-radius: 4px;
-    background: var(--vp-c-green-dimm-3);
+    background: var(--vp-c-brand);
     .left {
       flex: 1;
       .mid {
@@ -89,6 +89,11 @@
         background-repeat: no-repeat;
         background-position: center;
       }
+    }
+  }
+  .dark {
+    .weather-wrap {
+      background: var(--vp-c-green-dimm-3);
     }
   }
 </style>
