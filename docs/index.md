@@ -22,7 +22,7 @@ hero:
       text: 在 Github 中查看
       link: https://github.com/Tricker39/programming-knowledge
     - theme: alt
-      text: 文档
+      text: 在线文档
       link: https://tricker39.github.io/programming-knowledge/
 # features:
 #   - icon: ⚡️
