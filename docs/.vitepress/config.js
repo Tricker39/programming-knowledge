@@ -144,6 +144,7 @@ function sidebarHome() {
         { text: '本地文档搜索', link: '/home/local-search' },
         { text: 'giscus 评论系统', link: '/home/giscus' },
         { text: '部署到 github pages', link: '/home/github-pages' },
+        { text: '天气图标', link: '/home/weather-icon' },
         { text: 'Emoji 表情', link: '/home/emoji' },
       ],
     },

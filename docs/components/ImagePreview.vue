@@ -425,7 +425,7 @@
   watchEffect(
     () => {
       current.value = props.list.findIndex((item) => item.src == props.image?.src);
-      console.log('当前预览图索引', current.value);
+      // console.log('当前预览图索引', current.value);
     },
     { flush: 'post' }
   );
