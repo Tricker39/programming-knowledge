@@ -114,12 +114,17 @@ export default defineConfig({
     nav: [
       { text: '主页', link: '/home/introduction' },
       {
+        text: '友情链接',
+        items: [{ text: 'vitepress', link: 'https://vitepress.vuejs.org/' }],
+      },
+      {
         text: '实用工具',
         items: [
           { text: '路过图床', link: 'https://imgse.com' },
           { text: '聚合图床', link: 'https://www.superbed.cn' },
           { text: 'gitmind 思维导图', link: 'https://gitmind.cn' },
           { text: 'Alien GPT', link: 'https://chat.waixingyun.cn/#/home' },
+          { text: 'ChatMind AI', link: 'https://chatmindai.cn/#/chat' },
           { text: '文心一言', link: 'https://chat.waixingyun.cn/#/home' },
         ],
       },
