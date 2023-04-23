@@ -431,6 +431,9 @@
         height: 48px;
         cursor: pointer;
         border-radius: 100%;
+        background-image: var(--music-bg),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent 60%);
+
         .button {
           width: 34px;
           height: 34px;
