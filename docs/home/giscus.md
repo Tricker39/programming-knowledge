@@ -146,7 +146,9 @@ export default {
 
 如果对上面的代码有疑问的话，请查阅 [Extending the Default Theme 文档](https://vitepress.dev/guide/extending-default-theme#layout-slots)
 
-::: tip 参考
+## 参考资料
+
+::: tip 参考资料
 
 [粥里有勺糖：一个简约风的 vitepress 博客主题](https://theme.sugarat.top/)
 
