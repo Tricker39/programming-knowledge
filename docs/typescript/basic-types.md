@@ -91,36 +91,6 @@ let x = ['hello', 0]; // 由此可以看出元组本质上（或者说编译后�
 enum Color{ Green, Red, Blue }
 ```
 
-## Unknown
-
-当我们在写应用的时候可能会需要描述一个我们还不知道其类型的变量。这些值可以来自动态内容，例如从用户获得，或者我们想在我们的 API 中接收所有可能类型的值。在这些情况下，我们想要让编译器以及未来的用户知道这个变量可以是任意类型。这个时候我们会对它使用 unknown 类型。
-
-```TypeScript
-let notSure: unknown = 4;
-notSure = "maybe a string instead";
-// OK, definitely a boolean
-notSure = false;
-```
-
-如果你有一个 unknwon 类型的变量，你可以通过进行 typeof 、比较或者更高级的类型检查来将其的类型范围缩小：
-
-```TypeScript
-declare const maybe: unknown; // 'maybe' could be a string, object, boolean, undefined, or other types
-const aNumber: number = maybe;
-if (maybe === true) {
-  // TypeScript knows that maybe is a boolean now
-  const aBoolean: boolean = maybe;
-  // So, it cannot be a string
-  const aString: string = maybe;
-}
-if (typeof maybe === "string") {
-  // TypeScript knows that maybe is a string
-  const aString: string = maybe;
-  // So, it cannot be a boolean
-  const aBoolean: boolean = maybe;
-}
-```
-
 ## Any
 
 有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。那么我们可以使用 any 类型来标记这些变量：
@@ -154,6 +124,41 @@ let list: any[] = [1, true, "free"];
 
 list[1] = 100;
 ```
+
+## Unknown
+
+当我们在写应用的时候可能会需要描述一个我们还不知道其类型的变量。这些值可以来自动态内容，例如从用户获得，或者我们想在我们的 API 中接收所有可能类型的值。在这些情况下，我们想要让编译器以及未来的用户知道这个变量可以是任意类型。这个时候我们会对它使用 `unknown` 类型。
+
+```TypeScript
+let notSure: unknown = 4;
+notSure = "maybe a string instead";
+// OK, definitely a boolean
+notSure = false;
+```
+
+如果你有一个 `unknwon` 类型的变量，你可以通过进行 typeof 、比较或者更高级的类型检查来将其的类型范围缩小：
+
+```TypeScript
+declare const maybe: unknown; // 'maybe' could be a string, object, boolean, undefined, or other types
+const aNumber: number = maybe;
+if (maybe === true) {
+  // TypeScript knows that maybe is a boolean now
+  const aBoolean: boolean = maybe;
+  // So, it cannot be a string
+  const aString: string = maybe;
+}
+if (typeof maybe === "string") {
+  // TypeScript knows that maybe is a string
+  const aString: string = maybe;
+  // So, it cannot be a boolean
+  const aBoolean: boolean = maybe;
+}
+```
+
+`unknown` 类型代表任何值。 这类似于 `any` 类型，但更安全，因为使用 `unknown` 值做任何事情都是不合法的。
+
+<iframe height="480" style="width: 100%;" scrolling="no" src="https://www.typescriptlang.org/zh/play?ssl=7&ssc=2&pln=1&pc=1#code/GYVwdgxgLglg9mABMAjACgIYC5EbATwEpEBvAKEVwDoAjNQgbkQHpnEB5AaTIF8zRIsBMgBMmHOADWYOAHcwxcpQy16DCoggIAznAA2AUyp64Ac0xUIhXkA" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+</iframe>
 
 ## Null 和 Undefined
 
