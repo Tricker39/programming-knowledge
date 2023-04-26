@@ -9,7 +9,7 @@ hero:
   text: 人之为学，不可自小，又不可自大。
   tagline: 读书之法，在循序而渐进，熟读而精思。
   image:
-    src: /logo4.png
+    src: /logo-home.svg
     alt: logo
   actions:
     - theme: brand
