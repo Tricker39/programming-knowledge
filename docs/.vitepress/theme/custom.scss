@@ -766,6 +766,7 @@
     transform: rotate(360deg);
   }
 }
+// 稿纸效果，更多请参考 https://css-pattern.com/
 body {
   --s: 10px; /* control the size (the circle diameter) */
   --c2: var(--vp-c-bg);
