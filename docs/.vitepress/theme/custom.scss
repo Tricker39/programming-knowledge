@@ -13,35 +13,44 @@
   font-family: 'Koulen';
   src: url('/fonts/Koulen-Regular.ttf');
 }
-// pre,
-// code,
-// kbd,
-// samp {
-//   font-family: 'OperatorMonoLig', 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono', Menlo,
-//     Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-// }
+:root {
+  --c1: #fafafa;
+  --vp-code-block-bg: #f6f6f7;
+  --vp-code-block-divider-color: rgba(60, 60, 67, 0.12);
+  --vp-code-line-number-color: var(--vp-c-text-light-3);
+  --vp-code-copy-code-bg: #e6e6e6;
+  --vp-code-copy-code-hover-bg: #e6e6e6;
+  --vp-code-copy-code-active-text: var(--vp-c-text-light-2);
+  --vp-nav-bg: rgba(255, 255, 255, 0.3);
 
-.VPSocialLinks {
-  padding-right: 10px;
+  --vp-font-family-mono: 'OperatorMonoLig', 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono',
+    Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
-// 毛玻璃效果
-.VPNavBar .content-body {
-  backdrop-filter: blur(8px);
+.dark {
+  --c1: #1c1c1c;
+  --vp-code-block-bg: #292b30;
+  --vp-code-block-divider-color: #000;
+  --vp-code-line-number-color: var(--vp-c-text-dark-3);
+  --vp-code-copy-code-bg: var(--vp-code-block-bg-light);
+  --vp-code-copy-code-hover-bg: var(--vp-code-block-bg-light);
+  --vp-code-copy-code-active-text: var(--vp-c-text-dark-2);
+  --vp-nav-bg: rgba(30, 30, 32, 0.3);
+}
+
+// 顶部导航栏毛玻璃效果
+.VPNavBar {
+  backdrop-filter: blur(3px);
   background: var(--vp-nav-bg) !important;
+  .content-body {
+    background: none !important;
+  }
 }
 
-@media (min-width: 768px) {
-  .VPNavBarSearch {
-    flex-grow: 1;
-    padding-left: 24px;
-  }
-}
-@media (min-width: 960px) {
-  .VPNavBarSearch {
-    padding-left: 32px;
-  }
-}
 // #region 本地搜索样式
+.VPNavBarSearch {
+  flex-grow: 1;
+  padding-left: 24px;
+}
 .VPNavBarSearch {
   display: flex;
   align-items: center;
@@ -348,19 +357,7 @@
 }
 // #endregion
 
-:root {
-  --vp-code-block-bg: #f6f6f7;
-  --vp-code-block-divider-color: rgba(60, 60, 67, 0.12);
-  --vp-code-line-number-color: var(--vp-c-text-light-3);
-  --vp-code-copy-code-bg: #e6e6e6;
-  --vp-code-copy-code-hover-bg: #e6e6e6;
-  --vp-code-copy-code-active-text: var(--vp-c-text-light-2);
-  --vp-nav-bg: rgba(255, 255, 255, 0.6);
-
-  --vp-font-family-mono: 'OperatorMonoLig', 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono',
-    Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-}
-
+// #region 代码块样式
 .vp-doc [class*='language-'] {
   font-size: 18px;
   > span.lang {
@@ -373,16 +370,7 @@
 .vp-code-group input:checked + label {
   color: var(--vp-c-text-light-2);
 }
-
 .dark {
-  --vp-code-block-bg: #292b30;
-  --vp-code-block-divider-color: #000;
-  --vp-code-line-number-color: var(--vp-c-text-dark-3);
-  --vp-code-copy-code-bg: var(--vp-code-block-bg-light);
-  --vp-code-copy-code-hover-bg: var(--vp-code-block-bg-light);
-  --vp-code-copy-code-active-text: var(--vp-c-text-dark-2);
-  --vp-nav-bg: rgba(30, 30, 32, 0.6);
-
   .vp-doc [class*='language-'] {
     > span.lang {
       color: var(--vp-c-text-dark-3);
@@ -399,7 +387,9 @@
     background: rgba(255, 255, 255, 0.15);
   }
 }
+// #endregion
 
+// #region 主页样式
 .VPHero {
   .clip {
     --vp-home-hero-name-background: -webkit-linear-gradient(
@@ -766,6 +756,8 @@
     --vp-c-brand-next: #009ff7;
   }
 }
+// #endregion
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -773,4 +765,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+body {
+  --s: 10px; /* control the size (the circle diameter) */
+  --c2: var(--vp-c-bg);
+
+  --_g: radial-gradient(calc(var(--s) / 2), var(--c1) 97%, #0000);
+  background: var(--_g), var(--_g) calc(2 * var(--s)) calc(2 * var(--s)),
+    repeating-conic-gradient(from 45deg, #0000 0 25%, var(--c2) 0 50%) calc(-0.707 * var(--s))
+      calc(-0.707 * var(--s)),
+    repeating-linear-gradient(
+      135deg,
+      var(--c1) calc(var(--s) / -2) calc(var(--s) / 2),
+      var(--c2) 0 calc(2.328 * var(--s))
+    );
+  background-size: calc(4 * var(--s)) calc(4 * var(--s));
 }
