@@ -405,6 +405,12 @@
   //   background-image: var(--vp-home-hero-image-background-image);
   //   animation: rainbow 10s infinite linear;
   // }
+  .image-bg {
+    filter: blur(30px);
+    background-image: url('/logo.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
   .clip {
     --vp-home-hero-name-background: -webkit-linear-gradient(
       120deg,

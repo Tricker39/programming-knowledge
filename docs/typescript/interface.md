@@ -167,6 +167,11 @@ myArray[2] = "Mallory"; // error: Index signature in type 'ReadonlyStringArray' 
 
 您不能设置 `myArray[2]`，因为索引签名是 `readonly`。
 
+当然我们还可以定义一个字符串索引
+
+<iframe height="600" style="width: 100%;" scrolling="no" src="https://www.typescriptlang.org/zh/play?ssl=20&ssc=9&pln=19&pc=16#code/JYOwLgpgTgZghgYwgAgHJwLYQM7IN4BQyyA2iJhAFzLZhSgDmAutbfSAwNxHID0vyAJ6UQAVwwAjaHwEAFKAHsADtDCDkAckEbkCmMjUrNYydB3BcIBWGRxs2YA3ISANijALNbRuZAATCAAPA0EjDW8ODQA6Hn5SUADA6hMpKBZkFOk4jUyoX0SQsNzzS2tbe0dnNwNPcLofZASgwpQ69gZo5EAgzUAc81JyLFZ6jnS4EEFuYhImpIzxVPSIhgIAXwICUEhYRBR0LGwAJnweMgoh9tHxyfj-IOT56HTcmWRAA7VALjk50yhkQHozW3GyEAIW6ABW1AGNpgBh-wACRoBTuUAvwGAfE1AP7ygApXQCb8YBZz0AnaaAeH1AA8agDgzVbrBAKEC0WzUPY4ZAAXmOxA0AAsmRpqBoAIwHADMGgANDwAAzsuASBAaYkEUnkmwSKkUQ50hmaUXikVi-lC6hc7nEoA" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+</iframe>
+
 ## 接口继承（扩展类型）
 
 有一些类型可能是其他类型的更具体的版本，这是很常见的。例如，我们可能有一个 `BasicGoods` 类型，它定义了一件商品的基本属性。
@@ -213,7 +218,7 @@ interface GoodsWithBatchNo extends BasicGoods {
 }
 ```
 
-接口上的 `extends` 关键字允许我们有效地从类型中复制成员，并添加我们想要的任何新属性。这对于减少我们的代码量使代码更加简洁和优雅，同时也利于代码复用性的管理，提升了代码的可维护性。
+接口上的 `extends` 关键字允许我们有效地从类型中复制属性，并添加我们想要的任何新属性。这对于减少我们的代码量使代码更加简洁和优雅，同时也利于代码复用性的管理，提升了代码的可维护性。
 
 接口也可以继承多个类型。
 
@@ -322,7 +327,7 @@ c.interval = 5.0;
 
 当你操作类和接口的时候，你要知道类是具有两个类型的：静态部分的类型和实例的类型。 你会注意到，当你用构造器去定义一个接口并试图定义一个类去实现这个接口时会得到一个错误：
 
-<iframe height="480" style="width: 100%;" scrolling="no" src="https://www.typescriptlang.org/zh/play?#code/JYOwLgpgTgZghgYwgAgMIBsD2CDWrMgDOYUArgmJlMgN4BQyyIEA7sgBQAWmpUAXE1IBbAEbQANMiGhSkASGFioASgDcdAL506CdHEKE0WXMmBCADughCI4Qxmx4CxMhSq0GyBLyi2wAFTMIAQAROEh1RgRnEnJKKC55RQkpJNFoZVotDSA" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe height="480" style="width: 100%;" scrolling="no" src="https://www.typescriptlang.org/zh/play?#code/JYOwLgpgTgZghgYwgAgMIBsD2CDWrMgDOYUArgmJlMgN4BQyyIEA7gBQAWmpUAXE6QC2AI2gAaZINClI-EENFQAlPwBumYABM6AXzp0E6OIUJosuZMEEAHdBEERwpjNjwFiZClVoNkCHlCOYAAqVhD8ACJwkADcvgjuJOSUUJxyCuKS6SLQSrTIejpAA" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
 </iframe>
 
 这里因为当一个类实现了一个接口时，只对其实例部分进行类型检查。 `constructor` 存在于类的静态部分，所以不在检查的范围内。
@@ -383,9 +388,9 @@ const Clock: ClockConstructor = class Clock implements ClockInterface {
 };
 ```
 
-## 接口继承类
+## 接口继承 class
 
-当接口继承了一个类类型时，它会继承类的成员但不包括其实现。 就好像接口声明了所有类中存在的成员，但并没有提供具体实现一样。 接口同样会继承到类的 `private` 和 `protected` 成员。 这意味着当你创建了一个接口继承了一个拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类所实现（implement）。
+当接口继承了一个 `class` 类型时，它会继承类的属性但不包括其实现。就好像接口声明了所有类中存在的属性，但并没有提供具体实现一样。接口同样会继承到类的 `private` 和 `protected` 属性。 这意味着当你创建了一个接口继承了一个拥有私有或受保护的属性的类时，这个接口类型只能被这个类或其子类所实现（implement）。
 
 当你有一个庞大的继承结构时这很有用，但要指出的是你的代码只在子类拥有特定属性时起作用。 除了继承自基类，子类之间不必相关联。 例：
 
@@ -414,9 +419,9 @@ class ImageControl implements SelectableControl {
 }
 ```
 
-在上面的例子里，`SelectableControl` 包含了 `Control` 的所有成员，包括私有成员 `state。` 因为 `state` 是私有成员，所以只能够是 `Control` 的子类们才能实现 `SelectableControl` 接口。 因为只有 `Control` 的子类才能够拥有一个声明于 `Control` 的私有成员 `state`，这对私有成员的兼容性是必需的。
+在上面的例子里，`SelectableControl` 包含了 `Control` 的所有属性，包括私有属性 `state`。因为 `state` 是私有属性，所以只能够是 `Control` 的子类们才能实现 `SelectableControl` 接口。 因为只有 `Control` 的子类才能够拥有一个声明于 `Control` 的私有属性 `state`，这对私有属性的兼容性是必需的。
 
-在 `Control` 类内部，是允许通过 `SelectableControl` 的实例来访问私有成员 `state` 的。 实际上，`SelectableControl` 就像 `Control` 一样，并拥有一个 `select` 方法。 `Button` 和 `TextBox` 类是 `SelectableControl` 的子类（因为它们都继承自 `Control` 并有 `select` 方法）。而对于 `ImageControl` 类，它有自身的私有成员 `state` 而不是通过继承 `Control` 得来的，所以它不可以实现 `SelectableControl` 。
+在 `Control` 类内部，是允许通过 `SelectableControl` 的实例来访问私有属性 `state` 的。 实际上，`SelectableControl` 就像 `Control` 一样，并拥有一个 `select` 方法。 `Button` 和 `TextBox` 类是 `SelectableControl` 的子类（因为它们都继承自 `Control` 并有 `select` 方法）。而对于 `ImageControl` 类，它有自身的私有属性 `state` 而不是通过继承 `Control` 得来的，所以它不可以实现 `SelectableControl` 。
 
 ## 参考资料
 
