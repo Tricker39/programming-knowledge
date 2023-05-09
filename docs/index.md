@@ -17,7 +17,7 @@ hero:
       link: /home/introduction
     - theme: alt
       text: 在码云中查看
-      link: https://gitee.com/MascotSky/programming-knowledge
+      link: https://gitee.com/Tricker39/programming-knowledge
     - theme: alt
       text: 在 Github 中查看
       link: https://github.com/Tricker39/programming-knowledge
