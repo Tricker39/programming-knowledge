@@ -281,8 +281,8 @@
   import { ref, unref, watch, nextTick, watchEffect } from 'vue';
   interface Iprops {
     visible: Boolean;
-    list: Array<{ src: string; alt: string }>;
-    image: { src: string; alt: string } | null;
+    list: Array<{ src: string; alt?: string }>;
+    image: { src: string; alt?: string } | null;
   }
   // const props = defineProps(['visible', 'image', 'list']);
   const props = defineProps<Iprops>();

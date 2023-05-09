@@ -59,7 +59,7 @@ export default defineConfig({
 
 ## 国际化配置
 
-如果你想要使用中文提示词，那么你可以做一下配置
+如果你想要使用国际化提示词，那么你可以做一下配置
 
 ```JavaScript
 import { defineConfig } from 'vitepress'
@@ -81,6 +81,29 @@ export default defineConfig({
       provider: 'local',
       options: {
         locales: {
+          en:{
+            translations:{
+              button: {
+                buttonText: 'search',
+                buttonAriaLabel: 'search'
+              },
+              modal: {
+                displayDetails: 'Display detailed list',
+                resetButtonTitle: 'Reset search',
+                backButtonTitle: 'Close search',
+                noResultsText: 'No results for',
+                footer: {
+                  selectText: 'to select',
+                  selectKeyAriaLabel: 'enter',
+                  navigateText: 'to navigate',
+                  navigateUpKeyAriaLabel: 'up arrow',
+                  navigateDownKeyAriaLabel: 'down arrow',
+                  closeText: 'to close',
+                  closeKeyAriaLabel: 'escape'
+                }
+              }
+            }
+          },
           zh: {
             translations: {
               button: {
@@ -142,6 +165,10 @@ interface FooterTranslations {
 
 ```JavaScript
 {
+  button: {
+    buttonText: 'search',
+    buttonAriaLabel: 'search'
+  },
   modal: {
     displayDetails: 'Display detailed list',
     resetButtonTitle: 'Reset search',
