@@ -146,6 +146,7 @@ function sidebarHome() {
       collapsed: true,
       items: [
         { text: '目录', link: '/home/introduction' },
+        { text: 'vitepress 折腾记（一）', link: '/home/vitepress-1' },
         { text: '本地文档搜索', link: '/home/local-search' },
         { text: 'giscus 评论系统', link: '/home/giscus' },
         { text: '部署到 github pages', link: '/home/github-pages' },
