@@ -1,19 +1,12 @@
-name: Sync To Gitee
-
-on: [push, delete, create]
-
-# Ensures that only one mirror task will run at a time.
-concurrency:
-  group: git-mirror
-
+name: Sync To Gitee #名字  可自定义
+on: page_build #触发条件   page_build表示Github Page部署完成后触发
 jobs:
-  git-mirror:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: wearerequired/git-mirror-action@v1
+      - uses: wearerequired/git-mirror-action@master #开源actions包
         env:
           SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
-           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
         with:
-          source-repo: 'git@github.com:Tricker39/programming-knowledge.git'
-          destination-repo: 'git@gitee.com:Tricker39/programming-knowledge.git'
+          source-repo: 'git@github.com:Tricker39/programming-knowledge.git' # github仓库地址
+          destination-repo: 'git@gitee.com:Tricker39/programming-knowledge.git' # gitee仓库地址
