@@ -12,7 +12,7 @@
 
 使用 `interface` 关键字进行声明，假如我们定义一个商品的接口，商品普遍的属性有颜色、形状、大小、价格等。
 
-```Typescript
+```typescript
 interface Goods {
   color: string;
   shape: string;
@@ -34,7 +34,7 @@ interface Goods {
 
 下面是应用了“option bags”的例子：
 
-```TypeScript
+```typescript
 interface Pet {
   swim?: boolean;
   fly?: boolean;
@@ -45,12 +45,12 @@ interface Pet {
 function bugAPet(pet: Pet): Pet {
   let dog = { nickname: '花花', run: true };
   if (pet.nickname) {
-    dog.nickname = pet.nickname
+    dog.nickname = pet.nickname;
   }
   return dog;
 }
 
-let myPet = bugAPet({ nickname: "小白" });
+let myPet = bugAPet({ nickname: '小白' });
 ```
 
 可选属性的好处：
@@ -68,7 +68,7 @@ let myPet = bugAPet({ nickname: "小白" });
 
 一些对象属性只能在对象刚刚创建的时候修改其值。 你可以在属性名前用 `readonly` 来指定只读属性:
 
-```TypeScript
+```typescript
 interface Position {
   readonly longitude: number;
   readonly latitude: number;
@@ -77,18 +77,18 @@ interface Position {
 
 你可以通过赋值一个对象字面量来构造一个 `Position`。赋值后，`longitude` 和 `latitude` 再也不能被改变了。
 
-```TypeScript
+```typescript
 interface Position {
   readonly longitude: number;
   readonly latitude: number;
 }
-const beijing: Position = { longitude: 116.397128, latitude: 39.916527 }
+const beijing: Position = { longitude: 116.397128, latitude: 39.916527 };
 beijing.longitude = 115.397128; // Cannot assign to 'longitude' because it is a read-only property.
 ```
 
 使用 readonly 修饰符并不一定意味着一个值是完全不可改变的--或者换句话说，它的内部内容不能被改变。它只是意味着该属性本身不能被重新写入。
 
-```TypeScript
+```typescript
 interface Position {
   longitude: number;
   latitude: number;
@@ -101,13 +101,13 @@ interface ReadonlyPosition {
 
 let writablePosition: Position = {
   longitude: 116.397128,
-  latitude: 39.916527
+  latitude: 39.916527,
 };
 
 let readonlyPosition: ReadonlyPosition = writablePosition;
 
 console.log(readonlyPosition.longitude); // 116.397128
-writablePosition.longitude = 115.397128
+writablePosition.longitude = 115.397128;
 console.log(readonlyPosition.longitude); // 115.397128
 ```
 
@@ -120,7 +120,7 @@ console.log(readonlyPosition.longitude); // 115.397128
 
 有时你并不知道类型属性的所有名称，但你确实知道值的类型。
 
-```TypeScript
+```typescript
 interface StringArray {
   [index: number]: string;
 }
@@ -135,7 +135,7 @@ const secondItem = myArray[1];
 
 虽然字符串索引签名是描述 "dictionary" 模式的强大方式，但它们还强制所有属性与其返回类型匹配。这是因为字符串索引声明 `obj.property` 也可用作 `obj["property"]`。在下面的例子中，`name` 的类型与字符串索引的类型不匹配，类型检查器给出错误：
 
-```TypeScript
+```typescript
 interface NumberDictionary {
   [index: string]: number;
   length: number; // ok
@@ -145,7 +145,7 @@ interface NumberDictionary {
 
 但是，如果索引签名是属性类型的交叉，则可以接受不同类型的属性：
 
-```TypeScript
+```typescript
 interface NumberOrStringDictionary {
   [index: string]: number | string;
   length: number; // ok, length is a number
@@ -155,14 +155,14 @@ interface NumberOrStringDictionary {
 
 最后，你可以制作索引签名 `readonly` 以防止分配给它们的索引：
 
-```TypeScript
+```typescript
 declare function getReadOnlyStringArray(): ReadonlyStringArray;
 interface ReadonlyStringArray {
   readonly [index: number]: string;
 }
 
 let myArray: ReadonlyStringArray = getReadOnlyStringArray();
-myArray[2] = "Mallory"; // error: Index signature in type 'ReadonlyStringArray' only permits reading.
+myArray[2] = 'Mallory'; // error: Index signature in type 'ReadonlyStringArray' only permits reading.
 ```
 
 您不能设置 `myArray[2]`，因为索引签名是 `readonly`。
@@ -176,7 +176,7 @@ myArray[2] = "Mallory"; // error: Index signature in type 'ReadonlyStringArray' 
 
 有一些类型可能是其他类型的更具体的版本，这是很常见的。例如，我们可能有一个 `BasicGoods` 类型，它定义了一件商品的基本属性。
 
-```TypeScript
+```typescript
 interface BasicGoods {
   name: string;
   size: number;
@@ -189,8 +189,8 @@ interface BasicGoods {
 
 在某些情况下，这就足够了，但是在某些特定的商品中可能需要其他的属性。我们就可创建一个 `GoodsWithBatchNo` 的类型。
 
-```TypeScript
-interface GoodsWithBatchNo{
+```typescript
+interface GoodsWithBatchNo {
   batchNo: string;
   name: string;
   size: number;
@@ -203,7 +203,7 @@ interface GoodsWithBatchNo{
 
 我们重新创建了一个 `GoodsWithBatchNo` 类型来实现我们的需求，但这里的缺点是，当我们的变化只是单纯的在 `BasicGoods` 的基础上增加属性时，我们不得不重复定义 `BasicGoods` 所包含的属性。这时我们会想是否有什么解决方式可以让我避免这些重复的定义。而在 TypeScript 中提供了 `extends` 操作符来实现这一点。
 
-```TypeScript
+```typescript
 interface BasicGoods {
   name: string;
   size: number;
@@ -222,7 +222,7 @@ interface GoodsWithBatchNo extends BasicGoods {
 
 接口也可以继承多个类型。
 
-```TypeScript
+```typescript
 interface BasicGoods {
   name: string;
   size: number;
@@ -240,14 +240,14 @@ interface Ball extends BasicGoods, BatchNo {
 }
 const basketball: Ball = {
   batchNo: '20230101102533',
-  name: "basketball",
+  name: 'basketball',
   size: 24.5,
   shape: 'ball',
   weight: 550,
   color: '',
   price: 150,
-  brand: "SPALDING",
-}
+  brand: 'SPALDING',
+};
 ```
 
 ## 交叉类型
@@ -256,7 +256,7 @@ const basketball: Ball = {
 
 交叉类型是用 `&` 运算符定义的。
 
-```TypeScript
+```typescript
 interface Colorful {
   color: string;
 }
@@ -280,7 +280,7 @@ type ColorfulCircle = Colorful & Circle;
 
 与 C# 或 Java 里接口的基本作用一样，TypeScript 也能够用它来明确的强制一个类去符合某种契约。
 
-```TypeScript
+```typescript
 interface ClockInterface {
   currentTime: Date;
   setTime(d: Date): void;
@@ -303,7 +303,7 @@ class Clock implements ClockInterface {
 
 一个例子就是，一个对象可以同时作为函数和对象使用，并带有额外的属性。
 
-```TypeScript
+```typescript
 interface Counter {
   (start: number): string;
   interval: number;
@@ -311,9 +311,9 @@ interface Counter {
 }
 
 function getCounter(): Counter {
-  let counter = function(start: number) {} as Counter;
+  let counter = function (start: number) {} as Counter;
   counter.interval = 123;
-  counter.reset = function() {};
+  counter.reset = function () {};
   return counter;
 }
 
@@ -334,7 +334,7 @@ c.interval = 5.0;
 
 因此，我们应该直接操作类的静态部分。 看下面的例子，我们定义了两个接口，`ClockConstructor` 为构造函数所用和 `ClockInterface` 为实例方法所用。 为了方便我们定义一个构造函数 `createClock`，它用传入的类型创建实例。
 
-```TypeScript
+```typescript
 interface ClockConstructor {
   new (hour: number, minute: number): ClockInterface;
 }
@@ -342,24 +342,20 @@ interface ClockInterface {
   tick(): void;
 }
 
-function createClock(
-  ctor: ClockConstructor,
-  hour: number,
-  minute: number
-): ClockInterface {
+function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
   return new ctor(hour, minute);
 }
 
 class DigitalClock implements ClockInterface {
   constructor(h: number, m: number) {}
   tick() {
-    console.log("beep beep");
+    console.log('beep beep');
   }
 }
 class AnalogClock implements ClockInterface {
   constructor(h: number, m: number) {}
   tick() {
-    console.log("tick tock");
+    console.log('tick tock');
   }
 }
 
@@ -371,7 +367,7 @@ let analog = createClock(AnalogClock, 7, 32);
 
 另一种简单方式是使用类表达式：
 
-```TypeScript
+```typescript
 interface ClockConstructor {
   new (hour: number, minute: number);
 }
@@ -383,7 +379,7 @@ interface ClockInterface {
 const Clock: ClockConstructor = class Clock implements ClockInterface {
   constructor(h: number, m: number) {}
   tick() {
-    console.log("beep beep");
+    console.log('beep beep');
   }
 };
 ```
@@ -394,7 +390,7 @@ const Clock: ClockConstructor = class Clock implements ClockInterface {
 
 当你有一个庞大的继承结构时这很有用，但要指出的是你的代码只在子类拥有特定属性时起作用。 除了继承自基类，子类之间不必相关联。 例：
 
-```TypeScript
+```typescript
 class Control {
   private state: any;
 }
@@ -412,8 +408,8 @@ class TextBox extends Control {
 }
 
 class ImageControl implements SelectableControl {
-// Error: Class 'ImageControl' incorrectly implements interface 'SelectableControl'.
-//  Types have separate declarations of a private property 'state'.
+  // Error: Class 'ImageControl' incorrectly implements interface 'SelectableControl'.
+  //  Types have separate declarations of a private property 'state'.
   private state: any;
   select() {}
 }

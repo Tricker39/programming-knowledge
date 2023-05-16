@@ -12,25 +12,25 @@
 
 ## 克隆项目到本地
 
-```Shell
+```shell
 $ git clone https://github.com/Tricker39/blog.git
 ```
 
 ## 创建 vitepress 项目
 
-```Shell
+```shell
 $ npm install -D vitepress
 ```
 
 ## 写入第一个文档
 
-```Shell
+```shell
 $ mkdir docs && echo '# Hello VitePress' > docs/index.md
 ```
 
 ## 在 package.json 加入执行脚本
 
-```Json
+```json
 {
   // ...
   // [!code focus:4]
@@ -98,11 +98,11 @@ TODOs.md
 
 最主要的是要配置 `base` , `base` 的配置需要前后都用 `/` 包围，而且 `base` 的路径需要与上面的仓库名 `blog` 一样，这样发布之后才不会有问题。
 
-```Javascript
+```javascript
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
-  base: `/blog/`,// [!code focus]
+  base: `/blog/`, // [!code focus]
   lang: 'zh',
   lastUpdated: true,
 
@@ -135,7 +135,6 @@ export default defineConfig({
     ],
   },
 });
-
 ```
 
 上述配置只做简单的配置，其他配置请参考 [vitepress 官网](https://vitepress.dev/)。
@@ -152,7 +151,7 @@ export default defineConfig({
 
 我当前的分支是 `main`，所以下面的分支配置成 `main`。
 
-```Yaml
+```yaml
 name: Deploy
 on:
   workflow_dispatch: {}
@@ -190,7 +189,7 @@ jobs:
 
 如果你的分支是其他名字，就配置成你的分支名（如你的分支名是 `master`，就把分支分支名改成 `master`。
 
-```Yaml
+```yaml
 name: Deploy
 on:
   workflow_dispatch: {}

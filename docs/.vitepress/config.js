@@ -125,6 +125,7 @@ export default defineConfig({
           { text: 'gitmind 思维导图', link: 'https://gitmind.cn' },
           { text: 'Alien GPT', link: 'https://chat.waixingyun.cn/#/home' },
           { text: '文心一言', link: 'https://yiyan.baidu.com/' },
+          { text: '韩小韩 API 接口', link: 'https://api.vvhan.com/?utm_source=xinquji' },
         ],
       },
     ],
@@ -190,6 +191,7 @@ function sidebarTypeScript() {
         { text: '元组类型', link: '/typescript/tuple' },
         { text: '枚举类型', link: '/typescript/enum' },
         { text: '接口', link: '/typescript/interface' },
+        { text: '函数', link: '/typescript/function' },
       ],
     },
   ];

@@ -6,24 +6,24 @@
 
 要启用这一功能，只需在你的 `.vitepress/config.ts` 文件中把 `themeConfig.search.provider` 选项设置为`'local'`：
 
-```JavaScript
-import { defineConfig } from 'vitepress'
+```javascript
+import { defineConfig } from 'vitepress';
 
 export default defineConfig({
   themeConfig: {
     search: {
-      provider: 'local'
-    }
-  }
-})
+      provider: 'local',
+    },
+  },
+});
 ```
 
 ## 中文提示语配置
 
 如果你想要使用中文提示词，那么你可以做一下配置
 
-```JavaScript
-import { defineConfig } from 'vitepress'
+```javascript
+import { defineConfig } from 'vitepress';
 
 export default defineConfig({
   lang: 'zh',
@@ -36,7 +36,7 @@ export default defineConfig({
             translations: {
               button: {
                 buttonText: '搜索文档',
-                buttonAriaLabel: '搜索文档'
+                buttonAriaLabel: '搜索文档',
               },
               modal: {
                 noResultsText: '无法找到相关结果',
@@ -48,28 +48,28 @@ export default defineConfig({
                   closeText: '关闭',
                 },
               },
-            }
-          }
-        }
-      }
-    }
-  }
-})
+            },
+          },
+        },
+      },
+    },
+  },
+});
 ```
 
 ## 国际化配置
 
 如果你想要使用国际化提示词，那么你可以做一下配置
 
-```JavaScript
-import { defineConfig } from 'vitepress'
+```javascript
+import { defineConfig } from 'vitepress';
 
 export default defineConfig({
   lang: 'en',
   locales: {
     root: {
       label: 'English',
-      lang: 'en'
+      lang: 'en',
     },
     zh: {
       label: 'Chinese',
@@ -81,11 +81,11 @@ export default defineConfig({
       provider: 'local',
       options: {
         locales: {
-          en:{
-            translations:{
+          en: {
+            translations: {
               button: {
                 buttonText: 'search',
-                buttonAriaLabel: 'search'
+                buttonAriaLabel: 'search',
               },
               modal: {
                 displayDetails: 'Display detailed list',
@@ -99,16 +99,16 @@ export default defineConfig({
                   navigateUpKeyAriaLabel: 'up arrow',
                   navigateDownKeyAriaLabel: 'down arrow',
                   closeText: 'to close',
-                  closeKeyAriaLabel: 'escape'
-                }
-              }
-            }
+                  closeKeyAriaLabel: 'escape',
+                },
+              },
+            },
           },
           zh: {
             translations: {
               button: {
                 buttonText: '搜索文档',
-                buttonAriaLabel: '搜索文档'
+                buttonAriaLabel: '搜索文档',
               },
               modal: {
                 noResultsText: '无法找到相关结果',
@@ -120,50 +120,50 @@ export default defineConfig({
                   closeText: '关闭',
                 },
               },
-            }
-          }
-        }
-      }
-    }
-  }
-})
+            },
+          },
+        },
+      },
+    },
+  },
+});
 ```
 
 ## 本地搜索全部配置
 
-```TypeScript
+```typescript
 interface LocalSearchTranslations {
-  button?: ButtonTranslations
-  modal?: ModalTranslations
+  button?: ButtonTranslations;
+  modal?: ModalTranslations;
 }
 
 interface ButtonTranslations {
-  buttonText?: string
-  buttonAriaLabel?: string
+  buttonText?: string;
+  buttonAriaLabel?: string;
 }
 
 interface ModalTranslations {
-  displayDetails?: string
-  resetButtonTitle?: string
-  backButtonTitle?: string
-  noResultsText?: string
-  footer?: FooterTranslations
+  displayDetails?: string;
+  resetButtonTitle?: string;
+  backButtonTitle?: string;
+  noResultsText?: string;
+  footer?: FooterTranslations;
 }
 
 interface FooterTranslations {
-  selectText?: string
-  selectKeyAriaLabel?: string
-  navigateText?: string
-  navigateUpKeyAriaLabel?: string
-  navigateDownKeyAriaLabel?: string
-  closeText?: string
-  closeKeyAriaLabel?: string
+  selectText?: string;
+  selectKeyAriaLabel?: string;
+  navigateText?: string;
+  navigateUpKeyAriaLabel?: string;
+  navigateDownKeyAriaLabel?: string;
+  closeText?: string;
+  closeKeyAriaLabel?: string;
 }
 ```
 
 ## 默认配置值
 
-```JavaScript
+```javascript
 {
   button: {
     buttonText: 'search',

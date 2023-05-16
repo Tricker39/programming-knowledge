@@ -49,8 +49,9 @@
 7. 主题（可以不选，之后会做主题切换，适配深/浅主题）。
 8. 负责你得到的那串 key。
 
-```JavaScript
-<script src="https://giscus.app/client.js"
+```javascript
+<script
+  src="https://giscus.app/client.js"
   data-repo="[在此输入仓库]"
   data-repo-id="[在此输入仓库 ID]"
   data-category="[在此输入分类名]"
@@ -63,13 +64,13 @@
   data-theme="preferred_color_scheme" // 主题
   data-lang="zh-CN"
   crossorigin="anonymous"
-  async>
-</script>
+  async
+></script>
 ```
 
 ## 创建 vue 组件
 
-```Vue
+```vue
 <template>
   <div class="comment">
     <component
@@ -128,7 +129,7 @@
 
 在 `/docs/.vitepress` 文件夹下，创建 `theme`文件夹，然后创建 `index.js` 的文件。拷贝粘贴以下代码（修改你的组件路径）。
 
-```JavaScript
+```javascript
 import { h } from 'vue';
 import DefaultTheme from 'vitepress/theme';
 // 导入刚才创建好的组件
