@@ -1,5 +1,5 @@
 name: Sync To Gitee #名字  可自定义
-on: page_build #触发条件   page_build表示Github Page部署完成后触发
+on: [push, delete, create] #触发条件   page_build表示Github Page部署完成后触发
 jobs:
   sync:
     runs-on: ubuntu-latest
