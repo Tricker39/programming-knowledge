@@ -1,0 +1,1 @@
+import{d as t,c as o,r as n,n as _,o as p,_ as r}from"./framework.ddf3a852.js";const c=t({__name:"MTag",props:{type:{default:"default"}},setup(e){const a=e;return(s,l)=>(p(),o("span",{class:_(["tag",a.type])},[n(s.$slots,"default",{},void 0,!0)],2))}});const f=r(c,[["__scopeId","data-v-94e01a7f"]]);export{f as M};
