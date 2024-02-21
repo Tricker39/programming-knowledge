@@ -135,6 +135,7 @@ export default defineConfig({
       '/network/': sidebarNetwork(),
       '/typescript/': sidebarTypeScript(),
       '/codes': sidebarCode(),
+      '/webpack': sidebarWebpack(),
     },
   },
 });
@@ -216,6 +217,19 @@ function sidebarCode() {
             { text: '新拟态风格按钮', link: '/codes/front/button/neumorphism-button' },
           ],
         },
+      ],
+    },
+  ];
+}
+
+function sidebarWebpack(){
+  return [
+    {
+      text: 'webpack',
+      collapsed: true,
+      items: [
+        { text: 'webapck 介绍', link: '/webpack/index' },
+        { text: 'entry 详解', link: '/webpack/entry' },
       ],
     },
   ];
