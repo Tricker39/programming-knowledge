@@ -4,7 +4,7 @@
 
 最基本的数据类型就是简单的 true/false 值，在 JavaScript 和 TypeScript 里叫做 boolean。
 
-```TypeScript
+```typescript
 let isDone: boolean = false;
 ```
 
@@ -12,7 +12,7 @@ let isDone: boolean = false;
 
 和 JavaScript 一样，TypeScript 里的所有数字都是浮点数或者大整数。这些浮点数的类型是 number， 而大整数的类型则是 bigint。除了支持十进制和十六进制字面量，TypeScript 还支持 ECMAScript 2015 中引入的二进制和八进制字面量。
 
-```TypeScript
+```typescript
 let decLiteral: number = 6;
 let hexLiteral: number = 0xf00d;
 let binaryLiteral: number = 0b1010;
@@ -24,14 +24,14 @@ let bigLiteral: bigint = 100n;
 
 JavaScript 程序的另一项基本操作是处理网页或服务器端的文本数据。像其它语言里一样，我们使用 string 表示文本数据类型。和 JavaScript 一样，可以使用双引号（"）或单引号（'）表示字符串。
 
-```TypeScript
-let name: string = "bob";
-name = "smith";
+```typescript
+let name: string = 'bob';
+name = 'smith';
 ```
 
 你还可以使用**模版字符串**，它可以定义多行文本和内嵌表达式。这种字符串是被反引号包围 （\`\`），并且以 ${ expr } 这种形式嵌入表达式
 
-```TypeScript
+```typescript
 let name: string = `Gene`;
 let age: number = 37;
 let sentence: string = `Hello, my name is ${name}.I'll be ${age + 1} years old next month.`;
@@ -39,13 +39,14 @@ let sentence: string = `Hello, my name is ${name}.I'll be ${age + 1} years old n
 
 这与下面定义 sentence 的方式效果相同：
 
-```TypeScript
-let sentence: string = "Hello, my name is " + name + ".\n\n" + "I'll be " + (age + 1) + " years old next month.";
+```typescript
+let sentence: string =
+  'Hello, my name is ' + name + '.\n\n' + "I'll be " + (age + 1) + ' years old next month.';
 ```
 
 ## Symbol
 
-```TypeScript
+```typescript
 let s = Symbol();
 console.log(typeof s); // "symbol"
 ```
@@ -54,13 +55,13 @@ console.log(typeof s); // "symbol"
 
 TypeScript 像 JavaScript 一样可以操作数组元素。有两种方式可以定义数组。第一种，可以在元素类型后面接上[]，表示由此类型元素组成的一个数组：
 
-```TypeScript
+```typescript
 let list: number[] = [1, 2, 3];
 ```
 
 第二种方式是使用数组泛型，Array<元素类型>：
 
-```TypeScript
+```typescript
 let list: Array<number> = [1, 2, 3];
 ```
 
@@ -72,12 +73,12 @@ let list: Array<number> = [1, 2, 3];
 
 ::: code-group
 
-```TypeScript
-let x: [string, number] =  [ 'hello', 0 ];
+```typescript
+let x: [string, number] = ['hello', 0];
 ```
 
-```Javascript
-"use strict";
+```javascript
+'use strict';
 let x = ['hello', 0]; // 由此可以看出元组本质上（或者说编译后）是一个特殊数组。
 ```
 
@@ -87,37 +88,11 @@ let x = ['hello', 0]; // 由此可以看出元组本质上（或者说编译后�
 
 > [Enum](/typescript/enum) 类型是对 JavaScript 标准数据类型的一个补充。使用枚举类型可以为一组数值赋予友好的名字。可以简单的理解为一组具有名字的常量集合。
 
-```TypeScript
-enum Color{ Green, Red, Blue }
-```
-
-## Unknown
-
-当我们在写应用的时候可能会需要描述一个我们还不知道其类型的变量。这些值可以来自动态内容，例如从用户获得，或者我们想在我们的 API 中接收所有可能类型的值。在这些情况下，我们想要让编译器以及未来的用户知道这个变量可以是任意类型。这个时候我们会对它使用 unknown 类型。
-
-```TypeScript
-let notSure: unknown = 4;
-notSure = "maybe a string instead";
-// OK, definitely a boolean
-notSure = false;
-```
-
-如果你有一个 unknwon 类型的变量，你可以通过进行 typeof 、比较或者更高级的类型检查来将其的类型范围缩小：
-
-```TypeScript
-declare const maybe: unknown; // 'maybe' could be a string, object, boolean, undefined, or other types
-const aNumber: number = maybe;
-if (maybe === true) {
-  // TypeScript knows that maybe is a boolean now
-  const aBoolean: boolean = maybe;
-  // So, it cannot be a string
-  const aString: string = maybe;
-}
-if (typeof maybe === "string") {
-  // TypeScript knows that maybe is a string
-  const aString: string = maybe;
-  // So, it cannot be a boolean
-  const aBoolean: boolean = maybe;
+```typescript
+enum Color {
+  Green,
+  Red,
+  Blue,
 }
 ```
 
@@ -125,15 +100,15 @@ if (typeof maybe === "string") {
 
 有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。那么我们可以使用 any 类型来标记这些变量：
 
-```TypeScript
+```typescript
 let notSure: any = 4;
-notSure = "maybe a string instead";
+notSure = 'maybe a string instead';
 notSure = false; // okay, definitely a boolean
 ```
 
 在对现有代码进行改写的时候，any 类型是十分有用的，它允许你在编译时可选择地包含或移除类型检查。你可能认为 Object 有相似的作用，就像它在其它语言中那样。但是 Object 类型的变量只是允许你给它赋任意值 - 但是却不能够在它上面调用任意的方法，即便它真的有这些方法：
 
-```TypeScript
+```typescript
 let notSure: any = 4;
 notSure.ifItExists(); // okay, ifItExists might exist at runtime
 notSure.toFixed(); // okay, toFixed exists (but the compiler doesn't check)
@@ -149,17 +124,52 @@ prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object
 
 当你只知道一部分数据的类型时，any 类型也是有用的。比如，你有一个数组，它包含了不同的类型的数据：
 
-```TypeScript
-let list: any[] = [1, true, "free"];
+```typescript
+let list: any[] = [1, true, 'free'];
 
 list[1] = 100;
 ```
+
+## Unknown
+
+当我们在写应用的时候可能会需要描述一个我们还不知道其类型的变量。这些值可以来自动态内容，例如从用户获得，或者我们想在我们的 API 中接收所有可能类型的值。在这些情况下，我们想要让编译器以及未来的用户知道这个变量可以是任意类型。这个时候我们会对它使用 `unknown` 类型。
+
+```typescript
+let notSure: unknown = 4;
+notSure = 'maybe a string instead';
+// OK, definitely a boolean
+notSure = false;
+```
+
+如果你有一个 `unknwon` 类型的变量，你可以通过进行 typeof 、比较或者更高级的类型检查来将其的类型范围缩小：
+
+```typescript
+declare const maybe: unknown; // 'maybe' could be a string, object, boolean, undefined, or other types
+const aNumber: number = maybe;
+if (maybe === true) {
+  // TypeScript knows that maybe is a boolean now
+  const aBoolean: boolean = maybe;
+  // So, it cannot be a string
+  const aString: string = maybe;
+}
+if (typeof maybe === 'string') {
+  // TypeScript knows that maybe is a string
+  const aString: string = maybe;
+  // So, it cannot be a boolean
+  const aBoolean: boolean = maybe;
+}
+```
+
+`unknown` 类型代表任何值。 这类似于 `any` 类型，但更安全，因为使用 `unknown` 值做任何事情都是不合法的。
+
+<iframe height="480" style="width: 100%;" scrolling="no" src="https://www.typescriptlang.org/zh/play?ssl=7&ssc=2&pln=1&pc=1#code/GYVwdgxgLglg9mABMAjACgIYC5EbATwEpEBvAKEVwDoAjNQgbkQHpnEB5AaTIF8zRIsBMgBMmHOADWYOAHcwxcpQy16DCoggIAznAA2AUyp64Ac0xUIhXkA" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+</iframe>
 
 ## Null 和 Undefined
 
 TypeScript 里，undefined 和 null 两者各自有自己的类型分别叫做 undefined 和 null。 和 void 相似，它们的本身的类型用处不是很大：
 
-```TypeScript
+```typescript
 // Not much else we can assign to these variables!
 let u: undefined = undefined;
 let n: null = null;
@@ -183,15 +193,15 @@ let n: null = null;
 
 当一个函数没有返回值时（返回的值是 undefined），你通常会见到其返回值类型是 void：
 
-```TypeScript
+```typescript
 function warnUser(): void {
-  console.log("This is my warning message");
+  console.log('This is my warning message');
 }
 ```
 
 声明一个 void 类型的变量没有什么大用，因为你只能为它赋予 null（只在--strictNullChecks 未指定时）和 undefined：
 
-```TypeScript
+```typescript
 let unusable: void = undefined;
 ```
 
@@ -203,7 +213,7 @@ never 类型是任何类型的子类型，也可以赋值给任何类型；然�
 
 下面是一些返回 never 类型的函数：
 
-```TypeScript
+```typescript
 // 返回 never 的函数必须存在无法达到的终点
 function error(message: string): never {
   throw new Error(message);
@@ -211,13 +221,12 @@ function error(message: string): never {
 
 // 推断的返回值类型为 never
 function fail() {
-  return error("Something failed");
+  return error('Something failed');
 }
 
 // 返回 never 的函数必须存在无法达到的终点
 function infiniteLoop(): never {
-  while (true) {
-  }
+  while (true) {}
 }
 ```
 
@@ -231,13 +240,13 @@ object 表示非原始类型，也就是除 number，string，boolean，bigint�
 
 使用 object 类型，就可以更好的表示像 Object.create 这样的 API。例如：
 
-```TypeScript
+```typescript
 declare function create(o: object | null): void;
 
-create({prop: 0}); // OK
+create({ prop: 0 }); // OK
 create(null); // OK
 create(42); // Error
-create("string"); // Error
+create('string'); // Error
 create(false); // Error
 create(undefined); // Error
 ```
@@ -250,7 +259,7 @@ create(undefined); // Error
 
 类型断言有两种形式。其一是“尖括号”语法：
 
-```TypeScript
+```typescript
 let someValue: any = "this is a string";
 let strLength: number = (<string>someValue).length;
 另一个为 as 语法：
@@ -268,21 +277,21 @@ let strLength: number = (someValue as string).length;
 
 我们很容易会认为 Number、 String、 Boolean、Symbol 以及 Object 这些类型和我们以上推荐的小写版本的类型是一样的。但这些类型不属于语言的基本类型，并且几乎在任何时候都不应该被用作一个类型：
 
-```TypeScript
+```typescript
 // @errors: 2339
 function reverse(s: String): String {
-  return s.split("").reverse().join("");
+  return s.split('').reverse().join('');
 }
 
-reverse("hello world");
+reverse('hello world');
 ```
 
 相对地，我们应该使用 number、string、boolean、object 和 symbol
 
-```TypeScript
+```typescript
 function reverse(s: string): string {
-  return s.split("").reverse().join("");
+  return s.split('').reverse().join('');
 }
 
-reverse("hello world");
+reverse('hello world');
 ```

@@ -34,7 +34,7 @@
     width: 100%;
     padding: 10px;
     text-align: center;
-    background-color: var(--vp-c-bg);
+    // background-color: var(--vp-c-bg);
     & a:hover {
       text-decoration: underline;
     }

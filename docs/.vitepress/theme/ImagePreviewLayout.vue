@@ -5,8 +5,8 @@
   import ImagePreview from '../../components/ImagePreview.vue';
   import { ref, onMounted, onUnmounted } from 'vue';
   const visibleRef = ref(false);
-  const image = ref<{ src: string; alt: string } | null>(null);
-  const list = ref<Array<{ src: string; alt: string }>>([]);
+  const image = ref<{ src: string; alt?: string } | null>(null);
+  const list = ref<Array<{ src: string; alt?: string }>>([]);
 
   const previewImage = async (e: Event) => {
     if (visibleRef.value) {

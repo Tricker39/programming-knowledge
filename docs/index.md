@@ -9,7 +9,7 @@ hero:
   text: 人之为学，不可自小，又不可自大。
   tagline: 读书之法，在循序而渐进，熟读而精思。
   image:
-    src: /logo.png
+    src: /logo.svg
     alt: logo
   actions:
     - theme: brand
@@ -17,7 +17,7 @@ hero:
       link: /home/introduction
     - theme: alt
       text: 在码云中查看
-      link: https://gitee.com/MascotSky/programming-knowledge
+      link: https://gitee.com/Tricker39/programming-knowledge
     - theme: alt
       text: 在 Github 中查看
       link: https://github.com/Tricker39/programming-knowledge
