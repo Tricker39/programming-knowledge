@@ -12,3 +12,11 @@
 - 模式(mode)
 - 浏览器兼容性(browser compatibility)
 - 环境(environment)
+
+## 参考资料
+
+::: tip 参考资料
+
+[webpack 官方中文文档](https://webpack.docschina.org/)
+
+:::
