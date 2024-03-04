@@ -233,6 +233,7 @@ function sidebarWebpack(){
         { text: 'webapck 介绍', link: '/webpack/index' },
         { text: 'entry 详解', link: '/webpack/entry' },
         { text: 'output 详解', link: '/webpack/output' },
+        { text: 'loader 详解', link: '/webpack/loader' },
       ],
     },
   ];
