@@ -1,4 +1,5 @@
 # output 详解
+
 > output 属性告诉 webpack 在哪里输出它所创建的 bundle，以及如何命名这些文件。主要输出文件的默认值是 ./dist/main.js，其他生成文件默认放置在 ./dist 文件夹中。
 
 ## 基本用法
@@ -6,7 +7,7 @@
 在 webpack 配置中，output 属性的最低要求是，将它的值设置为一个对象，然后为将输出文件的文件名配置为一个 output.filename：
 
 ```javascript
-const {resolve} = require('path');
+const { resolve } = require('path');
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -18,13 +19,13 @@ module.exports = {
     publicPath: '/',
     // 非入口 chunk 的名称
     chunkFilename: 'js/[name]_chunk.js',
-    // 整个库向外暴露的变量名 
-    library: '[name]', 
+    // 整个库向外暴露的变量名
+    library: '[name]',
     // 变量名添加到哪个对象上 browser,
     // libraryTarget: 'window',
     // 变量名添加到哪个对象上 node
     // libraryTarget: 'global',
-    libraryTarget: 'commonjs'
+    libraryTarget: 'commonjs',
   },
 };
 ```
