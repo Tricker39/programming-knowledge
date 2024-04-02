@@ -38,12 +38,12 @@
         // console.log(data);
         if (data.success) {
           weather.value = {
-            icon: WeatherJson[data.info.type],
+            icon: WeatherJson[data.data.type],
             city: data.city,
-            date: `${data.info.date} ${data.info.week}`,
-            type: data.info.type,
-            wind: `${data.info.fengxiang} ${data.info.fengli}`,
-            temperature: `${data.info.low} ~ ${data.info.high}`,
+            date: `${data.data.date} ${data.data.week}`,
+            type: data.data.type,
+            wind: `${data.data.fengxiang} ${data.data.fengli}`,
+            temperature: `${data.data.low} ~ ${data.data.high}`,
           };
         }
       })

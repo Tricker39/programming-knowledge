@@ -131,7 +131,7 @@
   const _setMusic = (index: number) => {
     currentIndex.value = index;
     music.value = playList.value[index];
-    audio.src = music.value.mp3url;
+    audio.src = music.value.url;
     audio.load();
   };
   // #endregion
@@ -173,22 +173,18 @@
    * @param flag 上一曲/下一曲标志 -1:上一曲 1:下一曲
    */
   const _getMusic = (flag = 1) => {
-    fetch('https://api.vvhan.com/api/rand.music?type=json&sort=热歌榜')
+    fetch('https://api.vvhan.com/api/wyMusic/热歌榜?type=json')
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
         if (data.success) {
           music.value = data.info;
-          if (data.info.mp3url.endsWith('\.mp3')) {
-            audio.src = data.info.mp3url;
-            if (flag > -0) {
-              playList.value.push(data.info);
-              currentIndex.value += 1;
-            } else {
-              playList.value.unshift(data.info);
-            }
+          audio.src = data.info.url;
+          if (flag > -0) {
+            playList.value.push(data.info);
+            currentIndex.value += 1;
           } else {
-            _getMusic(1);
+            playList.value.unshift(data.info);
           }
         }
       })

@@ -21,5 +21,8 @@
     "vitepress-plugin-pagefind": "^0.1.1",
     "vitepress-plugin-search": "^1.0.4-alpha.19",
     "vue": "^3.2.41"
+  },
+  "dependencies": {
+    "vitepress-plugin-comment-with-giscus": "^1.1.12"
   }
 }
