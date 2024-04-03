@@ -267,7 +267,7 @@
       <div class="indicator" v-if="list.length > 1">
         <div class="indicator-wrap">
           <div
-            :class="['item', { active: index == current }]"
+            :class="['item', { active: index === current }]"
             :style="{ backgroundImage: `url(${item.src})` }"
             v-for="(item, index) in list"
             @click="_bindChangeImage(index)"
@@ -320,34 +320,39 @@
     angleRef.value += angle;
   };
 
-  const _getImageSize = (url: string): void => {
-    let image = new Image();
-    image.src = url;
-    image.onload = function () {
-      if (image.width > window.innerWidth) {
-        imgWidth.value = Math.round(window.innerWidth * 0.8);
-        imgHeight.value = Math.round((image.height * window.innerWidth * 0.8) / image.width);
-        return;
-      }
-      if (image.height > window.innerHeight) {
-        imgWidth.value = Math.round((image.width * window.innerHeight * 0.8) / window.innerWidth);
-        imgHeight.value = Math.round(window.innerHeight * 0.8);
-        return;
-      }
-      imgWidth.value = image.width;
-      imgHeight.value = image.height;
-      return;
-    };
-    image.onerror = function (error) {
-      console.log(error);
-    };
+  const _getImageSize = (url: string): Promise<{ width: number; height: number }> => {
+    return new Promise((resolve, reject) => {
+      let image = new Image();
+      image.src = url;
+      image.onload = function () {
+        let width, height;
+        if (image.width > window.innerWidth) {
+          width = Math.round(window.innerWidth * 0.8);
+          height = Math.round((image.height * window.innerWidth * 0.8) / image.width);
+        } else if (image.height > window.innerHeight) {
+          width = Math.round((image.width * window.innerHeight * 0.8) / window.innerWidth);
+          height = Math.round(window.innerHeight * 0.8);
+        } else {
+          width = image.width;
+          height = image.height;
+        }
+        resolve({ width, height });
+      };
+      image.onerror = function (error) {
+        reject(error);
+      };
+    });
   };
+
   const _bindToggleVisible = () => {
     emit('update:visible', !props.visible);
   };
-  const _bindChangeImage = async (index) => {
+  const _bindChangeImage = (index) => {
     multipleRef.value = 1;
-    await _getImageSize(props.list[index].src);
+    _getImageSize(props.list[index].src).then(({ width, height }) => {
+      imgWidth.value = width;
+      imgHeight.value = height;
+    });
     emit('update:image', props.list[index]);
   };
   const _bindResetImage = () => {
@@ -363,9 +368,10 @@
    */
   const _bindWheelScroll = (event) => {
     event.preventDefault();
-    if (event.wheelDelta > 0) {
+    const delta = event.deltaY || event.wheelDelta;
+    if (delta > 0) {
       _changeMultipleValue(0.1);
-    } else if (event.wheelDelta < 0) {
+    } else if (delta < 0) {
       _changeMultipleValue(-0.1);
     }
   };
@@ -400,7 +406,10 @@
       // 将图片重置
       _bindResetImage();
       // 计算图片大小
-      _getImageSize(props.image?.src || '');
+      _getImageSize(props.image?.src || '').then(({ width, height }) => {
+        imgWidth.value = width;
+        imgHeight.value = height;
+      });
       await nextTick();
       let _dom = document.getElementById('image-preview-container');
       if (val) {

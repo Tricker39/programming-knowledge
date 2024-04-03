@@ -12,24 +12,32 @@
     if (visibleRef.value) {
       return;
     }
+    /*
+     * currentTarget永远指向的是事件所绑定的元素（这里点击事件直接绑定在 .main 元素上）。
+     * 但是target则不同，它指向的是事件实际执行所在的元素
+     */
     const target = e.target as HTMLElement;
     if (target.tagName.toLowerCase() === 'img') {
       const currentTarget = e.currentTarget as HTMLElement;
-      const imgs = currentTarget.querySelectorAll<HTMLImageElement>('.content-container .main img');
-      const index = Array.from(imgs).findIndex((el) => el === target);
+      const imgList = currentTarget.querySelectorAll<HTMLImageElement>(
+        '.content-container .main img'
+      );
+      // const index = Array.from(imgs).findIndex((el) => el === target);
       image.value = target as HTMLImageElement;
-      list.value = Array.from(imgs);
+      list.value = Array.from(imgList);
       visibleRef.value = true;
     }
   };
   // #region 生命周期
+  const docDomContainer = ref<HTMLDivElement | null>(null);
   onMounted(() => {
-    const docDomContainer = document.querySelector('#VPContent .content-container .main');
-    docDomContainer?.addEventListener('click', previewImage);
+    docDomContainer.value = document.querySelector('#VPContent .content-container .main');
+    docDomContainer.value?.addEventListener('click', previewImage);
   });
   onUnmounted(() => {
-    const docDomContainer = document.querySelector('#VPContent .content-container .main');
-    docDomContainer?.removeEventListener('click', previewImage);
+    if (docDomContainer.value) {
+      docDomContainer.value.removeEventListener('click', previewImage);
+    }
   });
   // #endregion
 </script>
