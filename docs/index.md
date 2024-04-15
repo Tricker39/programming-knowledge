@@ -16,13 +16,10 @@ hero:
       text: 开始
       link: /home/introduction
     - theme: alt
-      text: 在码云中查看
-      link: https://gitee.com/Tricker39/programming-knowledge
+      text: gitee 在线文档
+      link: https://tricker39.github.io/programming-knowledge/
     - theme: alt
-      text: 在 Github 中查看
-      link: https://github.com/Tricker39/programming-knowledge
-    - theme: alt
-      text: 在线文档
+      text: github 在线文档
       link: https://tricker39.github.io/programming-knowledge/
 # features:
 #   - icon: ⚡️

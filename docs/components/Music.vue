@@ -103,7 +103,7 @@
   // #region 私有方法
 
   const _getCurrentTime = () => {
-    timer = setInterval(() => {
+    timer = window.setInterval(() => {
       const persent = audio.currentTime / durationRef.value;
       currentTimeRef.value = Math.floor(persent * 100);
       currentTimestampRef.value = _formatTimestamp(audio.currentTime);
@@ -180,7 +180,7 @@
         if (data.success) {
           music.value = data.info;
           audio.src = data.info.url;
-          if (flag > -0) {
+          if (flag > 0) {
             playList.value.push(data.info);
             currentIndex.value += 1;
           } else {
