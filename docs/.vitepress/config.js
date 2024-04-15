@@ -38,6 +38,8 @@ export default defineConfig({
 
   head: [
     ['link', { rel: 'icon', href: `${baseUrl}/favicon.ico` }],
+    ['link', { rel: 'shortcut icon', href: `${baseUrl}/favicon.ico` }],
+    ['link', { rel: 'apple-touch-icon-precomposed', href: `${baseUrl}/logo.png` }],
     ['meta', { name: 'theme-color', content: '#3c8772' }],
     ['script', { src: `${baseUrl}/snow.js` }],
   ],
@@ -224,7 +226,7 @@ function sidebarCode() {
   ];
 }
 
-function sidebarWebpack(){
+function sidebarWebpack() {
   return [
     {
       text: 'webpack',
