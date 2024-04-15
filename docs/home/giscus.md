@@ -47,7 +47,7 @@
 5. 选择 Discussion 分类，我的选择是 General，至于选择什么看你自己。
 6. 选择特性（如果不懂就选择默认）。
 7. 主题（可以不选，之后会做主题切换，适配深/浅主题）。
-8. 负责你得到的那串 key。
+8. 复制你得到的那串 key。
 
 ```javascript
 <script
@@ -68,7 +68,19 @@
 ></script>
 ```
 
-## 创建 vue 组件
+## 集成到 VitePress 文档
+
+### 第一种方式
+
+::: warning 注意
+
+这种方法有一点 bug，偶尔会出现深浅主题切换不生效的情况，因此推荐使用第二种方式。
+
+:::
+
+#### 创建 comment.vue 组件
+
+在 `/docs/.vitepress/theme` 文件夹下，创建 `Comment.vue` 的文件。拷贝粘贴以下代码（修改你的组件路径）。
 
 ```vue
 <template>
@@ -125,7 +137,7 @@
 </style>
 ```
 
-## 挂载到文档中
+#### 挂载到文档中
 
 在 `/docs/.vitepress` 文件夹下，创建 `theme`文件夹，然后创建 `index.js` 的文件。拷贝粘贴以下代码（修改你的组件路径）。
 
@@ -146,6 +158,68 @@ export default {
 ```
 
 如果对上面的代码有疑问的话，请查阅 [Extending the Default Theme 文档](https://vitepress.dev/guide/extending-default-theme#layout-slots)
+
+### 第二种方式 (推荐)
+
+使用 `vitepress-plugin-comment-with-giscus` 插件集成 giscus 评论系统。
+
+#### 安装 `vitepress-plugin-comment-with-giscus` 插件。
+
+```bash
+// npm
+npm i vitepress-plugin-comment-with-giscus
+// yarn
+yarn add vitepress-plugin-comment-with-giscus
+```
+
+#### 挂载到文档中
+
+修改 `/docs/.vitepress/theme/index.js` 文件
+
+```javascript{12-39}
+export default {
+  ...DefaultTheme,
+  Layout() {
+    return h(DefaultTheme.Layout, null, {
+      'aside-top': () => h(Weather),
+      'aside-outline-after': () => h(Donate),
+      'doc-top': () => h(ImagePreviewLayout),
+      'doc-before': () => h(Music),
+      // 'doc-after': () => h(Comment),
+    });
+  },
+  setup() {
+    const { frontmatter } = toRefs(useData());
+    const route = useRoute();
+
+    giscusTalk(
+      {
+        repo: '[在此输入仓库]',
+        repoId: '[在此输入仓库 ID]',
+        category: '[在此输入分类名]', // 默认: `General`
+        categoryId: '[在此输入分类 ID]',
+        mapping: 'pathname', // 默认: `pathname`
+        inputPosition: 'bottom', // 默认: `top`
+        lang: 'zh-CN', // 默认: `zh-CN`
+        lightTheme: 'light', // 默认: `light`
+        darkTheme: 'dark', // 默认: `transparent_dark`
+        loading: 'eager',
+      },
+      {
+        frontmatter,
+        route,
+      },
+      // 是否全部页面启动评论区。
+      // 默认为 true，表示启用，此参数可忽略；
+      // 如果为 false，表示不启用。
+      // 可以在页面使用 `comment: true` 前言单独启用
+      true
+    );
+  },
+};
+```
+
+[vitepress-plugin-comment-with-giscus 源码](https://github.com/T-miracle/vitepress-plugin-comment-with-giscus)
 
 ## 参考资料
 

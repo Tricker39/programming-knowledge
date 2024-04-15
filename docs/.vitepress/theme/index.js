@@ -21,9 +21,6 @@ export default {
       // 'doc-after': () => h(Comment),
     });
   },
-  // enhanceApp(ctx) {
-  //   DefaultTheme.enhanceApp(ctx);
-  // },
   setup() {
     // 获取前言和路由
     const { frontmatter } = toRefs(useData());
