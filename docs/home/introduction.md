@@ -4,7 +4,7 @@ lastUpdated: false
 ---
 
 <script setup>
-import NavLink from '../components/NavLink.vue';
+import NavLink from '../../components/NavLink.vue';
 const links=[{
     media: 'https://s1.ax1x.com/2023/04/11/ppOYs9x.jpg',
     title: '代码片段',

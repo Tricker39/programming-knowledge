@@ -1,26 +1,17 @@
 {
-  "name": "programming-knowledge",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "sass": "^1.75.0",
+    "vitepress": "^1.0.1",
+    "vue": "^3.4.22"
+  },
+  "type": "module",
   "scripts": {
     "start": "npm run docs:dev",
-    "build": "npm run docs:build",
-    "docs:dev": "vitepress dev docs",
+    "docs:dev": "vitepress dev",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
-    "build:emoji": "node compiler-emoji",
-    "deploy": "deploy.sh"
-  },
-  "devDependencies": {
-    "flexsearch": "^0.7.31",
-    "markdown-it": "^13.0.1",
-    "pagefind": "^0.12.0",
-    "sass": "^1.56.1",
-    "vitepress": "^1.0.0-beta.6",
-    "vitepress-plugin-pagefind": "^0.1.1",
-    "vitepress-plugin-search": "^1.0.4-alpha.19",
-    "vue": "^3.2.41"
+    "docs:preview": "vitepress preview docs",
+    "build:emoji": "node compiler-emoji"
   },
   "dependencies": {
     "vitepress-plugin-comment-with-giscus": "^1.1.12"

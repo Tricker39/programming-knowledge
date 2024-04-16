@@ -1,4 +1,5 @@
 ---
+# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 title: '前端编程基础知识'
@@ -21,20 +22,4 @@ hero:
     - theme: alt
       text: github 在线文档
       link: https://tricker39.github.io/programming-knowledge/
-# features:
-#   - icon: ⚡️
-#     title: Vite, The DX that can't be beat
-#     details: Lorem ipsum...
-#   - icon: 🖖
-#     title: Power of Vue meets Markdown
-#     details: Lorem ipsum...
-#   - icon: 🛠️
-#     title: Simple and minimal, always
-#     details: Lorem ipsum...
 ---
-
-<script setup>
-import PageFooter from './components/PageFooter.vue';
-</script>
-
-<page-footer />

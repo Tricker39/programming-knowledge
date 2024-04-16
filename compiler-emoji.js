@@ -17,7 +17,7 @@ try {
 
 // console.log(__dirname)
 // 判断文件是否存在
-const filePath = path.resolve(__dirname, './docs/components/emoji.md');
+const filePath = path.resolve(__dirname, './docs/emoji.md');
 fs.access(filePath, fs.constants.F_OK, (err) => {
   if (err) {
     console.log(err);

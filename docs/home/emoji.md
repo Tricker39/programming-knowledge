@@ -31,4 +31,4 @@ search: false
 	}
 </style>
 
-<!--@include: ../components/emoji.md-->
+<!--@include: ../emoji.md-->

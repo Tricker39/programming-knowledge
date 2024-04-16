@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import WeatherIcon from '../components/WeatherIcon.vue';
+import WeatherIcon from '../../components/WeatherIcon.vue';
 </script>
 
 # 天气种类有多少种?

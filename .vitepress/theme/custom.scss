@@ -1,0 +1,819 @@
+@font-face {
+  font-family: 'OperatorMonoLig';
+  src: url('/fonts/OperatorMonoLig-Book.otf');
+}
+// 中文 Unicode 编码范围 https://www.qqxiuzi.cn/zh/hanzi-unicode-bianma.php
+// css 为 web 的数字、英文、中文设置不同的字体 https://keqingrong.cn/blog/2019-11-30-different-fonts-in-different-locales/
+@font-face {
+  font-family: 'LXGWWenKai';
+  src: url('/fonts/LXGWWenKai-Regular.ttf');
+  unicode-range: U+4E00-9FA5;
+}
+@font-face {
+  font-family: 'Koulen';
+  src: url('/fonts/Koulen-Regular.ttf');
+}
+@font-face {
+  font-family: '得意黑';
+  src: url('/fonts/Smiley_Sans_Oblique.ttf');
+  unicode-range: U+4E00-9FA5;
+}
+@font-face {
+  font-family: '扁桃体';
+  src: url('/fonts/字魂扁桃体.ttf');
+  unicode-range: U+4E00-9FA5;
+}
+:root {
+  --c1: #fafafa;
+  --vp-c-brand-next: #009ff7;
+  --vp-code-block-bg: #f6f6f7;
+  --vp-code-block-divider-color: rgba(60, 60, 67, 0.12);
+  --vp-code-line-number-color: var(--vp-c-text-light-3);
+  --vp-code-copy-code-bg: #e6e6e6;
+  --vp-code-copy-code-hover-bg: #e6e6e6;
+  --vp-code-copy-code-active-text: var(--vp-c-text-light-2);
+  --vp-nav-bg: rgba(255, 255, 255, 0.3);
+
+  --vp-font-family-mono: 'OperatorMonoLig', 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono',
+    Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  // --vp-font-family-base: '扁桃体', 'OperatorMonoLig', 'Chinese Quotes', 'Inter var', 'Inter',
+  //   ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  //   'Helvetica Neue', Helvetica, Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+  //   'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+.dark {
+  --c1: #1c1c1c;
+  --vp-code-block-bg: #292b30;
+  --vp-code-block-divider-color: #000;
+  --vp-code-line-number-color: var(--vp-c-text-dark-3);
+  --vp-code-copy-code-bg: var(--vp-code-block-bg-light);
+  --vp-code-copy-code-hover-bg: var(--vp-code-block-bg-light);
+  --vp-code-copy-code-active-text: var(--vp-c-text-dark-2);
+  --vp-nav-bg: rgba(30, 30, 32, 0.3);
+}
+
+// 顶部导航栏毛玻璃效果
+.VPNavBar {
+  backdrop-filter: blur(3px);
+  background: var(--vp-nav-bg) !important;
+  .content-body {
+    background: none !important;
+  }
+}
+
+// #region 本地搜索样式
+.VPNavBarSearch {
+  flex-grow: 1;
+  padding-left: 24px;
+}
+.VPNavBarSearch {
+  display: flex;
+  align-items: center;
+  font-family: 'LXGWWenKai';
+  .DocSearch-Button-Keys {
+    .DocSearch-Button-Key {
+      font-family: 'Koulen';
+    }
+  }
+}
+.VPLocalSearchBox {
+  font-family: 'LXGWWenKai';
+  .search-input {
+    font-family: 'LXGWWenKai';
+  }
+}
+// #endregion
+
+// #region 搜索样式
+// .DocSearch {
+//   --docsearch-primary-color: var(--vp-c-brand);
+//   --docsearch-highlight-color: var(--docsearch-primary-color);
+//   --docsearch-text-color: var(--vp-c-text-1);
+//   --docsearch-muted-color: var(--vp-c-text-2);
+//   --docsearch-searchbox-shadow: none;
+//   --docsearch-searchbox-focus-background: transparent;
+//   --docsearch-key-gradient: transparent;
+//   --docsearch-key-shadow: none;
+//   --docsearch-modal-background: var(--vp-c-bg-soft);
+//   --docsearch-footer-background: var(--vp-c-bg);
+// }
+
+// .dark .DocSearch {
+//   --docsearch-modal-shadow: none;
+//   --docsearch-footer-shadow: none;
+//   --docsearch-logo-color: var(--vp-c-text-2);
+//   --docsearch-hit-background: var(--vp-c-bg-mute);
+//   --docsearch-hit-color: var(--vp-c-text-2);
+//   --docsearch-hit-shadow: none;
+// }
+
+// .DocSearch-Button {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 0;
+//   padding: 0;
+//   width: 32px;
+//   height: 55px;
+//   background: transparent;
+//   transition: border-color 0.25s;
+// }
+
+// .DocSearch-Button:hover {
+//   background: transparent;
+// }
+
+// .DocSearch-Button:focus {
+//   outline: 1px dotted;
+//   outline: 5px auto -webkit-focus-ring-color;
+// }
+
+// .DocSearch-Button:focus:not(:focus-visible) {
+//   outline: none !important;
+// }
+
+// @media (min-width: 768px) {
+//   .DocSearch-Button {
+//     justify-content: flex-start;
+//     border: 1px solid transparent;
+//     border-radius: 8px;
+//     padding: 0 10px 0 12px;
+//     width: 100%;
+//     height: 40px;
+//     background-color: var(--vp-c-bg-alt);
+//   }
+
+//   .DocSearch-Button:hover {
+//     border-color: var(--vp-c-brand);
+//     background: var(--vp-c-bg-alt);
+//   }
+// }
+
+// .DocSearch-Button .DocSearch-Button-Container {
+//   display: flex;
+//   align-items: center;
+// }
+
+// .DocSearch-Button .DocSearch-Search-Icon {
+//   position: relative;
+//   width: 16px;
+//   height: 16px;
+//   color: var(--vp-c-text-1);
+//   fill: currentColor;
+//   transition: color 0.5s;
+// }
+
+// .DocSearch-Button:hover .DocSearch-Search-Icon {
+//   color: var(--vp-c-text-1);
+// }
+
+// @media (min-width: 768px) {
+//   .DocSearch-Button .DocSearch-Search-Icon {
+//     top: 1px;
+//     margin-right: 8px;
+//     width: 14px;
+//     height: 14px;
+//     color: var(--vp-c-text-2);
+//   }
+// }
+
+// .DocSearch-Button .DocSearch-Button-Placeholder {
+//   display: none;
+//   margin-top: 2px;
+//   padding: 0 36px 0 0;
+//   font-size: 16px;
+//   font-weight: 500;
+//   color: var(--vp-c-text-2);
+//   transition: color 0.5s;
+//   font-family: 'LXGWWenKai';
+// }
+
+// .DocSearch-Button:hover .DocSearch-Button-Placeholder {
+//   color: var(--vp-c-text-1);
+// }
+
+// @media (min-width: 768px) {
+//   .DocSearch-Button .DocSearch-Button-Placeholder {
+//     display: inline-block;
+//   }
+// }
+
+// .DocSearch-Button .DocSearch-Button-Keys {
+//   display: none;
+//   min-width: auto;
+//   // padding: 0 4px;
+//   text-transform: uppercase;
+//   border-radius: 4px;
+//   border: 1px solid var(--vp-c-divider);
+//   &:hover {
+//     border: 1px solid var(--vp-c-brand);
+//   }
+// }
+
+// @media (min-width: 768px) {
+//   .DocSearch-Button .DocSearch-Button-Keys {
+//     display: flex;
+//     align-items: center;
+//   }
+// }
+
+// .DocSearch-Button .DocSearch-Button-Key {
+//   display: block;
+//   margin: 0 2px;
+//   border-right: none;
+//   line-height: 24px;
+//   font-family: 'Koulen';
+//   font-size: 12px;
+//   font-weight: 900;
+//   transition: color 0.5s, border-color 0.5s;
+// }
+
+// .dark .DocSearch-Footer {
+//   border-top: 1px solid var(--vp-c-divider);
+// }
+// .VPPluginSearch-modal {
+//   padding: 10px;
+//   background: #f6f6f7;
+//   font-family: 'LXGWWenKai', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas,
+//     'Liberation Mono', 'Courier New', monospace;
+// }
+// .dark .VPPluginSearch-modal {
+//   background: #252529;
+// }
+// .DocSearch-Form {
+//   position: sticky;
+//   top: 0;
+//   z-index: 9;
+//   margin: 0 auto;
+//   width: 540px;
+//   border: 2px solid var(--vp-c-brand);
+//   background: #fff;
+// }
+
+// .dark .DocSearch-Form {
+//   background: #313136;
+// }
+// .DocSearch-MagnifierLabel {
+//   margin: 12px;
+//   color: var(--vp-c-brand);
+// }
+// .VPPluginSearch-search-group {
+//   display: block;
+//   position: sticky;
+//   top: 0;
+//   z-index: 10;
+//   margin: 0 -10px;
+//   padding: 10px;
+//   color: var(--vp-c-brand);
+//   background: #f6f6f7;
+// }
+// .dark .VPPluginSearch-search-group {
+//   background: #252529;
+// }
+// .dark .VPPluginSearch-search-item {
+//   background-color: #313136;
+//   &::after {
+//     background: #313136;
+//   }
+// }
+// .VPPluginSearch-search-item {
+//   position: relative;
+//   display: -webkit-box;
+//   margin: 8px 0;
+//   padding: 1rem;
+//   border: none;
+//   background-color: #ffffff;
+//   box-shadow: var(--vp-shadow-1);
+//   color: var(--vp-c-text-1);
+//   -webkit-line-clamp: 5;
+//   -webkit-box-orient: vertical;
+//   text-overflow: ellipsis;
+//   overflow: hidden;
+//   transition: all 0.3s ease-in-out;
+//   &:hover {
+//     background: var(--vp-c-brand-dark);
+//     &::after {
+//       background: var(--vp-c-brand-dark);
+//     }
+//   }
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     bottom: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 16px;
+//     transition: background 0.3s ease-in-out;
+//     background: #ffffff;
+//   }
+// }
+
+// .VPPluginSearch-search-item-icon {
+//   display: none;
+// }
+
+// /*隐藏 flex-search logo 样式 */
+// .VPPluginSearch-flex-logo {
+//   display: none;
+// }
+
+// .blog-search .nav-search-btn-wait .search-tip {
+//   padding: 0 20px 0 10px;
+// }
+// .VPPluginSearch-search-list {
+//   box-sizing: border-box !important;
+//   margin: 0 -10px;
+//   padding: 0 10px;
+//   overflow: hidden auto;
+//   overflow-y: overlay;
+// }
+// .VPPluginSearch-modal-back {
+//   background: rgba(0, 0, 0, 0.2);
+//   backdrop-filter: blur(4px);
+// }
+// .DocSearch-Input {
+//   margin: 0;
+//   padding: 8px 0;
+//   background: none;
+// }
+// // 浏览器 input 自带的叉号样式 https://blog.csdn.net/wang415229224ye/article/details/118727742
+// // https://blog.csdn.net/qq_34006340/article/details/103288545
+// input::-webkit-search-cancel-button {
+//   display: none;
+// }
+// #endregion
+
+// #region 滚动条样式
+/* 滚动条整体 */
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+/* 两个滚动条交接处 -- x轴和y轴 */
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* 滚动条轨道 */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* 滚动条两端按钮 */
+::-webkit-scrollbar-button {
+  display: none;
+}
+// #endregion
+
+// #region 代码块样式
+.vp-doc [class*='language-'] {
+  font-size: 18px;
+  > span.lang {
+    color: var(--vp-c-text-light-3);
+  }
+}
+.vp-code-group .tabs label {
+  color: var(--vp-c-text-light-3);
+}
+.vp-code-group input:checked + label {
+  color: var(--vp-c-text-light-2);
+}
+.dark {
+  .vp-doc [class*='language-'] {
+    > span.lang {
+      color: var(--vp-c-text-dark-3);
+    }
+  }
+  .vp-code-group .tabs label {
+    color: var(--vp-c-text-dark-3);
+  }
+  .vp-code-group input:checked + label {
+    color: var(--vp-c-text-dark-2);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+// #endregion
+
+// #region 主页样式
+.VPHero {
+  // .image-bg {
+  //   --vp-home-hero-image-filter: blur(80px);
+  //   --vp-home-hero-image-background-image: linear-gradient(
+  //     -45deg,
+  //     var(--vp-c-brand) 30%,
+  //     var(--vp-c-brand-next)
+  //   );
+  //   z-index: -1;
+  //   opacity: 0.6;
+  //   transition: opacity 1s ease;
+  //   background-image: var(--vp-home-hero-image-background-image);
+  //   animation: rainbow 10s infinite linear;
+  // }
+  .image-bg {
+    filter: blur(30px);
+    background-image: url('/logo.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .clip {
+    --vp-home-hero-name-background: -webkit-linear-gradient(
+      120deg,
+      var(--vp-c-brand) 30%,
+      var(--vp-c-brand-next)
+    );
+
+    background-image: var(--vp-home-hero-name-background);
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 10s infinite linear;
+  }
+  .name {
+    font-size: 32px !important;
+  }
+  .text {
+    font-size: 16px !important;
+  }
+
+  @media (min-width: 640px) {
+    .name {
+      line-height: 64px !important;
+      font-size: 56px !important;
+    }
+    .text {
+      line-height: 56px !important;
+      font-size: 40px !important;
+    }
+  }
+  @media (min-width: 960px) {
+    .name {
+      line-height: 80px !important;
+      font-size: 72px !important;
+      font-weight: 900 !important;
+    }
+    .text {
+      line-height: 64px !important;
+      font-size: 56px !important;
+    }
+  }
+}
+@keyframes rainbow {
+  0% {
+    --vp-c-brand: #00a98e;
+    --vp-c-brand-next: #009ff7;
+  }
+  1.25% {
+    --vp-c-brand: #00a996;
+    --vp-c-brand-next: #009dfa;
+  }
+  2.5% {
+    --vp-c-brand: #00a99f;
+    --vp-c-brand-next: #009bfc;
+  }
+  3.75% {
+    --vp-c-brand: #00a9a7;
+    --vp-c-brand-next: #0098fd;
+  }
+  5% {
+    --vp-c-brand: #00a9b0;
+    --vp-c-brand-next: #0096fd;
+  }
+  6.25% {
+    --vp-c-brand: #00a9b8;
+    --vp-c-brand-next: #0093fd;
+  }
+  7.5% {
+    --vp-c-brand: #00a9c0;
+    --vp-c-brand-next: #2e90fc;
+  }
+  8.75% {
+    --vp-c-brand: #00a8c7;
+    --vp-c-brand-next: #4d8dfa;
+  }
+  10% {
+    --vp-c-brand: #00a8cf;
+    --vp-c-brand-next: #638af8;
+  }
+  11.25% {
+    --vp-c-brand: #00a7d5;
+    --vp-c-brand-next: #7587f5;
+  }
+  12.5% {
+    --vp-c-brand: #00a6dc;
+    --vp-c-brand-next: #8583f1;
+  }
+  13.75% {
+    --vp-c-brand: #00a6e2;
+    --vp-c-brand-next: #9280ed;
+  }
+  15% {
+    --vp-c-brand: #00a4e7;
+    --vp-c-brand-next: #9f7ce9;
+  }
+  16.25% {
+    --vp-c-brand: #00a3ec;
+    --vp-c-brand-next: #aa78e3;
+  }
+  17.5% {
+    --vp-c-brand: #00a2f1;
+    --vp-c-brand-next: #b574dd;
+  }
+  18.75% {
+    --vp-c-brand: #00a0f4;
+    --vp-c-brand-next: #be71d7;
+  }
+  20% {
+    --vp-c-brand: #009ff7;
+    --vp-c-brand-next: #c76dd1;
+  }
+  21.25% {
+    --vp-c-brand: #009dfa;
+    --vp-c-brand-next: #cf69c9;
+  }
+  22.5% {
+    --vp-c-brand: #009bfc;
+    --vp-c-brand-next: #d566c2;
+  }
+  23.75% {
+    --vp-c-brand: #0098fd;
+    --vp-c-brand-next: #dc63ba;
+  }
+  25% {
+    --vp-c-brand: #0096fd;
+    --vp-c-brand-next: #e160b3;
+  }
+  26.25% {
+    --vp-c-brand: #0093fd;
+    --vp-c-brand-next: #e65eab;
+  }
+  27.5% {
+    --vp-c-brand: #2e90fc;
+    --vp-c-brand-next: #e95ca2;
+  }
+  28.75% {
+    --vp-c-brand: #4d8dfa;
+    --vp-c-brand-next: #ed5a9a;
+  }
+  30% {
+    --vp-c-brand: #638af8;
+    --vp-c-brand-next: #ef5992;
+  }
+  31.25% {
+    --vp-c-brand: #7587f5;
+    --vp-c-brand-next: #f15989;
+  }
+  32.5% {
+    --vp-c-brand: #8583f1;
+    --vp-c-brand-next: #f25981;
+  }
+  33.75% {
+    --vp-c-brand: #9280ed;
+    --vp-c-brand-next: #f25a79;
+  }
+  35% {
+    --vp-c-brand: #9f7ce9;
+    --vp-c-brand-next: #f25c71;
+  }
+  36.25% {
+    --vp-c-brand: #aa78e3;
+    --vp-c-brand-next: #f15e69;
+  }
+  37.5% {
+    --vp-c-brand: #b574dd;
+    --vp-c-brand-next: #ef6061;
+  }
+  38.75% {
+    --vp-c-brand: #be71d7;
+    --vp-c-brand-next: #ed635a;
+  }
+  40% {
+    --vp-c-brand: #c76dd1;
+    --vp-c-brand-next: #eb6552;
+  }
+  41.25% {
+    --vp-c-brand: #cf69c9;
+    --vp-c-brand-next: #e8694b;
+  }
+  42.5% {
+    --vp-c-brand: #d566c2;
+    --vp-c-brand-next: #e46c44;
+  }
+  43.75% {
+    --vp-c-brand: #dc63ba;
+    --vp-c-brand-next: #e06f3d;
+  }
+  45% {
+    --vp-c-brand: #e160b3;
+    --vp-c-brand-next: #db7336;
+  }
+  46.25% {
+    --vp-c-brand: #e65eab;
+    --vp-c-brand-next: #d77630;
+  }
+  47.5% {
+    --vp-c-brand: #e95ca2;
+    --vp-c-brand-next: #d17a2a;
+  }
+  48.75% {
+    --vp-c-brand: #ed5a9a;
+    --vp-c-brand-next: #cc7d24;
+  }
+  50% {
+    --vp-c-brand: #ef5992;
+    --vp-c-brand-next: #c6811e;
+  }
+  51.25% {
+    --vp-c-brand: #f15989;
+    --vp-c-brand-next: #bf8418;
+  }
+  52.5% {
+    --vp-c-brand: #f25981;
+    --vp-c-brand-next: #b98713;
+  }
+  53.75% {
+    --vp-c-brand: #f25a79;
+    --vp-c-brand-next: #b28a0f;
+  }
+  55% {
+    --vp-c-brand: #f25c71;
+    --vp-c-brand-next: #ab8d0c;
+  }
+  56.25% {
+    --vp-c-brand: #f15e69;
+    --vp-c-brand-next: #a3900b;
+  }
+  57.5% {
+    --vp-c-brand: #ef6061;
+    --vp-c-brand-next: #9c920d;
+  }
+  58.75% {
+    --vp-c-brand: #ed635a;
+    --vp-c-brand-next: #949510;
+  }
+  60% {
+    --vp-c-brand: #eb6552;
+    --vp-c-brand-next: #8b9715;
+  }
+  61.25% {
+    --vp-c-brand: #e8694b;
+    --vp-c-brand-next: #83991b;
+  }
+  62.5% {
+    --vp-c-brand: #e46c44;
+    --vp-c-brand-next: #7a9b21;
+  }
+  63.75% {
+    --vp-c-brand: #e06f3d;
+    --vp-c-brand-next: #719d27;
+  }
+  65% {
+    --vp-c-brand: #db7336;
+    --vp-c-brand-next: #679e2e;
+  }
+  66.25% {
+    --vp-c-brand: #d77630;
+    --vp-c-brand-next: #5da035;
+  }
+  67.5% {
+    --vp-c-brand: #d17a2a;
+    --vp-c-brand-next: #51a13c;
+  }
+  68.75% {
+    --vp-c-brand: #cc7d24;
+    --vp-c-brand-next: #44a244;
+  }
+  70% {
+    --vp-c-brand: #c6811e;
+    --vp-c-brand-next: #34a44b;
+  }
+  71.25% {
+    --vp-c-brand: #bf8418;
+    --vp-c-brand-next: #1ba553;
+  }
+  72.5% {
+    --vp-c-brand: #b98713;
+    --vp-c-brand-next: #00a65b;
+  }
+  73.75% {
+    --vp-c-brand: #b28a0f;
+    --vp-c-brand-next: #00a663;
+  }
+  75% {
+    --vp-c-brand: #ab8d0c;
+    --vp-c-brand-next: #00a76c;
+  }
+  76.25% {
+    --vp-c-brand: #a3900b;
+    --vp-c-brand-next: #00a874;
+  }
+  77.5% {
+    --vp-c-brand: #9c920d;
+    --vp-c-brand-next: #00a87d;
+  }
+  78.75% {
+    --vp-c-brand: #949510;
+    --vp-c-brand-next: #00a985;
+  }
+  80% {
+    --vp-c-brand: #8b9715;
+    --vp-c-brand-next: #00a98e;
+  }
+  81.25% {
+    --vp-c-brand: #83991b;
+    --vp-c-brand-next: #00a996;
+  }
+  82.5% {
+    --vp-c-brand: #7a9b21;
+    --vp-c-brand-next: #00a99f;
+  }
+  83.75% {
+    --vp-c-brand: #719d27;
+    --vp-c-brand-next: #00a9a7;
+  }
+  85% {
+    --vp-c-brand: #679e2e;
+    --vp-c-brand-next: #00a9b0;
+  }
+  86.25% {
+    --vp-c-brand: #5da035;
+    --vp-c-brand-next: #00a9b8;
+  }
+  87.5% {
+    --vp-c-brand: #51a13c;
+    --vp-c-brand-next: #00a9c0;
+  }
+  88.75% {
+    --vp-c-brand: #44a244;
+    --vp-c-brand-next: #00a8c7;
+  }
+  90% {
+    --vp-c-brand: #34a44b;
+    --vp-c-brand-next: #00a8cf;
+  }
+  91.25% {
+    --vp-c-brand: #1ba553;
+    --vp-c-brand-next: #00a7d5;
+  }
+  92.5% {
+    --vp-c-brand: #00a65b;
+    --vp-c-brand-next: #00a6dc;
+  }
+  93.75% {
+    --vp-c-brand: #00a663;
+    --vp-c-brand-next: #00a6e2;
+  }
+  95% {
+    --vp-c-brand: #00a76c;
+    --vp-c-brand-next: #00a4e7;
+  }
+  96.25% {
+    --vp-c-brand: #00a874;
+    --vp-c-brand-next: #00a3ec;
+  }
+  97.5% {
+    --vp-c-brand: #00a87d;
+    --vp-c-brand-next: #00a2f1;
+  }
+  98.75% {
+    --vp-c-brand: #00a985;
+    --vp-c-brand-next: #00a0f4;
+  }
+  100% {
+    --vp-c-brand: #00a98e;
+    --vp-c-brand-next: #009ff7;
+  }
+}
+// #endregion
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+// 稿纸效果，更多请参考 https://css-pattern.com/
+body {
+  --s: 10px; /* control the size (the circle diameter) */
+  --c2: var(--vp-c-bg);
+
+  --_g: radial-gradient(calc(var(--s) / 2), var(--c1) 97%, #0000);
+  background: var(--_g), var(--_g) calc(2 * var(--s)) calc(2 * var(--s)),
+    repeating-conic-gradient(from 45deg, #0000 0 25%, var(--c2) 0 50%) calc(-0.707 * var(--s))
+      calc(-0.707 * var(--s)),
+    repeating-linear-gradient(
+      135deg,
+      var(--c1) calc(var(--s) / -2) calc(var(--s) / 2),
+      var(--c2) 0 calc(2.328 * var(--s))
+    );
+  background-size: calc(4 * var(--s)) calc(4 * var(--s));
+}

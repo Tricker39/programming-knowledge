@@ -1,5 +1,5 @@
 <script setup>
-import MTag from '../components/MTag.vue';
+import MTag from '../../components/MTag.vue';
 </script>
 
 # Http 详解
