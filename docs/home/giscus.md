@@ -165,7 +165,7 @@ export default {
 
 #### 安装 `vitepress-plugin-comment-with-giscus` 插件。
 
-```bash
+```shell
 // npm
 npm i vitepress-plugin-comment-with-giscus
 // yarn
