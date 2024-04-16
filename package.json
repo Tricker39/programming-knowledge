@@ -9,8 +9,8 @@
   "scripts": {
     "start": "npm run docs:dev",
     "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
     "build:emoji": "node compiler-emoji"
   },
   "dependencies": {
