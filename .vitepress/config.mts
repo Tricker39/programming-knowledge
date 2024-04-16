@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
-import path from 'path';
-const baseUrl = process.env.NODE_ENV === 'production' ? '/programming-knowledge' : '';
+// const baseUrl = process.env.NODE_ENV === 'production' ? '/programming-knowledge' : '';
+const baseUrl = '/programming-knowledge';
+// console.log(baseUrl)
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
