@@ -23,3 +23,8 @@ hero:
       text: github 在线文档
       link: https://tricker39.github.io/programming-knowledge/
 ---
+<script setup>
+import PageFooter from '../components/PageFooter.vue';
+</script>
+
+<page-footer />
