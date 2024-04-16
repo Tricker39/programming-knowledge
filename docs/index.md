@@ -17,7 +17,7 @@ hero:
       link: /home/introduction
     - theme: alt
       text: gitee 在线文档
-      link: https://tricker39.github.io/programming-knowledge/
+      link: https://tricker39.gitee.io/programming-knowledge/
     - theme: alt
       text: github 在线文档
       link: https://tricker39.github.io/programming-knowledge/
