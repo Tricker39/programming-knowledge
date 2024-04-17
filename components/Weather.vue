@@ -91,9 +91,4 @@
       }
     }
   }
-  .dark {
-    .weather-wrap {
-      background: var(--vp-c-green-dimm-3);
-    }
-  }
 </style>

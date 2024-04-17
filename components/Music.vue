@@ -272,6 +272,12 @@
     --music-like-position: -67px -69px;
     --music-volume-bg: #a5aebd;
     --music-progress-shadow-inset: -6px -6px 20px 0px #fff inset, 4px 4px 20px 0px #6f8cb0 inset;
+    --music-mode-background-position: -48px 72px;
+    --music-mode-single-background-position: 0 72px;
+    --music-switch-background-position: 2px 1px;
+    --music-switch-pause-background-position: -67px 1px;
+    --music-prev-background-position: -90px 6px;
+    --music-next-background-position: -138px 6px;
 
     display: flex;
     align-items: center;
@@ -374,7 +380,7 @@
         height: 34px;
         cursor: pointer;
         background: url('/music-button-group.png');
-        background-size: 238px 170px;
+        background-size: 238px 306px;
       }
       .music-btn {
         display: flex;
@@ -382,7 +388,7 @@
           margin-right: 16px;
           width: 24px;
           height: 24px;
-          background-size: 168px 120px;
+          background-size: 168px 216px;
           &.like {
             background-position: var(--music-like-position);
             &.active {
@@ -390,9 +396,9 @@
             }
           }
           &.mode {
-            background-position: 0px 24px;
+            background-position: var(--music-mode-background-position);
             &.single {
-              background-position: -48px 24px;
+              background-position: var(--music-mode-single-background-position);
             }
           }
         }
@@ -433,23 +439,25 @@
         .button {
           width: 34px;
           height: 34px;
-          background-size: 238px 170px;
-          background-position: -66px 0;
+          background-size: 238px 306px;
+          background-position: var(--music-switch-background-position);
           &.pause {
-            background-position: 1px 0;
+            background-position: var(--music-switch-pause-background-position);
           }
         }
       }
       .prev {
         .button {
-          background-position: -89px 5px;
-          background-size: 168px 120px;
+          background-repeat: no-repeat;
+          background-position: var(--music-prev-background-position);
+          background-size: 168px 216px;
         }
       }
       .next {
         .button {
-          background-position: -135px 5px;
-          background-size: 168px 120px;
+          background-repeat: no-repeat;
+          background-position: var(--music-next-background-position);
+          background-size: 168px 216px;
         }
       }
     }
@@ -515,6 +523,12 @@
     --music-like-position: 0px -69px;
     --music-volume-bg: #1f1f23;
     --music-progress-shadow-inset: -6px -6px 20px 0px #3c3c43 inset, 4px 4px 20px 0px #0f0f11 inset;
+    --music-mode-background-position: -48px 24px;
+    --music-mode-single-background-position: 0 24px;
+    --music-switch-background-position: 2px -67px;
+    --music-switch-pause-background-position: -67px -67px;
+    --music-prev-background-position: -90px -42px;
+    --music-next-background-position: -138px -42px;
   }
   @media (width <= 1080px) {
     // .music-box {
