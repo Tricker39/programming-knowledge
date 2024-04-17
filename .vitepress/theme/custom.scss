@@ -420,10 +420,22 @@
   //   animation: rainbow 10s infinite linear;
   // }
   .image-bg {
-    filter: blur(30px);
+    filter: blur(45px);
     background-image: url('/logo.svg');
     background-repeat: no-repeat;
     background-position: center;
+    animation: breath 4s infinite linear;
+  }
+  @keyframes breath {
+    0% {
+      filter: blur(45px);
+    }
+    50% {
+      filter: blur(5px);
+    }
+    100% {
+      filter: blur(45px);
+    }
   }
   .clip {
     --vp-home-hero-name-background: -webkit-linear-gradient(
