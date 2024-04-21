@@ -274,8 +274,8 @@
     --music-progress-shadow-inset: -6px -6px 20px 0px #fff inset, 4px 4px 20px 0px #6f8cb0 inset;
     --music-mode-background-position: -48px 72px;
     --music-mode-single-background-position: 0 72px;
-    --music-switch-background-position: 2px 1px;
-    --music-switch-pause-background-position: -67px 1px;
+    --music-switch-background-position: -67px 1px;
+    --music-switch-pause-background-position: 2px 1px;
     --music-prev-background-position: -90px 6px;
     --music-next-background-position: -138px 6px;
 
@@ -525,8 +525,8 @@
     --music-progress-shadow-inset: -6px -6px 20px 0px #3c3c43 inset, 4px 4px 20px 0px #0f0f11 inset;
     --music-mode-background-position: -48px 24px;
     --music-mode-single-background-position: 0 24px;
-    --music-switch-background-position: 2px -67px;
-    --music-switch-pause-background-position: -67px -67px;
+    --music-switch-background-position: -67px -67px;
+    --music-switch-pause-background-position: 2px -67px;
     --music-prev-background-position: -90px -42px;
     --music-next-background-position: -138px -42px;
   }
