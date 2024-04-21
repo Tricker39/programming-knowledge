@@ -19,6 +19,8 @@ export default defineConfig({
     ['link', { rel: 'shortcut icon', href: `${baseUrl}/favicon.ico` }],
     ['link', { rel: 'apple-touch-icon-precomposed', href: `${baseUrl}/logo.png` }],
     ['meta', { name: 'theme-color', content: '#3c8772' }],
+    ['script', { src: `${baseUrl}/js/anime.min.js` }],
+    ['script', { src: `${baseUrl}/js/fireworks.js` }],
     ['script', { src: `${baseUrl}/js/pointer.js` }],
     ['script', { src: `${baseUrl}/js/snow.js` }],
   ],
