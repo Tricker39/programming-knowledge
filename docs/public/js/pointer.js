@@ -128,12 +128,6 @@ function init() {
     }
   };
 }
-// document.addEventListener('DOMContentLoaded', function(){
-// 	console.log(111);
-// 	init();
-// });
-
-// init()
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);

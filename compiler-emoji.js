@@ -11,8 +11,9 @@ try {
   });
   emojiStr = `<span class='emoji-box'>${tempStr}</span>`;
 } catch (e) {
-  //TODO handle the exception
+  // handle the exception
   console.log(e);
+  throw e;
 }
 
 // console.log(__dirname)
