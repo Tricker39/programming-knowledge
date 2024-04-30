@@ -7,12 +7,11 @@ const baseUrl = process.env.NODE_ENV === 'production' ? '/programming-knowledge'
 export default defineConfig({
   base: `${baseUrl}/`,
   srcDir: 'docs',
-  lang: 'zh', 
+  lang: 'zh',
   lastUpdated: true,
   title: '前端编程基础知识',
   description: '人之为学，不可自小，又不可自大',
   cleanUrls: true,
-
 
   head: [
     ['link', { rel: 'icon', href: `${baseUrl}/favicon.ico` }],
@@ -106,7 +105,8 @@ export default defineConfig({
         items: [
           { text: '路过图床', link: 'https://imgse.com' },
           { text: '聚合图床', link: 'https://www.superbed.cn' },
-          { text: 'gitmind 思维导图', link: 'https://gitmind.cn' },
+          { text: 'zhimap 思维导图', link: 'https://zhimap.com' },
+          { text: 'KIMI AI', link: 'https://kimi.moonshot.cn/' },
           { text: 'Alien GPT', link: 'https://chat.waixingyun.cn/#/home' },
           { text: '文心一言', link: 'https://yiyan.baidu.com/' },
           { text: '韩小韩 API 接口', link: 'https://api.vvhan.com/?utm_source=xinquji' },
