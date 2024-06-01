@@ -1,5 +1,5 @@
 // https://vitepress.dev/guide/custom-theme
-import { h ,toRefs} from 'vue';
+import { h, toRefs } from 'vue';
 import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import giscusTalk from 'vitepress-plugin-comment-with-giscus';
@@ -8,6 +8,7 @@ import Donate from './Donate.vue';
 import ImagePreviewLayout from './ImagePreviewLayout.vue';
 import Music from '../../components/Music.vue';
 import Weather from '../../components/Weather.vue';
+import './vars.css';
 import './custom.scss';
 
 export default {

@@ -31,9 +31,14 @@ const links=[{
     url: 'https://markdown.com.cn', 
     target: '_blank'
 },{
-    media: 'https://i.miji.bid/2024/02/19/28c2bf775263007abb12045548c371c8.png',
+    media: 'https://s21.ax1x.com/2024/06/01/pk8vGk9.jpg',
     title: 'webpack 学习笔记',
     url: '/webpack/index',
+    target: '_self'
+},{
+    media: 'https://s21.ax1x.com/2024/06/01/pk8vUl6.jpg',
+    title: '开发模板',
+    url: '/scaffold/chapter-1',
     target: '_self'
 }]
 </script>

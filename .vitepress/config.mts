@@ -1,7 +1,115 @@
 import { defineConfig } from 'vitepress';
 const baseUrl = process.env.NODE_ENV === 'production' ? '/programming-knowledge' : '';
-// const baseUrl = '/programming-knowledge';
-// console.log(baseUrl)
+
+const sidebarHome = () => {
+  return [
+    {
+      text: '主页',
+      collapsed: true,
+      items: [
+        { text: '目录', link: '/home/introduction' },
+        { text: 'vitepress 折腾记（一）', link: '/home/vitepress-1' },
+        { text: '本地文档搜索', link: '/home/local-search' },
+        { text: 'giscus 评论系统', link: '/home/giscus' },
+        { text: '部署到 github pages', link: '/home/github-pages' },
+        { text: '天气图标', link: '/home/weather-icon' },
+        { text: 'Emoji 表情', link: '/home/emoji' },
+      ],
+    },
+  ];
+};
+
+const sidebarInterview = () => {
+  return [
+    {
+      text: '前端面试题',
+      collapsed: true,
+      items: [{ text: 'Vue', link: '/interview/vue' }],
+    },
+  ];
+};
+
+const sidebarNetwork = () => {
+  return [
+    {
+      text: '计算机网络',
+      collapsed: true,
+      items: [
+        { text: 'HTTP', link: '/network/http' },
+        { text: 'HTTP 请求响应过程', link: '/network/require' },
+      ],
+    },
+  ];
+};
+
+const sidebarTypeScript = () => {
+  return [
+    {
+      text: 'TypeScript',
+      collapsed: true,
+      items: [
+        { text: 'TypeScript 介绍', link: '/typescript/intro' },
+        { text: '基础类型', link: '/typescript/basic-types' },
+        { text: '元组类型', link: '/typescript/tuple' },
+        { text: '枚举类型', link: '/typescript/enum' },
+        { text: '接口', link: '/typescript/interface' },
+        { text: '函数', link: '/typescript/function' },
+      ],
+    },
+  ];
+};
+
+const sidebarCode = () => {
+  return [
+    {
+      text: '简介',
+      collapsed: true,
+      items: [
+        { text: '为什么要做这个？', link: '/codes/intro' },
+        { text: '如何使用？', link: '/codes/how-to-use' },
+      ],
+    },
+    {
+      text: 'html 代码片段',
+      collapsed: true,
+      items: [
+        {
+          text: '按钮',
+          items: [
+            { text: '彩虹按钮', link: '/codes/front/button/rainbow-button' },
+            { text: '新拟态风格按钮', link: '/codes/front/button/neumorphism-button' },
+          ],
+        },
+      ],
+    },
+  ];
+};
+
+const sidebarWebpack = () => {
+  return [
+    {
+      text: 'webpack',
+      collapsed: true,
+      items: [
+        { text: 'webpack 介绍', link: '/webpack/index' },
+        { text: 'entry 详解', link: '/webpack/entry' },
+        { text: 'output 详解', link: '/webpack/output' },
+        { text: 'loader 详解', link: '/webpack/loader' },
+        { text: 'resolve 详解', link: '/webpack/resolve' },
+      ],
+    },
+  ];
+};
+
+const sidebarScaffold = () => {
+  return [
+    {
+      text: '开发模板',
+      collapsed: true,
+      items: [{ text: '开发模板（一）', link: '/scaffold/chapter-1' }],
+    },
+  ];
+};
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -25,10 +133,14 @@ export default defineConfig({
   ],
 
   markdown: {
-    theme: { light: 'vitesse-light', dark: 'vitesse-dark' },
-    lineNumbers: true,
     headers: {
       level: [0, 0],
+    },
+    theme: { light: 'vitesse-light', dark: 'vitesse-dark' },
+    lineNumbers: true,
+    image: {
+      // 默认禁用图片懒加载
+      lazyLoading: true,
     },
   },
 
@@ -120,106 +232,7 @@ export default defineConfig({
       '/typescript/': sidebarTypeScript(),
       '/codes': sidebarCode(),
       '/webpack': sidebarWebpack(),
+      '/scaffold': sidebarScaffold(),
     },
   },
 });
-
-function sidebarHome() {
-  return [
-    {
-      text: '主页',
-      collapsed: true,
-      items: [
-        { text: '目录', link: '/home/introduction' },
-        { text: 'vitepress 折腾记（一）', link: '/home/vitepress-1' },
-        { text: '本地文档搜索', link: '/home/local-search' },
-        { text: 'giscus 评论系统', link: '/home/giscus' },
-        { text: '部署到 github pages', link: '/home/github-pages' },
-        { text: '天气图标', link: '/home/weather-icon' },
-        { text: 'Emoji 表情', link: '/home/emoji' },
-      ],
-    },
-  ];
-}
-
-function sidebarInterview() {
-  return [
-    {
-      text: '前端面试题',
-      collapsed: true,
-      items: [{ text: 'Vue', link: '/interview/vue' }],
-    },
-  ];
-}
-
-function sidebarNetwork() {
-  return [
-    {
-      text: '计算机网络',
-      collapsed: true,
-      items: [
-        { text: 'HTTP', link: '/network/http' },
-        { text: 'HTTP 请求响应过程', link: '/network/require' },
-      ],
-    },
-  ];
-}
-
-function sidebarTypeScript() {
-  return [
-    {
-      text: 'TypeScript',
-      collapsed: true,
-      items: [
-        { text: 'TypeScript 介绍', link: '/typescript/intro' },
-        { text: '基础类型', link: '/typescript/basic-types' },
-        { text: '元组类型', link: '/typescript/tuple' },
-        { text: '枚举类型', link: '/typescript/enum' },
-        { text: '接口', link: '/typescript/interface' },
-        { text: '函数', link: '/typescript/function' },
-      ],
-    },
-  ];
-}
-
-function sidebarCode() {
-  return [
-    {
-      text: '简介',
-      collapsed: true,
-      items: [
-        { text: '为什么要做这个？', link: '/codes/intro' },
-        { text: '如何使用？', link: '/codes/how-to-use' },
-      ],
-    },
-    {
-      text: 'html 代码片段',
-      collapsed: true,
-      items: [
-        {
-          text: '按钮',
-          items: [
-            { text: '彩虹按钮', link: '/codes/front/button/rainbow-button' },
-            { text: '新拟态风格按钮', link: '/codes/front/button/neumorphism-button' },
-          ],
-        },
-      ],
-    },
-  ];
-}
-
-function sidebarWebpack() {
-  return [
-    {
-      text: 'webpack',
-      collapsed: true,
-      items: [
-        { text: 'webpack 介绍', link: '/webpack/index' },
-        { text: 'entry 详解', link: '/webpack/entry' },
-        { text: 'output 详解', link: '/webpack/output' },
-        { text: 'loader 详解', link: '/webpack/loader' },
-        { text: 'resolve 详解', link: '/webpack/resolve' },
-      ],
-    },
-  ];
-}
