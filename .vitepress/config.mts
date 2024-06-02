@@ -106,7 +106,10 @@ const sidebarScaffold = () => {
     {
       text: '开发模板',
       collapsed: true,
-      items: [{ text: '开发模板（一）', link: '/scaffold/chapter-1' }],
+      items: [
+        { text: '开发模板（一）', link: '/scaffold/chapter-1' },
+        { text: '开发模板（二）', link: '/scaffold/chapter-2' },
+      ],
     },
   ];
 };

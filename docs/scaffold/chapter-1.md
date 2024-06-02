@@ -145,6 +145,8 @@ void bootstrap();
 
 至此，我们已经完成了项目的基本配置。
 
+## 参考资料
+
 ::: details 参考资料
 
 [Vite 官方文档](https://cn.vitejs.dev/)
