@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress';
+import { resolve } from 'path';
 const baseUrl = process.env.NODE_ENV === 'production' ? '/programming-knowledge' : '';
 
 const sidebarHome = () => {
@@ -58,7 +59,10 @@ const sidebarTypeScript = () => {
     },
   ];
 };
-
+/**
+ * 代码片段
+ * @returns
+ */
 const sidebarCode = () => {
   return [
     {
@@ -88,34 +92,62 @@ const sidebarCode = () => {
 const sidebarWebpack = () => {
   return [
     {
-      text: 'webpack',
+      text: 'webpack 4 基础',
       collapsed: true,
       items: [
-        { text: 'webpack 介绍', link: '/webpack/index' },
-        { text: 'entry 详解', link: '/webpack/entry' },
-        { text: 'output 详解', link: '/webpack/output' },
-        { text: 'loader 详解', link: '/webpack/loader' },
-        { text: 'resolve 详解', link: '/webpack/resolve' },
+        { text: 'Webpack 简介', link: '/webpack/webpack4-basic/chapter-1' },
+        { text: 'Webpack 的初体验', link: '/webpack/webpack4-basic/chapter-2' },
+        { text: 'Webpack 开发环境的基本配置', link: '/webpack/webpack4-basic/chapter-3' },
+        { text: 'Webpack 生产环境的基本配置', link: '/webpack/webpack4-basic/chapter-4' },
+        { text: 'Webpack 优化配置', link: '/webpack/webpack4-basic/chapter-5' },
+        { text: 'Webpack 配置详情', link: '/webpack/webpack4-basic/chapter-6' },
+        { text: '拓展内容', link: '/webpack/webpack4-basic/chapter-7' },
       ],
+    },
+    {
+      text: 'webpack 4 进阶',
+      collapsed: true,
+      items: [],
     },
   ];
 };
-
+/**
+ * 脚手架
+ * @returns
+ */
 const sidebarScaffold = () => {
   return [
     {
-      text: '开发模板',
+      text: 'Vue3 开发模板',
       collapsed: true,
       items: [
-        { text: '开发模板（一）', link: '/scaffold/chapter-1' },
-        { text: '开发模板（二）', link: '/scaffold/chapter-2' },
+        { text: 'Vue3 开发模板（一）', link: '/scaffold/chapter-1' },
+        { text: 'Vue3 开发模板（二）', link: '/scaffold/chapter-2' },
       ],
     },
   ];
 };
+// #region 读书笔记
+const sidebarBookHttp = () => {
+  return [
+    {
+      text: '图解 HTTP',
+      collapsed: true,
+      items: [{ text: '了解 Web 及网络基础', link: '/book/http/chapter-1' }],
+    },
+  ];
+};
+// #endregion
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  vite: {
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, '../components'),
+      },
+    },
+  },
   base: `${baseUrl}/`,
   srcDir: 'docs',
   lang: 'zh',
@@ -236,6 +268,7 @@ export default defineConfig({
       '/codes': sidebarCode(),
       '/webpack': sidebarWebpack(),
       '/scaffold': sidebarScaffold(),
+      '/book/http': sidebarBookHttp(),
     },
   },
 });

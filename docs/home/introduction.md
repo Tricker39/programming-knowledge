@@ -6,6 +6,11 @@ lastUpdated: false
 <script setup>
 import NavLink from '../../components/NavLink.vue';
 const links=[{
+    media: 'https://s21.ax1x.com/2024/06/25/pksd5uj.jpg',
+    title: '读书笔记',
+    url: '/book/index',
+    target: '_self'
+},{
     media: 'https://s1.ax1x.com/2023/04/11/ppOYs9x.jpg',
     title: '代码片段',
     url: '/codes/intro',
@@ -37,7 +42,7 @@ const links=[{
     target: '_self'
 },{
     media: 'https://s21.ax1x.com/2024/06/01/pk8vUl6.jpg',
-    title: '开发模板',
+    title: 'Vue3 开发模板',
     url: '/scaffold/chapter-1',
     target: '_self'
 }]
