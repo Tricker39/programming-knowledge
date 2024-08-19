@@ -2,10 +2,10 @@
   <div class="music-box">
     <div class="media">
       <img
-        :src="music?.picUrl"
+        :src="music?.pic_url"
         :alt="music?.name"
         :class="{ play: !pauseRef }"
-        v-if="music?.picUrl"
+        v-if="music?.pic_url"
       />
       <div :class="['media-btn', { play: !pauseRef }]" @click="_bindTogglePuase"></div>
     </div>
