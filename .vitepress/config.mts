@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { resolve } from 'path';
+import UnoCSS from 'unocss/vite';
 const baseUrl = process.env.NODE_ENV === 'production' ? '/programming-knowledge' : '';
 
 const sidebarHome = () => {
@@ -25,7 +26,10 @@ const sidebarInterview = () => {
     {
       text: '前端面试题',
       collapsed: true,
-      items: [{ text: 'Vue', link: '/interview/vue' }],
+      items: [
+        { text: 'JavaScript', link: '/interview/javascript-1' },
+        { text: 'Vue 2', link: '/interview/vue2-1' },
+      ],
     },
   ];
 };
@@ -128,12 +132,12 @@ const sidebarScaffold = () => {
   ];
 };
 // #region 读书笔记
-const sidebarBookHttp = () => {
+const sidebarNotebookHttp = () => {
   return [
     {
       text: '图解 HTTP',
       collapsed: true,
-      items: [{ text: '了解 Web 及网络基础', link: '/book/http/chapter-1' }],
+      items: [{ text: '了解 Web 及网络基础', link: '/notebook/http/chapter-1' }],
     },
   ];
 };
@@ -147,6 +151,7 @@ export default defineConfig({
         '@': resolve(__dirname, '../components'),
       },
     },
+    plugins: [UnoCSS()],
   },
   base: `${baseUrl}/`,
   srcDir: 'docs',
@@ -268,7 +273,7 @@ export default defineConfig({
       '/codes': sidebarCode(),
       '/webpack': sidebarWebpack(),
       '/scaffold': sidebarScaffold(),
-      '/book/http': sidebarBookHttp(),
+      '/notebook/http': sidebarNotebookHttp(),
     },
   },
 });

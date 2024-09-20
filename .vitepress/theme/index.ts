@@ -10,6 +10,7 @@ import Music from '../../components/Music.vue';
 import Weather from '../../components/Weather.vue';
 import './vars.css';
 import './custom.scss';
+import 'uno.css';
 
 export default {
   extends: DefaultTheme,

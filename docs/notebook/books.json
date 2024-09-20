@@ -1,0 +1,18 @@
+[
+  {
+    "media": "https://s21.ax1x.com/2024/06/25/pksgYsf.jpg",
+    "title": "图解 HTTP",
+    "type": "ohter",
+    "author": "上野宣",
+    "year": "2014",
+    "url": "/notebook/http/chapter-1"
+  },
+  {
+    "media": "https://s21.ax1x.com/2024/09/07/pAeKNvD.png",
+    "title": "重学 JavaScript",
+    "type": "js",
+    "author": "读书笔记",
+    "year": "2024",
+    "url": "/notebook/relearn-js/chapter-1"
+  }
+]

@@ -8,7 +8,7 @@ import NavLink from '../../components/NavLink.vue';
 const links=[{
     media: 'https://s21.ax1x.com/2024/06/25/pksd5uj.jpg',
     title: '读书笔记',
-    url: '/book/index',
+    url: '/notebook/index',
     target: '_self'
 },{
     media: 'https://s1.ax1x.com/2023/04/11/ppOYs9x.jpg',
@@ -27,8 +27,8 @@ const links=[{
     target: '_self'
 },{
     media: 'https://s1.ax1x.com/2023/04/11/ppOtCvT.png',
-    title: '前端面试题',
-    url: '/interview/vue', 
+    title: '前端每日积累',
+    url: '/interview/catalog', 
     target: '_self'
 },{
     media: 'https://s1.ax1x.com/2023/04/11/ppOt1qe.jpg',
