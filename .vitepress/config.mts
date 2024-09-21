@@ -141,6 +141,18 @@ const sidebarNotebookHttp = () => {
     },
   ];
 };
+const sidebarNotebookRelearnJs = () => {
+  return [
+    {
+      text: '重新学习 JavaScript',
+      collapsed: true,
+      items: [
+        { text: '变量', link: '/notebook/relearn-js/chapter-1' },
+        { text: '运算符和流程控制', link: '/notebook/relearn-js/chapter-2' },
+      ],
+    },
+  ];
+};
 // #endregion
 
 // https://vitepress.dev/reference/site-config
@@ -274,6 +286,7 @@ export default defineConfig({
       '/webpack': sidebarWebpack(),
       '/scaffold': sidebarScaffold(),
       '/notebook/http': sidebarNotebookHttp(),
+      '/notebook/relearn-js': sidebarNotebookRelearnJs(),
     },
   },
 });
