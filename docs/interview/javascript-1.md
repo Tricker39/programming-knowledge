@@ -104,3 +104,73 @@ function createIncrease() {
 ```
 
 </question>
+
+<question title="说说你对 promise 的理解" date="2024-09-22">
+
+什么是 Promise
+
+promise 是一个对象，用来表示一个异步操作的最终完成（或失败）及其结果值。它能够把异步操作最终的成功返回值或者失败原因和相应的处理程序关联起来，使得异步方法可以像同步方法那样有返回值，异步方法不会立即返回最终的值，而是会返回一个 _`promise`_，以便在未来某个时候把值交给使用者。
+
+一个 Promise 必然会处于以下三个状态之一：
+
+- `pending`: 待定状态，既没有被兑现，也没有被拒绝；
+
+- `fulfilled`: 意味着操作成功完成；（调用 resolve 方法）
+
+- `rejected`: 意味着操作失败；（调用 reject 方法）
+
+一道 Promise 面试题
+
+```javascript
+Promise.resolve()
+  .then(() => {
+    console.log(0);
+    return Promise.resolve(4);
+  })
+  .then((res) => {
+    console.log(res);
+  });
+
+Promise.resolve()
+  .then(() => {
+    console.log(1);
+  })
+  .then(() => {
+    console.log(2);
+  })
+  .then(() => {
+    console.log(3);
+  })
+  .then(() => {
+    console.log(5);
+  })
+  .then(() => {
+    console.log(6);
+  });
+```
+
+结果输出：0 1 2 3 4 5 6
+
+解析：
+
+1. 第一步
+
+![第一步](https://s21.ax1x.com/2024/09/22/pAMos2T.png)
+
+2. 第二步
+
+![第二步](https://s21.ax1x.com/2024/09/22/pAMo2qJ.png)
+
+3. 第三步
+
+![第三步](https://s21.ax1x.com/2024/09/22/pAMoyxU.png)
+
+4. 第四步
+
+![第四步](https://s21.ax1x.com/2024/09/22/pAMocMF.png)
+
+5. 第五步
+
+![第五步](https://s21.ax1x.com/2024/09/22/pAMogr4.png)
+
+</question>
