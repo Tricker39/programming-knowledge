@@ -26,7 +26,7 @@
 
   const props = defineProps<Props>();
 
-  const contentVisible = ref(false);
+  const contentVisible = ref(true);
 </script>
 <style lang="scss" scoped>
   .question {
