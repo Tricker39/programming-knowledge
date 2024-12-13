@@ -149,6 +149,7 @@ const sidebarNotebookRelearnJs = () => {
       items: [
         { text: '变量', link: '/notebook/relearn-js/chapter-1' },
         { text: '运算符和流程控制', link: '/notebook/relearn-js/chapter-2' },
+        { text: 'JavaScript 值类型使用', link: '/notebook/relearn-js/chapter-3' },
       ],
     },
   ];
@@ -262,7 +263,12 @@ export default defineConfig({
       { text: '主页', link: '/home/introduction' },
       {
         text: '友情链接',
-        items: [{ text: 'vitepress', link: 'https://vitepress.vuejs.org/' }],
+        items: [
+          { text: 'vitepress', link: 'https://vitepress.vuejs.org/' },
+          { text: '网道', link: 'https://wangdoc.com/' },
+          { text: 'ES6 教程', link: 'https://es6.ruanyifeng.com/' },
+          { text: 'ES5 教程', link: 'https://yanhaijing.com/es5/#about' },
+        ],
       },
       {
         text: '实用工具',
