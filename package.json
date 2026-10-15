@@ -2,6 +2,7 @@
   "devDependencies": {
     "@iconify-json/icon-park-outline": "^1.2.0",
     "@types/node": "^20.12.7",
+    "cross-env": "^10.1.0",
     "sass": "^1.75.0",
     "unocss": "^0.62.4",
     "vitepress": "^1.0.1",
@@ -11,7 +12,8 @@
   "scripts": {
     "start": "npm run docs:dev",
     "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
+    "docs:build": "cross-env DEVELOP_PLATFORM=github vitepress build",
+    "docs:new-build": "vitepress build",
     "docs:preview": "vitepress preview",
     "build:emoji": "node compiler-emoji"
   },

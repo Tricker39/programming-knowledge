@@ -1,7 +1,9 @@
-import { defineConfig } from 'vitepress';
+import { defineConfig, loadEnv  } from 'vitepress';
 import { resolve } from 'path';
 import UnoCSS from 'unocss/vite';
-const baseUrl = process.env.NODE_ENV === 'production' ? '/programming-knowledge' : '';
+
+console.log(process.env.VITE_DEVELOP_PLATFORM);
+const baseUrl = process.env.NODE_ENV === 'production' && process.env.DEVELOP_PLATFORM === 'github' ? '/programming-knowledge' : '';
 
 const sidebarHome = () => {
   return [
