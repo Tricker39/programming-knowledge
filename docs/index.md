@@ -18,7 +18,7 @@ hero:
       link: /home/introduction
     - theme: alt
       text: netlify 在线文档
-      link: https://6ad09edd63fc2bd6111c5337--eclectic-panda-3bc273.netlify.app/
+      link: https://6ad09fcfb163b5204913c463--eclectic-panda-3bc273.netlify.app/
     - theme: alt
       text: github 在线文档
       link: https://tricker39.github.io/programming-knowledge/
