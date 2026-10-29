@@ -28,6 +28,7 @@ const sidebarInterview = () => {
       text: '前端面试题',
       collapsed: true,
       items: [
+        { text: '浏览器', link: '/interview/browser' },
         { text: 'JavaScript', link: '/interview/javascript-1' },
         { text: 'Vue 2', link: '/interview/vue2-1' },
       ],
@@ -182,7 +183,7 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#3c8772' }],
     ['script', { src: `${baseUrl}/js/anime.min.js` }],
     ['script', { src: `${baseUrl}/js/fireworks.js` }],
-    ['script', { src: `${baseUrl}/js/pointer.js` }],
+    // ['script', { src: `${baseUrl}/js/pointer.js` }], // 导致鼠标延迟卡顿
     ['script', { src: `${baseUrl}/js/snow.js` }],
   ],
 
